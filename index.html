@@ -3,23 +3,80 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mini Web App</title>
+    <title>Buscador Bonito</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            text-align: center;
-            margin-top: 50px;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #00c6ff, #0072ff);
+            color: #fff;
         }
-        button {
-            padding: 10px 20px;
+
+        .search-container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+
+        .search-box {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .search-input {
+            width: 300px;
+            padding: 15px;
+            border: none;
+            border-radius: 50px;
+            outline: none;
             font-size: 16px;
+            margin-right: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .search-button {
+            padding: 15px 25px;
+            border: none;
+            border-radius: 50px;
+            background-color: #fff;
+            color: #0072ff;
+            font-size: 16px;
+            font-weight: bold;
             cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .search-button:hover {
+            background-color: #0072ff;
+            color: #fff;
+        }
+
+        .search-input::placeholder {
+            color: #aaa;
         }
     </style>
 </head>
 <body>
-    <h1>¡Hola desde la Mini Web App!</h1>
-    <p>Prueba que esta app se abra desde Telegram.</p>
-    <button onclick="alert('¡Funciona!')">Haz clic aquí</button>
+    <div class="search-container">
+        <h1>Busca tus productos favoritos</h1>
+        <div class="search-box">
+            <input class="search-input" type="text" placeholder="Escribe algo aquí...">
+            <button class="search-button">Buscar</button>
+        </div>
+    </div>
 </body>
 </html>
