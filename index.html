@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Navbar with Gradient</title>
+    <title>Navbar Full Width</title>
     <style>
         /* Basic reset */
         * {
@@ -14,47 +14,34 @@
 
         body {
             display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #181920;
-        }
-
-        .app-container {
-            width: 360px;
-            height: 640px;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            display: flex;
             flex-direction: column;
-            position: relative;
+            justify-content: space-between;
+            height: 100vh;
+            background-color: #181920; /* Fondo oscuro */
+            font-family: Arial, sans-serif;
         }
 
         .content {
             flex: 1;
             padding: 16px;
+            color: white;
         }
 
         .navbar {
-            position: absolute;
-            bottom: 16px; /* Separación del fondo */
-            left: 16px; /* Espaciado lateral */
-            right: 16px; /* Espaciado lateral */
             background: linear-gradient(
                 135deg,
                 #2672EF,  /* Azul intenso */
                 #9EC3FF,  /* Azul claro */
-                #00A3B8,  /* Azul turquesa (tu color) */
+                #00A3B8,  /* Azul turquesa */
                 #333A5C   /* Azul oscuro */
             );
             display: flex;
             justify-content: space-around;
             align-items: center;
             padding: 10px 0;
-            border-radius: 16px; /* Esquinas redondeadas */
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 16px 16px 0 0; /* Esquinas redondeadas superiores */
+            box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
+            margin: 0 16px 16px; /* Espaciado respecto al fondo */
         }
 
         .navbar a {
@@ -73,32 +60,34 @@
             font-size: 20px;
             margin-bottom: 4px;
         }
+
+        .navbar a:hover {
+            color: #9EC3FF; /* Azul claro en hover */
+        }
     </style>
 </head>
 <body>
-    <div class="app-container">
-        <div class="content">
-            <h1>Welcome!</h1>
-            <p>This is your main content.</p>
-        </div>
-        <div class="navbar">
-            <a href="#home">
-                <i>🏠</i>
-                <span>Home</span>
-            </a>
-            <a href="#search">
-                <i>🔍</i>
-                <span>Search</span>
-            </a>
-            <a href="#notifications">
-                <i>🔔</i>
-                <span>Alerts</span>
-            </a>
-            <a href="#profile">
-                <i>👤</i>
-                <span>Profile</span>
-            </a>
-        </div>
+    <div class="content">
+        <h1>Welcome!</h1>
+        <p>This is your main content.</p>
+    </div>
+    <div class="navbar">
+        <a href="#home">
+            <i>🏠</i>
+            <span>Home</span>
+        </a>
+        <a href="#search">
+            <i>🔍</i>
+            <span>Search</span>
+        </a>
+        <a href="#notifications">
+            <i>🔔</i>
+            <span>Alerts</span>
+        </a>
+        <a href="#profile">
+            <i>👤</i>
+            <span>Profile</span>
+        </a>
     </div>
 </body>
 </html>
