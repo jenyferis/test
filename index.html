@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>bunnymoney</title>
+    <title>Mini App</title>
     <style>
         /* Basic reset */
         * {
@@ -12,71 +12,75 @@
             box-sizing: border-box;
         }
 
-        /* Container styling */
         body {
             font-family: Arial, sans-serif;
-            background-color: #f9f9f9;
             display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 100vh;
+            background-color: #f4f4f4;
         }
 
         .app-container {
-            width: 360px;
-            height: 640px;
-            background-color: #fff;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .header {
-            background-color: #01a3ba;
-            color: #fff;
-            text-align: center;
-            padding: 16px;
-            font-size: 18px;
-            font-weight: bold;
-        }
-
-        .content {
             flex: 1;
             padding: 16px;
-            overflow-y: auto;
+            background-color: white;
         }
 
-        .footer {
-            background-color: #f1f1f1;
-            padding: 16px;
+        .navbar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #01a3ba;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 10px 0;
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
             text-align: center;
             font-size: 14px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
 
-        .button {
-            background-color: #01a3ba;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        .button:hover {
-            background-color: #018f9e;
+        .navbar a i {
+            font-size: 20px;
+            margin-bottom: 4px;
         }
     </style>
 </head>
 <body>
     <div class="app-container">
-        <div class="header">Telegram Mini App</div>
-        <div class="content">
-            <p>Welcome to your Telegram Mini App! Customize this area for your app's main content.</p>
-            <button class="button">Get Started</button>
-        </div>
-        <div class="footer">Made with ❤️ for Telegram</div>
+        <h1>Welcome to the Mini App</h1>
+        <p>Here goes your main content.</p>
+    </div>
+
+    <div class="navbar">
+        <a href="#home">
+            <i>🏠</i>
+            <span>Home</span>
+        </a>
+        <a href="#search">
+            <i>🔍</i>
+            <span>Search</span>
+        </a>
+        <a href="#notifications">
+            <i>🔔</i>
+            <span>Alerts</span>
+        </a>
+        <a href="#profile">
+            <i>👤</i>
+            <span>Profile</span>
+        </a>
     </div>
 </body>
 </html>
