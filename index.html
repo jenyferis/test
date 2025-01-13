@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mini App</title>
+    <title>Navbar with Gradient</title>
     <style>
         /* Basic reset */
         * {
@@ -40,9 +40,15 @@
         .navbar {
             position: absolute;
             bottom: 16px; /* Separación del fondo */
-            left: 16px; /* Espaciado hacia los bordes laterales */
-            right: 16px; /* Espaciado hacia los bordes laterales */
-            background-color: #01a3ba;
+            left: 16px; /* Espaciado lateral */
+            right: 16px; /* Espaciado lateral */
+            background: linear-gradient(
+                135deg,
+                #2672EF,  /* Azul intenso */
+                #9EC3FF,  /* Azul claro */
+                #00A3B8,  /* Azul turquesa (tu color) */
+                #333A5C   /* Azul oscuro */
+            );
             display: flex;
             justify-content: space-around;
             align-items: center;
