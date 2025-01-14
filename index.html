@@ -7,6 +7,8 @@
     <title>Productos con Descuento</title>
     <style>
         /* Basic reset */
+        @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,300;0,6..12,400;0,6..12,500;0,6..12,600;0,6..12,700;1,6..12,300;1,6..12,600&family=Roboto:ital,wght@0,100..900;1,100..900&family=Space+Mono:ital,wght@1,700&display=swap');
+
         * {
             margin: 0;
             padding: 0;
@@ -17,17 +19,18 @@
             display: flex;
             flex-direction: column;
             height: 100vh;
-            background-color: #4c3ba4;
-            font-family: Arial, sans-serif;
-            overflow: hidden;
+            background: #1c1f24;
+            font-family: 'Roboto', sans-serif;
+            /* Aquí se especifica la fuente */
         }
+
 
         .header {
             display: flex;
             justify-content: center;
             align-items: center;
             height: 80px;
-            background-color: #2f2768;
+            background-color: #24262b;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 0 0 50px 50px;
         }
@@ -94,7 +97,7 @@
             width: 100%;
             max-width: 300px;
             height: 8px;
-            background: #1d1e2a;
+            background: linear-gradient(90deg,  #ff0000 0%,#f0a709 100%);
             outline: none;
             border-radius: 16px;
             cursor: pointer;
@@ -125,7 +128,7 @@
             display: flex;
             align-items: center;
             height: 120px;
-            background: linear-gradient(135deg, #1e1f36, #331e2e);
+            background: #24262b;
 
             border-radius: 16px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
@@ -175,7 +178,7 @@
 
         .details .price-now {
             font-size: 18px;
-            
+
             color: #ffffff;
         }
 
@@ -193,11 +196,11 @@
             align-items: center;
             justify-content: center;
             font-size: 14px;
-            
+
         }
 
         .navbar {
-            background: #2f2768;
+            background: #24262b;
             display: flex;
             justify-content: space-around;
             align-items: center;
@@ -262,8 +265,7 @@
     <!-- Header con foto de perfil -->
     <div class="header">
         <div class="profile-pic">
-            <img src="bunnyvip.png"
-                alt="Profile Picture">
+            <img src="bunnyvip.png" alt="Profile Picture">
         </div>
     </div>
 
@@ -285,7 +287,8 @@
         <!-- Cajas de productos -->
         <div class="box">
             <div class="image-container">
-                <img src="https://imagedelivery.net/4fYuQyy-r8_rpBpcY7lH_A/falabellaCL/135601271_01/w=1500,h=1500,fit=pad" alt="Producto">
+                <img src="https://imagedelivery.net/4fYuQyy-r8_rpBpcY7lH_A/falabellaCL/135601271_01/w=1500,h=1500,fit=pad"
+                    alt="Producto">
             </div>
             <div class="details">
                 <div class="name">Producto 1</div>
@@ -297,7 +300,8 @@
 
         <div class="box">
             <div class="image-container">
-                <img src="https://imagedelivery.net/4fYuQyy-r8_rpBpcY7lH_A/falabellaCL/135601271_01/w=1500,h=1500,fit=pad" alt="Producto">
+                <img src="https://imagedelivery.net/4fYuQyy-r8_rpBpcY7lH_A/falabellaCL/135601271_01/w=1500,h=1500,fit=pad"
+                    alt="Producto">
             </div>
             <div class="details">
                 <div class="name">Producto 2</div>
@@ -309,7 +313,8 @@
 
         <div class="box">
             <div class="image-container">
-                <img src="https://imagedelivery.net/4fYuQyy-r8_rpBpcY7lH_A/falabellaCL/135601271_01/w=1500,h=1500,fit=pad" alt="Producto">
+                <img src="https://imagedelivery.net/4fYuQyy-r8_rpBpcY7lH_A/falabellaCL/135601271_01/w=1500,h=1500,fit=pad"
+                    alt="Producto">
             </div>
             <div class="details">
                 <div class="name">Producto 3</div>
@@ -321,7 +326,8 @@
 
         <div class="box">
             <div class="image-container">
-                <img src="https://imagedelivery.net/4fYuQyy-r8_rpBpcY7lH_A/falabellaCL/135601271_01/w=1500,h=1500,fit=pad" alt="Producto">
+                <img src="https://imagedelivery.net/4fYuQyy-r8_rpBpcY7lH_A/falabellaCL/135601271_01/w=1500,h=1500,fit=pad"
+                    alt="Producto">
             </div>
             <div class="details">
                 <div class="name">Producto 4</div>
@@ -333,7 +339,8 @@
 
         <div class="box">
             <div class="image-container">
-                <img src="https://imagedelivery.net/4fYuQyy-r8_rpBpcY7lH_A/falabellaCL/135601271_01/w=1500,h=1500,fit=pad" alt="Producto">
+                <img src="https://imagedelivery.net/4fYuQyy-r8_rpBpcY7lH_A/falabellaCL/135601271_01/w=1500,h=1500,fit=pad"
+                    alt="Producto">
             </div>
             <div class="details">
                 <div class="name">Producto 5</div>
