@@ -328,6 +328,7 @@
     align-items: center;
     padding: 10px 0;
     border-radius: 25px;
+    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
     margin: 0 16px 16px;
     position: fixed;
     bottom: 16px;
@@ -335,71 +336,63 @@
     right: 0;
     z-index: 100;
 }
-        .navbar a {
-            color: white;
-            text-decoration: none;
-            text-align: center;
-            font-size: 14px;
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            padding: 8px 0;
-            background: none;
-        }
 
-        .navbar a.active {
-            position: relative;
-            color: #ffffff;
-            /* Cambiar el color del texto */
-        }
+.navbar a {
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    font-size: 14px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 8px 0;
+    background: none;
+}
 
-        .navbar a.active svg {
-            fill: #ffffff;
-            /* Cambiar el color del ícono */
-        }
+.navbar a.active {
+    position: relative;
+    color: #ffffff;
+}
 
-        .navbar a.active::before {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(to right, rgb(201, 104, 211), rgb(255, 150, 121));
-        }
+.navbar a.active svg {
+    fill: #ffffff;
+}
 
+.navbar a.active::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(to right, rgb(201, 104, 211), rgb(255, 150, 121));
+    border-radius: 50%;
+    z-index: -1;
+}
 
-        .navbar svg {
-            width: 30px;
-            height: 30px;
-            fill: #dec8ea;
-            margin-bottom: 4px;
-            position: relative;
-            z-index: 2;
-            transition: fill 0.3s ease;
-        }
+.navbar svg {
+    width: 30px;
+    height: 30px;
+    fill: #dec8ea;
+    margin-bottom: 4px;
+    position: relative;
+    z-index: 2;
+    transition: fill 0.3s ease;
+}
 
-        .navbar a::before {
-            content: "";
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 0;
-            height: 0;
-            background: linear-gradient(to right, rgb(201, 104, 211), rgb(255, 150, 121));
-            border-radius: 50%;
-            transition: all 0.3s ease;
-            z-index: 1;
-        }
+.navbar a:hover svg {
+    fill: #ffffff;
+}
 
-        .navbar a:hover::before {
-            width: 60px;
-            height: 60px;
-        }
+.navbar a:hover::before {
+    width: 60px;
+    height: 60px;
+}
 
-        .navbar a:hover svg {
-            fill: #ffffff;
-        }
 
         /* Y aquí el HTML del navbar: */
     </style>
@@ -542,7 +535,6 @@
         </a>
 
     <!-- Navbar inferior -->
-    <div class="navbar-container">
     <div class="navbar">
         <a href="#home" class="active">
             <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 100 100" style="display: block;">
@@ -578,7 +570,7 @@
             </svg>
         </a>
     </div>
-</div>
+    
     <script>
         const slider = document.getElementById('discountSlider');
         const sliderValue = document.getElementById('sliderValue');
