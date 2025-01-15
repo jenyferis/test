@@ -40,35 +40,38 @@
         }
 
         .profile-pic {
-    display: flex;
-    align-items: center;
-    position: relative;
-}
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
 
-.profile-pic img {
-    width: 55px;
-    height: 55px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-right: 10px;
-    border: 1px solid #ffc900;
-    filter: drop-shadow(0px 0px 10px rgba(254, 174, 1, 0.5));
-}
+        .profile-pic img {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 10px;
+            border: 1px solid #ffc900;
+            filter: drop-shadow(0px 0px 10px rgba(254, 174, 1, 0.5));
+        }
 
-.profile-star {
-    width: 25px;
-    height: 25px;
-    position: absolute;
-    left: 40px; /* Ajusta la posición horizontal */
-    bottom: 0px; /* Ajusta la posición vertical */
-}
+        .profile-star {
+            width: 25px;
+            height: 25px;
+            position: absolute;
+            left: 40px;
+            /* Ajusta la posición horizontal */
+            bottom: 0px;
+            /* Ajusta la posición vertical */
+        }
 
-.profile-star svg {
-    width: 100%;
-    height: 100%;
-    fill: #ffc900;
-    filter: drop-shadow(0px 0px 10px #feae01);
-}
+        .profile-star svg {
+            width: 100%;
+            height: 100%;
+            fill: #ffc900;
+            filter: drop-shadow(0px 0px 10px #feae01);
+        }
+
         /* Opcional: Efecto hover para hacerlo más interactivo */
         .profile-pic img:hover {
             filter: drop-shadow(0px 0px 15px rgba(254, 174, 1, 0.7));
@@ -94,11 +97,12 @@
         }
 
         .content {
-            flex: 1;
-            padding: 16px;
-            color: #c6c6c6;
-            overflow-y: auto;
-        }
+    flex: 1;
+    padding: 16px;
+    padding-bottom: 80px; /* Añadido - ajusta este valor según el alto de tu navbar */
+    color: #c6c6c6;
+    overflow-y: auto;
+}
 
         .content h1 {
             text-align: center;
@@ -198,42 +202,85 @@
             cursor: pointer;
             box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
         }
+
         .box {
-    position: relative;
-    display: flex;
-    align-items: center;
-    height: 130px;
-    background: #181624;
-    border-radius: 16px;
-    color: white;
-    font-size: 16px;
-    text-align: left;
-    padding: 12px;
-    margin-bottom: 16px;
-}
-
-.box .image-container {
-    flex: 0 0 130px; /* Aumentado de 80px a 130px para que coincida con la altura */
-    height: 100%; /* Ocupará toda la altura disponible */
-    border-radius: 12px; /* Ajustado para que se vea mejor con el nuevo tamaño */
-    overflow: hidden;
-    background-color: #333a5c;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-right: 16px;
-}
-
-.box .image-container img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-        .box .details {
-            flex: 1;
+            position: relative;
             display: flex;
-            flex-direction: column;
-            justify-content: space-between;
+            align-items: center;
+            height: 130px;
+            background: #181624;
+            border-radius: 16px;
+            color: white;
+            font-size: 16px;
+            text-align: left;
+            padding: 12px;
+            margin-bottom: 16px;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+            text-decoration: none;
+        }
+
+        .box:hover {
+            transform: translateY(-2px);
+        }
+
+        .box .image-container {
+            flex: 0 0 130px;
+            height: 100%;
+            border-radius: 12px;
+            overflow: hidden;
+            background-color: #333a5c;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 16px;
+        }
+
+        .box .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Estilos para el botón de copiar */
+        .copy-button {
+            position: absolute;
+            bottom: 12px;
+            right: 12px;
+            background: #493a5b66;
+            border: none;
+            border-radius: 8px;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 2;
+        }
+
+        .copy-button svg {
+            width: 18px;
+            height: 18px;
+            fill: #e1d3e9bf;
+            transition: fill 0.3s ease;
+        }
+
+        .copy-button:hover {
+            background: linear-gradient(135deg, #493a5b, #8d556e);
+        }
+
+        .copy-button:hover svg {
+            fill: white;
+        }
+
+        .copy-button:focus {
+            outline: none;
+        }
+
+        .copy-button.copied {
+            background: #4CAF50;
         }
 
         .details .name {
@@ -264,23 +311,30 @@
             align-items: center;
             justify-content: center;
             font-size: 14px;
-    background: linear-gradient(135deg, #493a5b, #8d556e);
-    color: white;
-    font-weight: 600;
-    filter: drop-shadow(0px 0px 10px rgba(141, 85, 110, 0.3));
-}
-
-        .navbar {
-            background: #493a5b;
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            padding: 10px 0;
-            border-radius: 25px;
-            box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
-            margin: 0 16px 16px;
+            background: linear-gradient(135deg, #493a5b, #8d556e);
+            color: white;
+            font-weight: 600;
+            filter: drop-shadow(0px 0px 10px rgba(141, 85, 110, 0.3));
         }
+/* Creamos un contenedor para el efecto blur */
 
+
+
+/* Ajustamos el navbar para que esté por encima del blur */
+.navbar {
+    background: #493a5b;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px 0;
+    border-radius: 25px;
+    margin: 0 16px 16px;
+    position: fixed;
+    bottom: 16px;
+    left: 0;
+    right: 0;
+    z-index: 100;
+}
         .navbar a {
             color: white;
             text-decoration: none;
@@ -356,13 +410,16 @@
     <!-- Header con foto de perfil, texto y estrella -->
     <div class="header">
         <div class="profile-pic">
-            <img src="https://i.pinimg.com/originals/23/ee/dd/23eedda7f3eb76efa03a18609cc7001a.png" alt="Profile Picture">
+            <img src="https://i.pinimg.com/originals/23/ee/dd/23eedda7f3eb76efa03a18609cc7001a.png"
+                alt="Profile Picture">
             <div class="profile-star">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 93 116.25">
-                    <path d="M50.469,6.047,61.063,29.226a1.5,1.5,0,0,0,1.241.9l25.318,2.913a4.357,4.357,0,0,1,2.456,7.554L71.308,57.829a1.5,1.5,0,0,0-.477,1.462L75.884,84.27a4.349,4.349,0,0,1-6.42,4.662L47.269,76.407a1.532,1.532,0,0,0-1.538,0l-22.2,12.525a4.351,4.351,0,0,1-6.419-4.662l5.053-24.979a1.5,1.5,0,0,0-.477-1.462L2.922,40.591a4.355,4.355,0,0,1,2.456-7.554L30.7,30.124a1.5,1.5,0,0,0,1.241-.9L42.531,6.047a4.351,4.351,0,0,1,7.938,0Z" />
+                    <path
+                        d="M50.469,6.047,61.063,29.226a1.5,1.5,0,0,0,1.241.9l25.318,2.913a4.357,4.357,0,0,1,2.456,7.554L71.308,57.829a1.5,1.5,0,0,0-.477,1.462L75.884,84.27a4.349,4.349,0,0,1-6.42,4.662L47.269,76.407a1.532,1.532,0,0,0-1.538,0l-22.2,12.525a4.351,4.351,0,0,1-6.419-4.662l5.053-24.979a1.5,1.5,0,0,0-.477-1.462L2.922,40.591a4.355,4.355,0,0,1,2.456-7.554L30.7,30.124a1.5,1.5,0,0,0,1.241-.9L42.531,6.047a4.351,4.351,0,0,1,7.938,0Z" />
                 </svg>
             </div>
-            Bienvenido a VIP
+            Bienvenido a tu&nbsp;<strong>VIP</strong>
+
         </div>
         <div class="star">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 93 116.25">
@@ -399,10 +456,9 @@
 
 
         <!-- Cajas de productos -->
-        <div class="box">
+        <a href="https://www.scotiabankchile.cl/" class="box">
             <div class="image-container">
-                <img src="https://imagedelivery.net/4fYuQyy-r8_rpBpcY7lH_A/falabellaCL/135601271_01/w=1500,h=1500,fit=pad"
-                    alt="Producto">
+                <img src="https://imagedelivery.net/4fYuQyy-r8_rpBpcY7lH_A/falabellaCL/135601271_01/w=1500,h=1500,fit=pad" alt="Producto">
             </div>
             <div class="details">
                 <div class="name">Smart TV Samsung Crystal Uhd</div>
@@ -410,62 +466,83 @@
                 <div class="price-now">Ahora: $350.000</div>
             </div>
             <div class="discount-circle">30%</div>
-        </div>
+            <button class="copy-button" onclick="event.preventDefault(); copyProductInfo(this)">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
+                </svg>
+            </button>
+        </a>
 
-        <div class="box">
+        <a href="https://www.scotiabankchile.cl/" class="box">
             <div class="image-container">
-                <img src="https://imagedelivery.net/4fYuQyy-r8_rpBpcY7lH_A/falabellaCL/135601271_01/w=1500,h=1500,fit=pad"
-                    alt="Producto">
+                <img src="https://imagedelivery.net/4fYuQyy-r8_rpBpcY7lH_A/falabellaCL/135601271_01/w=1500,h=1500,fit=pad" alt="Producto">
             </div>
             <div class="details">
                 <div class="name">Smart TV Samsung Crystal Uhd</div>
-                <div class="price-old">$600.000</div>
-                <div class="price-now">$400.000</div>
+                <div class="price-old">Antes: $500.000</div>
+                <div class="price-now">Ahora: $350.000</div>
             </div>
-            <div class="discount-circle">33%</div>
-        </div>
+            <div class="discount-circle">30%</div>
+            <button class="copy-button" onclick="event.preventDefault(); copyProductInfo(this)">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
+                </svg>
+            </button>
+        </a>
 
-        <div class="box">
+        <a href="https://www.scotiabankchile.cl/" class="box">
             <div class="image-container">
-                <img src="https://imagedelivery.net/4fYuQyy-r8_rpBpcY7lH_A/falabellaCL/135601271_01/w=1500,h=1500,fit=pad"
-                    alt="Producto">
+                <img src="https://imagedelivery.net/4fYuQyy-r8_rpBpcY7lH_A/falabellaCL/135601271_01/w=1500,h=1500,fit=pad" alt="Producto">
             </div>
             <div class="details">
                 <div class="name">Smart TV Samsung Crystal Uhd</div>
-                <div class="price-old">$800.000</div>
-                <div class="price-now">$600.000</div>
+                <div class="price-old">Antes: $500.000</div>
+                <div class="price-now">Ahora: $350.000</div>
             </div>
-            <div class="discount-circle">25%</div>
-        </div>
+            <div class="discount-circle">30%</div>
+            <button class="copy-button" onclick="event.preventDefault(); copyProductInfo(this)">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
+                </svg>
+            </button>
+        </a>
 
-        <div class="box">
+        <a href="https://www.scotiabankchile.cl/" class="box">
             <div class="image-container">
-                <img src="https://imagedelivery.net/4fYuQyy-r8_rpBpcY7lH_A/falabellaCL/135601271_01/w=1500,h=1500,fit=pad"
-                    alt="Producto">
+                <img src="https://imagedelivery.net/4fYuQyy-r8_rpBpcY7lH_A/falabellaCL/135601271_01/w=1500,h=1500,fit=pad" alt="Producto">
             </div>
             <div class="details">
                 <div class="name">Smart TV Samsung Crystal Uhd</div>
-                <div class="price-old">$100.000</div>
-                <div class="price-now">$750.000</div>
+                <div class="price-old">Antes: $500.000</div>
+                <div class="price-now">Ahora: $350.000</div>
             </div>
-            <div class="discount-circle">25%</div>
-        </div>
+            <div class="discount-circle">30%</div>
+            <button class="copy-button" onclick="event.preventDefault(); copyProductInfo(this)">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
+                </svg>
+            </button>
+        </a>
 
-        <div class="box">
+        <a href="https://www.scotiabankchile.cl/" class="box">
             <div class="image-container">
-                <img src="https://imagedelivery.net/4fYuQyy-r8_rpBpcY7lH_A/falabellaCL/135601271_01/w=1500,h=1500,fit=pad"
-                    alt="Producto">
+                <img src="https://imagedelivery.net/4fYuQyy-r8_rpBpcY7lH_A/falabellaCL/135601271_01/w=1500,h=1500,fit=pad" alt="Producto">
             </div>
             <div class="details">
-                <div class="name">Producto 5</div>
-                <div class="price-old">$400.000</div>
-                <div class="price-now">$300.00</div>
+                <div class="name">Smart TV Samsung Crystal Uhd</div>
+                <div class="price-old">Antes: $500.000</div>
+                <div class="price-now">Ahora: $350.000</div>
             </div>
-            <div class="discount-circle">25%</div>
-        </div>
-    </div>
+            <div class="discount-circle">30%</div>
+            <button class="copy-button" onclick="event.preventDefault(); copyProductInfo(this)">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
+                </svg>
+            </button>
+        </a>
 
     <!-- Navbar inferior -->
+    <div class="navbar-container">
     <div class="navbar">
         <a href="#home" class="active">
             <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 100 100" style="display: block;">
@@ -501,12 +578,34 @@
             </svg>
         </a>
     </div>
-
+</div>
     <script>
         const slider = document.getElementById('discountSlider');
         const sliderValue = document.getElementById('sliderValue');
-
         const navbarLinks = document.querySelectorAll('.navbar a');
+
+        function copyProductInfo(button) {
+            const box = button.closest('.box');
+            const name = box.querySelector('.name').textContent;
+            const price = box.querySelector('.price-now').textContent;
+            const text = `${name} - ${price}`;
+            
+            navigator.clipboard.writeText(text).then(() => {
+                button.classList.add('copied');
+                
+                setTimeout(() => {
+                    button.classList.remove('copied');
+                }, 2000);
+            });
+        }
+
+        // Evitar que el click en el botón active el enlace
+        document.querySelectorAll('.copy-button').forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+            });
+        });
 
         // Función para cambiar la selección activa
         navbarLinks.forEach(link => {
