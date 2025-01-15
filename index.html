@@ -331,7 +331,7 @@
     box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
     margin: 0 16px 16px;
     position: fixed;
-    bottom: 16px;
+    bottom: 0px;
     left: 0;
     right: 0;
     z-index: 100;
@@ -449,7 +449,7 @@
 
 
         <!-- Cajas de productos -->
-        <a href="https://www.scotiabankchile.cl/" class="box">
+        <a href="#" class="box" onclick="openInTelegram(event, 'https://www.scotiabankchile.cl/')">
             <div class="image-container">
                 <img src="https://imagedelivery.net/4fYuQyy-r8_rpBpcY7lH_A/falabellaCL/135601271_01/w=1500,h=1500,fit=pad" alt="Producto">
             </div>
@@ -575,6 +575,25 @@
         const slider = document.getElementById('discountSlider');
         const sliderValue = document.getElementById('sliderValue');
         const navbarLinks = document.querySelectorAll('.navbar a');
+
+        function openInTelegram(event, url) {
+        event.preventDefault(); // Evita la redirección normal
+        Telegram.WebApp.openLink(url); // Abre el enlace dentro del contenedor de Telegram
+    }
+
+    function copyProductInfo(button) {
+        const box = button.closest('.box');
+        const name = box.querySelector('.name').textContent;
+        const price = box.querySelector('.price-now').textContent;
+        const text = `${name} - ${price}`;
+
+        navigator.clipboard.writeText(text).then(() => {
+            button.classList.add('copied');
+            setTimeout(() => {
+                button.classList.remove('copied');
+            }, 2000);
+        });
+    }
 
         function copyProductInfo(button) {
             const box = button.closest('.box');
