@@ -19,67 +19,111 @@
             display: flex;
             flex-direction: column;
             height: 100vh;
-            background: #1c1f24;
+            background: #0f1024;
+
             font-family: 'Roboto', sans-serif;
             /* Aquí se especifica la fuente */
         }
 
-
         .header {
             display: flex;
-            justify-content: center;
             align-items: center;
+            justify-content: space-between;
             height: 80px;
-            background-color: #24262b;
+            padding: 0 20px;
+            /* background-color: #3e305a; */
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 0 0 50px 50px;
+            color: white;
+            font-size: 18px;
+            /* font-weight: bold; */
         }
 
         .profile-pic {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            overflow: hidden;
-            border: 3px solid #9EC3FF;
+            display: flex;
+            align-items: center;
         }
 
         .profile-pic img {
-            width: 100%;
-            height: 100%;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
             object-fit: cover;
+            margin-right: 10px;
+        }
+
+        .star {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            width: 30px;
+            height: 30px;
+        }
+
+        .star svg {
+            width: 50px;
+            height: 50px;
+            fill: #ffc900;
+            filter: drop-shadow(0px 0px 10px #feae01);
         }
 
         .content {
             flex: 1;
             padding: 16px;
-            color: white;
+            color: #706eac;
             overflow-y: auto;
         }
 
         .content h1 {
             text-align: center;
-            margin-bottom: 16px;
+            font-size: 24px;
+            margin-bottom: 14px;
         }
 
         .search-bar {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 16px;
+            position: relative;
+            width: 100%;
+            /* Usar todo el ancho disponible */
+            margin: 0 auto 16px;
+            /* Centrado */
         }
+
 
         .search-bar input {
             width: 100%;
-            max-width: 300px;
-            padding: 8px 12px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 16px;
-            background-color: #1d1e2a;
-            color: white;
+            /* Asegura que el input ocupe todo el ancho */
+            height: 50px;
+            padding: 8px 12px 8px 36px;
+            border: 1px solid #362c56;
+            border-radius: 20px;
+            background-color: #493a5b;
+            color: #acafb6;
             font-size: 16px;
         }
 
+
         .search-bar input::placeholder {
             color: rgba(255, 255, 255, 0.5);
+        }
+
+        .search-icon {
+            position: absolute;
+            top: 50%;
+            left: 12px;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #acafb6;
+        }
+
+        .search-icon svg {
+            width: 50px;
+            height: 50px;
+            fill: currentColor;
         }
 
         .slider-container {
@@ -96,8 +140,14 @@
             appearance: none;
             width: 100%;
             max-width: 300px;
-            height: 8px;
-            background: linear-gradient(90deg,  #ff0000 0%,#f0a709 100%);
+            height: 12px;
+            background: linear-gradient(90deg,
+                    #bd59e2 0%,
+                    #cd71c5 15%,
+                    #dd88a9 35%,
+                    #e67d81 55%,
+                    #ef785e 75%,
+                    #ec4b27 100%);
             outline: none;
             border-radius: 16px;
             cursor: pointer;
@@ -109,41 +159,59 @@
             appearance: none;
             width: 20px;
             height: 20px;
-            background: #9EC3FF;
+            background: #ffffff;
             border-radius: 50%;
             cursor: pointer;
-            box-shadow: 0 0 8px rgba(158, 195, 255, 0.6);
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
         }
 
         .slider::-moz-range-thumb {
             width: 20px;
             height: 20px;
-            background: #9EC3FF;
+            background: #ffffff;
             border-radius: 50%;
             cursor: pointer;
-            box-shadow: 0 0 8px rgba(158, 195, 255, 0.6);
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
         }
 
         .box {
+            position: relative;
             display: flex;
             align-items: center;
             height: 120px;
-            background: #24262b;
-
+            background: #181624;
             border-radius: 16px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             color: white;
             font-size: 16px;
             text-align: left;
             padding: 12px;
             margin-bottom: 16px;
-            position: relative;
+            /* Quitamos el box-shadow original */
+        }
+
+        /* Pseudo-elemento para el borde con gradiente */
+        .box::before {
+            content: '';
+            position: absolute;
+            top: -1px;
+            left: -1px;
+            right: -1px;
+            bottom: -1px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, #1e1622 0%, #1e214a 35%, #493a5b 65%, #100e1c 100%);
+            z-index: -1;
+            padding: 1px;
+            -webkit-mask:
+                linear-gradient(#fff 0 0) content-box,
+                linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
         }
 
         .box .image-container {
             flex: 0 0 80px;
             height: 80px;
-            border-radius: 25%;
+            border-radius: 15%;
             overflow: hidden;
             background-color: #333a5c;
             display: flex;
@@ -183,24 +251,24 @@
         }
 
         .box .discount-circle {
-            position: absolute;
-            top: -5px;
-            right: -5px;
-            background: #fcba32;
-            border: 1px solid #fcba32;
-            color: white;
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 14px;
-
-        }
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    background: #feae01;
+    color:#694e12;
+    font-weight: bold;
+    /* filter: drop-shadow(0px 0px 10px #feae01); */
+}
 
         .navbar {
-            background: #24262b;
+            background: #493a5b;
             display: flex;
             justify-content: space-around;
             align-items: center;
@@ -228,10 +296,11 @@
         .navbar svg {
             width: 30px;
             height: 30px;
-            fill: white;
+            fill: #dec8ea;
             margin-bottom: 4px;
             position: relative;
             z-index: 2;
+            transition: fill 0.3s ease;
         }
 
         .navbar a::before {
@@ -242,7 +311,7 @@
             transform: translate(-50%, -50%);
             width: 0;
             height: 0;
-            background: #00a3b8;
+            background: linear-gradient(to right, rgb(201, 104, 211), rgb(255, 150, 121));
             border-radius: 50%;
             transition: all 0.3s ease;
             z-index: 1;
@@ -257,32 +326,51 @@
             fill: #ffffff;
         }
 
-        /* Removidas las reglas de hover adicionales que causaban el efecto de caja */
+        /* Y aquí el HTML del navbar: */
     </style>
 </head>
 
 <body>
     <!-- Header con foto de perfil -->
+    <!-- Header con foto de perfil, texto y estrella -->
     <div class="header">
         <div class="profile-pic">
             <img src="bunnyvip.png" alt="Profile Picture">
+            Bienvenido usuario premium
+        </div>
+        <div class="star">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 93 116.25">
+                <path
+                    d="M50.469,6.047,61.063,29.226a1.5,1.5,0,0,0,1.241.9l25.318,2.913a4.357,4.357,0,0,1,2.456,7.554L71.308,57.829a1.5,1.5,0,0,0-.477,1.462L75.884,84.27a4.349,4.349,0,0,1-6.42,4.662L47.269,76.407a1.532,1.532,0,0,0-1.538,0l-22.2,12.525a4.351,4.351,0,0,1-6.419-4.662l5.053-24.979a1.5,1.5,0,0,0-.477-1.462L2.922,40.591a4.355,4.355,0,0,1,2.456-7.554L30.7,30.124a1.5,1.5,0,0,0,1.241-.9L42.531,6.047a4.351,4.351,0,0,1,7.938,0Z" />
+            </svg>
         </div>
     </div>
-
     <!-- Contenido principal -->
     <div class="content">
-        <h1>Welcome!</h1>
+        <h1>PRODUCTOS</h1>
         <!-- Barra de búsqueda -->
         <div class="search-bar">
-            <input type="text" placeholder="Buscar producto...">
+            <input type="text" placeholder="Buscar">
+            <div class="search-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="-5.0 -10.0 110.0 135.0"
+                    style="display: block; fill: #acafb6;">
+                    <path
+                        d="m92.836 88.414-17.812-17.812c8.832-10.371 11.641-24.582 7.4219-37.535-4.2227-12.949-14.867-22.777-28.113-25.949-13.246-3.1758-27.188 0.76172-36.82 10.391-9.6289 9.6328-13.566 23.574-10.395 36.82 3.1758 13.246 13.004 23.895 25.953 28.113 12.949 4.2188 27.164 1.4102 37.531-7.4219l17.812 17.812c1.2227 1.2188 3.2031 1.2188 4.4219 0 1.2227-1.2227 1.2227-3.2031 0-4.4219zm-47.523-10.289c-8.7031 0-17.047-3.457-23.203-9.6094-6.1523-6.1562-9.6094-14.5-9.6094-23.203s3.457-17.047 9.6094-23.203c6.1562-6.1523 14.5-9.6094 23.203-9.6094s17.047 3.457 23.203 9.6094c6.1523 6.1562 9.6094 14.5 9.6094 23.203-0.011719 8.6992-3.4688 17.039-9.6211 23.191s-14.492 9.6094-23.191 9.6211z" />
+                </svg>
+            </div>
+
         </div>
+
+
 
         <!-- Slider para seleccionar porcentaje -->
         <div class="slider-container">
             <span>0%</span>
             <input type="range" min="0" max="100" value="50" class="slider" id="discountSlider">
             <span id="sliderValue">50%</span>
+            <span class="slider-emoji">🔥</span>
         </div>
+
 
         <!-- Cajas de productos -->
         <div class="box">
@@ -291,9 +379,9 @@
                     alt="Producto">
             </div>
             <div class="details">
-                <div class="name">Producto 1</div>
-                <div class="price-old">$50.00</div>
-                <div class="price-now">$35.00</div>
+                <div class="name">Smart TV Samsung Crystal Uhd</div>
+                <div class="price-old">Antes: $500.000</div>
+                <div class="price-now">Ahora: $350.000</div>
             </div>
             <div class="discount-circle">30%</div>
         </div>
@@ -304,9 +392,9 @@
                     alt="Producto">
             </div>
             <div class="details">
-                <div class="name">Producto 2</div>
-                <div class="price-old">$60.00</div>
-                <div class="price-now">$40.00</div>
+                <div class="name">Smart TV Samsung Crystal Uhd</div>
+                <div class="price-old">$600.000</div>
+                <div class="price-now">$400.000</div>
             </div>
             <div class="discount-circle">33%</div>
         </div>
@@ -317,9 +405,9 @@
                     alt="Producto">
             </div>
             <div class="details">
-                <div class="name">Producto 3</div>
-                <div class="price-old">$80.00</div>
-                <div class="price-now">$60.00</div>
+                <div class="name">Smart TV Samsung Crystal Uhd</div>
+                <div class="price-old">$800.000</div>
+                <div class="price-now">$600.000</div>
             </div>
             <div class="discount-circle">25%</div>
         </div>
@@ -330,9 +418,9 @@
                     alt="Producto">
             </div>
             <div class="details">
-                <div class="name">Producto 4</div>
-                <div class="price-old">$100.00</div>
-                <div class="price-now">$75.00</div>
+                <div class="name">Smart TV Samsung Crystal Uhd</div>
+                <div class="price-old">$100.000</div>
+                <div class="price-now">$750.000</div>
             </div>
             <div class="discount-circle">25%</div>
         </div>
@@ -344,8 +432,8 @@
             </div>
             <div class="details">
                 <div class="name">Producto 5</div>
-                <div class="price-old">$40.00</div>
-                <div class="price-now">$30.00</div>
+                <div class="price-old">$400.000</div>
+                <div class="price-now">$300.00</div>
             </div>
             <div class="discount-circle">25%</div>
         </div>
@@ -354,18 +442,15 @@
     <!-- Navbar inferior -->
     <div class="navbar">
         <a href="#home">
-            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 100 100"
-                style="display: block; fill: #ffffff;">
+            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 100 100" style="display: block;">
                 <path
                     d="M74.4,1.1H25.6c-13.5,0-24.5,11-24.5,24.5v48.8c0,13.5,11,24.5,24.5,24.5h48.8c13.5,0,24.5-11,24.5-24.5V25.6  C98.9,12.1,87.9,1.1,74.4,1.1z M85.1,52.3c-0.4,0.5-1.1,0.8-1.7,0.8c-0.5,0-0.9-0.2-1.3-0.5l-6.6-5.2v25.1c0,1.1-0.9,1.9-1.9,1.9  H57.1c-1.1,0-1.9-0.9-1.9-1.9V57c0-3.6-2.3-6.6-5.2-6.6c-0.1,0-0.5,0-0.6,0c-2.9,0-5.2,3-5.2,6.6v15.5c0,1.1-0.9,1.9-1.9,1.9H26.5  c-1.1,0-1.9-0.9-1.9-1.9V47.6l-6.3,5c-0.9,0.7-2.3,0.6-3.1-0.3c-0.8-0.9-0.6-2.3,0.3-3.1l33.1-26.4c0.8-0.6,1.9-0.6,2.7,0l33.4,26.4  C85.7,50,85.9,51.3,85.1,52.3z" />
                 <path
                     d="M28.4,44.5v26h11.9V57c0-5.7,4-10.4,9-10.4c0.1,0,0.5,0,0.6,0c5,0,9,4.7,9,10.4v13.6h12.6V44.4L50,27.3  L28.4,44.5z" />
             </svg>
-
         </a>
         <a href="#search">
-            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 100 100"
-                style="display: block; fill: white;">
+            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 100 100" style="display: block;">
                 <path
                     d="m80.141 87.219c-0.37891-0.875-1.2383-1.4414-2.1914-1.4375h-60.465c-0.94922 0-1.8125 0.5625-2.1875 1.4375l-2.6562 6.1172c-0.32422 0.74219-0.25 1.5898 0.19141 2.2656 0.44141 0.67188 1.1953 1.0781 2 1.0781h65.77c0.80859 0 1.5586-0.40625 2-1.0781 0.44141-0.67187 0.51563-1.5234 0.19531-2.2617z" />
                 <path
@@ -377,22 +462,19 @@
             </svg>
         </a>
         <a href="#notifications">
-            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 100 100"
-                style="display: block; fill: white;">
+            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 100 100" style="display: block;">
                 <path
                     d="m81.25 34.375h3.125c2.4883 0 4.8711 0.98828 6.6289 2.7461 1.7578 1.7578 2.7461 4.1406 2.7461 6.6289v31.25c0 2.4883-0.98828 4.8711-2.7461 6.6289-1.7578 1.7578-4.1406 2.7461-6.6289 2.7461h-50c-2.4883 0-4.8711-0.98828-6.6289-2.7461-1.7578-1.7578-2.7461-4.1406-2.7461-6.6289v-3.125h40.625c4.1445 0 8.1172-1.6484 11.051-4.5742 2.9258-2.9336 4.5742-6.9062 4.5742-11.051zm-75-6.25v-3.125c0-2.4883 0.98828-4.8711 2.7461-6.6289 1.7578-1.7578 4.1406-2.7461 6.6289-2.7461h50c2.4883 0 4.8711 0.98828 6.6289 2.7461 1.7578 1.7578 2.7461 4.1406 2.7461 6.6289v3.125zm68.75 6.25v21.875c0 2.4883-0.98828 4.8711-2.7461 6.6289-1.7578 1.7578-4.1406 2.7461-6.6289 2.7461h-50c-2.4883 0-4.8711-0.98828-6.6289-2.7461-1.7578-1.7578-2.7461-4.1406-2.7461-6.6289v-21.875z"
                     fill-rule="evenodd" />
             </svg>
         </a>
         <a href="#profile">
-            <!-- Inserta el contenido del SVG aquí -->
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" style="display: block; fill: white;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" style="display: block;">
                 <path
                     d="M95.2,40.7h2.3V29.3c0-6.5-5.3-11.8-11.8-11.8H14.3c-6.5,0-11.8,5.3-11.8,11.8v11.4h2.3c5.1,0,9.3,4.2,9.3,9.3 c0,5.1-4.2,9.3-9.3,9.3H2.5v11.3c0,6.5,5.3,11.8,11.8,11.8h71.5c6.5,0,11.8-5.3,11.8-11.8V59.3h-2.3c-5.1,0-9.3-4.2-9.3-9.3 C85.9,44.9,90.1,40.7,95.2,40.7z M31.8,37.4c0-3.6,2.9-6.6,6.6-6.6c3.6,0,6.6,2.9,6.6,6.6c0,3.6-2.9,6.6-6.6,6.6 C34.8,44,31.8,41.1,31.8,37.4z M37.2,69.3c-0.8,0-1.5-0.3-2.2-0.8c-1.5-1.2-1.7-3.4-0.5-4.9L60.1,32c1.2-1.5,3.4-1.7,4.9-0.5 c1.5,1.2,1.7,3.4,0.5,4.9L39.9,68C39.2,68.9,38.2,69.3,37.2,69.3z M61.6,69.1c-3.6,0-6.6-2.9-6.6-6.6c0-3.6,2.9-6.6,6.6-6.6 c3.6,0,6.6,2.9,6.6,6.6C68.2,66.2,65.2,69.1,61.6,69.1z" />
             </svg>
         </a>
     </div>
-
 
     <script>
         const slider = document.getElementById('discountSlider');
@@ -401,7 +483,26 @@
         slider.addEventListener('input', () => {
             sliderValue.textContent = `${slider.value}%`;
         });
+
+        // Prevenir scroll de la página mientras se usa el slider
+        slider.addEventListener('mousedown', () => {
+            document.body.style.overflow = 'hidden'; // Deshabilitar el scroll
+        });
+
+        slider.addEventListener('mouseup', () => {
+            document.body.style.overflow = ''; // Restaurar el scroll
+        });
+
+        // Para dispositivos táctiles
+        slider.addEventListener('touchstart', () => {
+            document.body.style.overflow = 'hidden'; // Deshabilitar el scroll
+        });
+
+        slider.addEventListener('touchend', () => {
+            document.body.style.overflow = ''; // Restaurar el scroll
+        });
     </script>
+
 </body>
 
 </html>
