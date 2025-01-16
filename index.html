@@ -510,6 +510,149 @@
         .bencinas-box p {
             margin: 8px 0;
         }
+
+
+        /* Tarjetas */
+
+        #credit-cards {
+        padding: 20px;
+        text-align: center;
+    }
+
+    #credit-cards .search-container {
+        margin-top: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+    }
+
+    #credit-cards select {
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 16px;
+        outline: none;
+    }
+
+    #credit-cards button {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        background-color: #007BFF;
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    #credit-cards button:hover {
+        background-color: #0056b3;
+    }
+    .card-container {
+    position: relative;
+    width: 300px;
+    margin: 20px auto;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+}
+
+/* Tarjeta de fondo #1 - la más atrás */
+.card-container::before {
+    content: '';
+    position: absolute;
+    top: 15px;
+    left: 8px;
+    width: 300px;
+    height: 190px;
+    background: #3e3e4a;
+    border-radius: 15px;
+    transform: rotate(-6deg);
+    z-index: -2;
+    box-shadow: -5px 5px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Tarjeta de fondo #2 - la del medio */
+.card-container::after {
+    content: '';
+    position: absolute;
+    top: 8px;
+    left: 4px;
+    width: 300px;
+    height: 190px;
+    background: #df2e13;
+    border-radius: 15px;
+    transform: rotate(-3deg);
+    z-index: -1;
+    box-shadow: -3px 3px 5px rgba(0, 0, 0, 0.2);
+}
+
+.card-container svg {
+    position: relative;
+    display: block;
+    width: 100%;
+    filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.5));
+    box-shadow: -2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+/* Estilo para el contenedor del número de tarjeta */
+.card-number-container {
+    position: relative;
+    background: #43174a;
+    border-radius: 12px;
+    padding: 12px 16px;
+    margin: 60px auto;
+    width: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* border: 1px solid rgba(255, 255, 255, 0.1); */
+}
+
+.card-number {
+    font-family: monospace;
+    color: #999faf;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.copy-card-button {
+    background: #493a5b66;
+    border: none;
+    border-radius: 8px;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-left: 12px;
+}
+
+.copy-card-button svg {
+    width: 18px;
+    height: 18px;
+    fill: #e1d3e9bf;
+    transition: fill 0.3s ease;
+}
+
+.copy-card-button:hover {
+    background: linear-gradient(135deg, #493a5b, #8d556e);
+}
+
+.copy-card-button:hover svg {
+    fill: white;
+}
+
+.copy-card-button.copied {
+    background: #4CAF50;
+}
+
+    .details {
+        text-align: center;
+        margin-top: 20px;
+    }
+
     </style>
 </head>
 
@@ -671,6 +814,7 @@
             <div class="day-selector">
                 <label for="days">Selecciona el día de la semana:</label>
                 <select id="days">
+                    <option value="todos">Todos</option>
                     <option value="lunes">Lunes</option>
                     <option value="martes">Martes</option>
                     <option value="miércoles">Miércoles</option>
@@ -738,11 +882,79 @@
 
         <div id="credit-cards">
             <h2>Bin tarjetas</h2>
-            <span>soy un bin de tarjeta</span>
-        </div>
-        <div id="coupons">
-            <h2>cupones</h2>
-            <span>soy un cupon</span>
+            <div class="search-container">
+                <!-- Selector -->
+                <select id="card-type">
+                    <option value="" disabled selected>Selecciona el tipo de tarjeta</option>
+                    <option value="visa">Visa</option>
+                    <option value="mastercard">Mastercard</option>
+                    <option value="amex">American Express</option>
+                    <option value="discover">Discover</option>
+                </select>
+        
+                <!-- Botón de búsqueda -->
+                <button onclick="searchBin()">Buscar</button>
+            </div>
+            <div class="card-container">
+                <svg viewBox="0 0 300 190" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="cardGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#8B3E8F"/>
+                            <stop offset="100%" style="stop-color:#614283"/>
+                        </linearGradient>
+                        <filter id="glow">
+                            <feGaussianBlur stdDeviation="1" result="coloredBlur"/>
+                            <feMerge>
+                                <feMergeNode in="coloredBlur"/>
+                                <feMergeNode in="SourceGraphic"/>
+                            </feMerge>
+                        </filter>
+                    </defs>
+                    
+                    <!-- Borde con resplandor -->
+                    <rect 
+                        width="300" 
+                        height="190" 
+                        rx="15" 
+                        ry="15" 
+                        fill="none" 
+                        stroke="rgba(255, 255, 255, 0.5)" 
+                        stroke-width="1"
+                        filter="url(#glow)"
+                    />
+                    
+                    <!-- Fondo principal -->
+                    <rect x="1" y="1" width="298" height="188" rx="14" ry="14" fill="url(#cardGradient)"/>
+                    
+                    <!-- Contenido de la tarjeta -->
+                    <text x="20" y="30" font-size="16" fill="#ffffff" font-family="Arial" font-weight="bold">PREMIUM</text>
+                    <text x="280" y="30" font-size="16" fill="#ffffff" font-family="Arial" font-weight="bold" text-anchor="end">BUNNY BANK</text>
+                    
+                    <!-- Chip -->
+                    <!-- <rect x="20" y="50" width="50" height="35" rx="5" ry="5" fill="#FFD700"/> -->
+                    
+                    <!-- Número de tarjeta -->
+                    <text x="20" y="120" font-size="18" fill="#ffffff" font-family="monospace">4145 895XX XXXX 9873</text>
+                    
+                    <!-- Nombre del titular -->
+                    <text x="20" y="150" font-size="14" fill="#ffffff" font-family="Arial">BUNNY MONEY</text>
+                    
+                    <!-- Logo BIZA con banda amarilla -->
+                    <g transform="translate(220, 130)">
+                        <text x="60" y="20" font-size="16" fill="#ffffff" font-family="Arial" font-weight="bold" text-anchor="end">BIZA</text>
+                        <rect x="20" y="23" width="40" height="8" fill="#FFB700"/>
+                    </g>
+                </svg>
+            </div>
+
+            <div class="card-number-container">
+                <div class="card-number">4145 895XX XXXX 9873</div>
+                <button class="copy-card-button" onclick="copyCardNumber(this)">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"></path>
+                    </svg>
+                </button>
+            </div>
         </div>
     </div>
     <!-- Navbar inferior -->
@@ -789,6 +1001,18 @@
         const navbarLinks = document.querySelectorAll('.navbar a');
         const sections = document.querySelectorAll('.content > div');
 
+        function copyCardNumber(button) {
+    const cardNumber = button.previousElementSibling.textContent;
+    
+    navigator.clipboard.writeText(cardNumber).then(() => {
+        button.classList.add('copied');
+        
+        setTimeout(() => {
+            button.classList.remove('copied');
+        }, 2000);
+    });
+}
+
         navbarLinks.forEach(link => {
             link.addEventListener('click', (event) => {
                 event.preventDefault(); // Evitar que el enlace recargue la página
@@ -804,6 +1028,16 @@
             });
         });
 
+        function searchBin() {
+        const selectedType = document.getElementById('card-type').value;
+        if (!selectedType) {
+            alert('Por favor selecciona un tipo de tarjeta');
+        } else {
+            alert(`Has seleccionado: ${selectedType}`);
+            // Aquí puedes añadir lógica para realizar la búsqueda
+        }
+    };
+
         function copyProductInfo(button) {
             const box = button.closest('.box');
             const name = box.querySelector('.name').textContent;
@@ -817,7 +1051,7 @@
                     button.classList.remove('copied');
                 }, 2000);
             });
-        }
+        };
 
         // Evitar que el click en el botón active el enlace
         document.querySelectorAll('.copy-button').forEach(button => {
