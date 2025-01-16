@@ -5,6 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Productos con Descuento</title>
+    <script>
+        // Aquí va el código para expandir la webapp
+        if (window.Telegram.WebApp) {
+            window.Telegram.WebApp.expand();
+            window.Telegram.WebApp.setBackgroundColor("#161226"); // Usando el mismo color de tu fondo
+        }
+    </script>
     <style>
         /* Basic reset */
         @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,300;0,6..12,400;0,6..12,500;0,6..12,600;0,6..12,700;1,6..12,300;1,6..12,600&family=Roboto:ital,wght@0,100..900;1,100..900&family=Space+Mono:ital,wght@1,700&display=swap');
@@ -123,7 +130,7 @@
         .search-bar input {
             width: 100%;
             /* Asegura que el input ocupe todo el ancho */
-            height: 50px;
+            height: 40px;
             padding: 8px 12px 8px 36px;
             border: 1px solid #362c56;
             border-radius: 20px;
