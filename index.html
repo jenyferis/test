@@ -328,7 +328,7 @@
             display: flex;
             justify-content: space-around;
             align-items: center;
-            /* padding: 10px 0; */
+            /* padding: 8px 0; */
             border-radius: 25px;
             box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
             margin: 0 16px 16px;
@@ -403,159 +403,154 @@
             display: block;
         }
 
-        /* Bencinas */
+        .bencinas-month-title {
+    padding: 20px;
+    text-align: center;
+}
 
-        #bencinas {
-            text-align: center;
-            margin: 0 auto;
-        }
+.bencinas-month-title h2 {
+    color: white;
+    font-size: 32px;
+    font-weight: 600;
+    margin: 0;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
 
-        .banner {
-            width: 100%;
-            overflow: hidden;
-            /* Asegura que el contenido respete el border-radius */
-            border-radius: 10px;
-            margin-bottom: 20px;
-        }
+.bencinas-banner {
+    margin: 0 16px 20px 16px;
+}
 
-        .banner img {
-            width: 100%;
-            height: 150px;
-            /* Ajusta esta altura según necesites */
-            display: block;
-            border-radius: 10px;
-            object-fit: cover;
-            /* Hace que la imagen llene el espacio manteniendo las proporciones */
-        }
+.bencinas-banner img {
+    width: 100%;
+    height: 150px;
+    border-radius: 16px;
+    object-fit: cover;
+}
 
-        /* Selector de días */
-        /* Contenedor general */
-        .day-selector {
-            margin-bottom: 20px;
-        }
+.bencinas-days-selector {
+    display: flex;
+    justify-content: space-between;
+    padding: 16px;
+    gap: 8px;
+    margin-bottom: 20px;
+}
 
-        /* Estilo del label */
-        .day-selector label {
-            margin-right: 10px;
-            font-size: 16px;
-            color: #fff;
-        }
+.bencinas-day-btn {
+    flex: 1;
+    min-width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 20px;
+    background: #181624;
+    color: #c6c6c6;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
-        /* Estilo del select */
-        .day-selector select {
-            appearance: none;
-            /* Elimina el estilo por defecto del navegador */
-            -webkit-appearance: none;
-            /* Para navegadores basados en WebKit */
-            -moz-appearance: none;
-            /* Para Firefox */
-            background-color: #493a5b;
-            color: #fff;
-            font-size: 16px;
-            padding: 10px 15px;
-            border: 2px solid #8d556e;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-align: center;
-            outline: none;
-        }
+.bencinas-day-btn:first-child {
+    font-size: 12px;
+}
 
-        /* Icono de flecha personalizado (puedes reemplazar el fondo con una imagen) */
-        .day-selector select {
-            background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg xmlns%3D%22http%3A//www.w3.org/2000/svg%22 width%3D%2220%22 height%3D%2220%22 viewBox%3D%220 0 20 20%22 fill%3D%22%23fff%22%3E%3Cpath d%3D%22M5.516 7.73L10 12.215 14.484 7.73z%22/%3E%3C/svg%3E');
-            background-repeat: no-repeat;
-            background-position: right 10px center;
-            background-size: 12px;
-            border-radius: 25px;
+.bencinas-day-btn:hover {
+    background: #2a273a;
+    color: white;
+}
 
-        }
+.bencinas-day-btn.active {
+    background: linear-gradient(135deg, #493a5b, #8d556e);
+    color: white;
+    box-shadow: 0 2px 8px rgba(141, 85, 110, 0.3);
+}
 
-        /* Efectos hover y focus */
-        .day-selector select:hover {
-            background-color: #8d556e;
-            border-color: #ffc900;
-        }
+.bencinas-list {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
 
-        .day-selector select:focus {
-            border-color: #ffc900;
-            box-shadow: 0 0 4px #ffc900;
-        }
+.bencinas-card {
+    background: #443347;
+    border-radius: 16px;
+    padding: 16px;
+    display: flex;
+    gap: 16px;
+    position: relative;
+    transition: transform 0.2s ease;
+}
 
+.bencinas-card:hover {
+    transform: translateY(-2px);
+}
 
-        /* Grid de cajas */
-        .bencinas-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 16px;
-        }
+.bencinas-day-indicator {
+    width: 40px;
+    height: 40px;
+    background: #000a25;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 600;
+    font-size: 18px;
+    flex-shrink: 0;
+}
 
-        /* Estilo de cada caja */
-        .bencinas-box {
-            background: #181624;
-            border-radius: 10px;
-            padding: 16px;
-            text-align: center;
-            color: #fff;
-            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-        }
+.bencinas-card-content {
+    flex: 1;
+}
 
-        .bencinas-box img {
-            margin-top: 10px;
-            width: 80px;
-            height: auto;
-            border-radius: 5px;
-        }
+.bencinas-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
 
-        .bencinas-box p {
-            margin: 8px 0;
-        }
+.bencinas-station-name {
+    color: white;
+    font-size: 18px;
+    font-weight: 500;
+}
 
+.bencinas-benefit-type {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 4px 12px;
+    border-radius: 12px;
+    color: #c6c6c6;
+    font-size: 12px;
+}
 
+.bencinas-discount-info {
+    margin-bottom: 12px;
+}
+
+.bencinas-price-row {
+    display: flex;
+    justify-content: space-between;
+    color: #c6c6c6;
+    font-size: 14px;
+    margin-bottom: 4px;
+}
+
+.bencinas-price-value {
+    color: white;
+    font-weight: 500;
+}
+
+.bencinas-card-image {
+    width: 80px;
+    height: auto;
+    border-radius: 8px;
+    margin-top: 8px;
+}
         /* Tarjetas */
 
-        #credit-cards {
-        padding: 20px;
-        text-align: center;
-    }
-
-    #credit-cards .search-container {
-        margin-top: 20px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 10px;
-    }
-
-    #credit-cards select {
-        padding: 10px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        font-size: 16px;
-        outline: none;
-    }
-
-    #credit-cards button {
-        padding: 10px 20px;
-        border: none;
-        border-radius: 5px;
-        background-color: #007BFF;
-        color: white;
-        font-size: 16px;
-        cursor: pointer;
-        transition: background-color 0.3s;
-    }
-
-    #credit-cards button:hover {
-        background-color: #0056b3;
-    }
-    .card-container {
-    position: relative;
-    width: 300px;
-    margin: 20px auto;
-    transform-style: preserve-3d;
-    perspective: 1000px;
-}
 
 /* Tarjeta de fondo #1 - la más atrás */
 .card-container::before {
@@ -608,51 +603,185 @@
     /* border: 1px solid rgba(255, 255, 255, 0.1); */
 }
 
-.card-number {
-    font-family: monospace;
-    color: #999faf;
+/* Estilos para la lista de tarjetas */
+ /* Tarjetas de crédito */
+ #credit-cards {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .card-container {
+            position: relative;
+            width: 300px;
+            margin: 20px auto;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+
+        .card-container::before {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 8px;
+            width: 300px;
+            height: 190px;
+            background: #3e3e4a;
+            border-radius: 15px;
+            transform: rotate(-6deg);
+            z-index: -2;
+            box-shadow: -5px 5px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .card-container::after {
+            content: '';
+            position: absolute;
+            top: 8px;
+            left: 4px;
+            width: 300px;
+            height: 190px;
+            background: #df2e13;
+            border-radius: 15px;
+            transform: rotate(-3deg);
+            z-index: -1;
+            box-shadow: -3px 3px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .card-container svg {
+            position: relative;
+            display: block;
+            width: 100%;
+            filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.5));
+            box-shadow: -2px 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Lista de tarjetas */
+        .cards-list {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            padding: 0 16px;
+        }
+
+        .card-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 16px;
+            background: #181624;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .card-item:hover {
+            background: #1f1c2d;
+        }
+
+        .card-number {
+            flex: 1;
+            color: #c6c6c6;
+            font-family: monospace;
+            font-size: 14px;
+        }
+
+        .card-name {
+            flex: 1;
+            color: #c6c6c6;
+            font-size: 14px;
+            text-align: right;
+            padding-right: 12px;
+        }
+
+        .copy-btn {
+            background: #2a273a;
+            border: none;
+            border-radius: 4px;
+            width: 24px;
+            height: 24px;
+            min-width: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            padding: 0;
+        }
+
+        .copy-btn svg {
+            width: 14px;
+            height: 14px;
+            fill: #8b8b8b;
+            transition: fill 0.3s ease;
+        }
+
+        .copy-btn:hover {
+            background: #33303e;
+        }
+
+        .copy-btn:hover svg {
+            fill: #ffffff;
+        }
+
+        .copy-btn.copied {
+            background: #4CAF50;
+        }
+
+        .copy-btn.copied svg {
+            fill: #ffffff;
+        }
+
+        /* Búsqueda de tarjetas */
+        .search-container {
+    padding:  16px;
+    margin-top: 40px;
+}
+
+.search-input-container {
+    position: relative;
+    width: 100%;
+}
+
+.search-input-container input {
+    width: 100%;
+    height: 40px;
+    padding: 8px 12px 8px 45px;
+    border: 1px solid #362c56;
+    border-radius: 12px;
+    background-color: #181624;
+    color: #c6c6c6;
     font-size: 16px;
-    font-weight: 600;
-}
-
-.copy-card-button {
-    background: #493a5b66;
-    border: none;
-    border-radius: 8px;
-    width: 32px;
-    height: 32px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
+    outline: none;
     transition: all 0.3s ease;
-    margin-left: 12px;
 }
 
-.copy-card-button svg {
-    width: 18px;
-    height: 18px;
-    fill: #e1d3e9bf;
-    transition: fill 0.3s ease;
+.search-input-container input:focus {
+    border-color: #8d556e;
+    box-shadow: 0 0 0 1px #8d556e;
 }
 
-.copy-card-button:hover {
-    background: linear-gradient(135deg, #493a5b, #8d556e);
+.search-input-container input::placeholder {
+    color: #6c7583;
 }
 
-.copy-card-button:hover svg {
-    fill: white;
+.search-input-container .search-icon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 24px;
+    height: 24px;
+    fill: #6c7583;
+    pointer-events: none;
 }
 
-.copy-card-button.copied {
-    background: #4CAF50;
+/* Estilos para los resultados filtrados */
+.card-item {
+    display: flex;
+    transition: opacity 0.3s ease;
 }
 
-    .details {
-        text-align: center;
-        margin-top: 20px;
-    }
-
+.card-item.hidden {
+    display: none;
+}
     </style>
 </head>
 
@@ -799,102 +928,72 @@
                 </button>
             </a>
         </div>
-
         <div id="bencinas">
-            <h2>Bencinas: Jueves</h2>
-
-            <!-- Banner con imagen -->
-            <div class="banner">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQplgrQpknl1QWzaIEbiIYJJep6A7IkzHsv1Q&s"
-                    alt="Banner Bencinas" />
-
+            <div class="bencinas-month-title">
+                <h2>Septiembre</h2>
             </div>
-
-            <!-- Selector de días de la semana -->
-            <div class="day-selector">
-                <label for="days">Selecciona el día de la semana:</label>
-                <select id="days">
-                    <option value="todos">Todos</option>
-                    <option value="lunes">Lunes</option>
-                    <option value="martes">Martes</option>
-                    <option value="miércoles">Miércoles</option>
-                    <option value="jueves">Jueves</option>
-                    <option value="viernes">Viernes</option>
-                    <option value="sábado">Sábado</option>
-                    <option value="domingo">Domingo</option>
-                </select>
+        
+            <div class="bencinas-banner">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQplgrQpknl1QWzaIEbiIYJJep6A7IkzHsv1Q&s" alt="Banner Bencinas" />
             </div>
-
-            <!-- Cajas en dos columnas -->
-            <div class="bencinas-grid">
-                <!-- Caja 1 -->
-                <div class="bencinas-box">
-                    <p><strong>Petrobras</strong></p>
-                    <p><strong>Precio por litro:</strong> $150</p>
-                    <p><strong>Máximo por mes:</strong> $10,000</p>
-                    <img src="https://bd.visa.com/dam/VCOM/regional/ap/bangladesh/global-elements/images/bd-visa-gold-card-498x280.png"
-                        alt="Tarjeta 1" />
+        
+            <div class="bencinas-days-selector">
+                <button class="bencinas-day-btn" data-day="todos">TODOS</button>
+                <button class="bencinas-day-btn" data-day="lunes">L</button>
+                <button class="bencinas-day-btn" data-day="martes">M</button>
+                <button class="bencinas-day-btn" data-day="miercoles">M</button>
+                <button class="bencinas-day-btn active" data-day="jueves">J</button>
+                <button class="bencinas-day-btn" data-day="viernes">V</button>
+                <button class="bencinas-day-btn" data-day="sabado">S</button>
+                <button class="bencinas-day-btn" data-day="domingo">D</button>
+            </div>
+        
+            <div class="bencinas-list">
+                <div class="bencinas-card">
+                    <div class="bencinas-day-indicator">J</div>
+                    <div class="bencinas-card-content">
+                        <div class="bencinas-card-header">
+                            <div class="bencinas-station-name">Petrobras</div>
+                            <div class="bencinas-benefit-type">Individual</div>
+                        </div>
+                        <div class="bencinas-discount-info">
+                            <div class="bencinas-price-row">
+                                <span>Precio por litro:</span>
+                                <span class="bencinas-price-value">$150</span>
+                            </div>
+                            <div class="bencinas-price-row">
+                                <span>Máximo por mes:</span>
+                                <span class="bencinas-price-value">$10,000</span>
+                            </div>
+                        </div>
+                        <img class="bencinas-card-image" src="https://bd.visa.com/dam/VCOM/regional/ap/bangladesh/global-elements/images/bd-visa-gold-card-498x280.png" alt="Tarjeta 1" />
+                    </div>
                 </div>
-
-                <!-- Caja 2 -->
-                <div class="bencinas-box">
-                    <p><strong>Copec</strong></p>
-                    <p><strong>Precio por litro:</strong> $200</p>
-                    <p><strong>Máximo por mes:</strong> $12,000</p>
-                    <img src="https://beneficios.caja18.cl/wp-content/uploads/2025/01/Caluga_Fantasilandia.png"
-                        alt="Tarjeta 2" />
-                </div>
-
-                <!-- Caja 3 -->
-                <div class="bencinas-box">
-                    p><strong>Shell</strong></p>
-                    <p><strong>Precio por litro:</strong> $100</p>
-                    <p><strong>Máximo por mes:</strong> $8,000</p>
-                    <img src="https://via.placeholder.com/80x50" alt="Tarjeta 3" />
-                </div>
-
-                <!-- Caja 4 -->
-                <div class="bencinas-box">
-                    p><strong>Copec</strong></p>
-                    <p><strong>Precio por litro:</strong> $150</p>
-                    <p><strong>Máximo por mes:</strong> $15,000</p>
-                    <img src="https://via.placeholder.com/80x50" alt="Tarjeta 4" />
-                </div>
-
-                <!-- Caja 5 -->
-                <div class="bencinas-box">
-                    p><strong>Shell</strong></p>
-                    <p><strong>Precio por litro:</strong> $175</p>
-                    <p><strong>Máximo por mes:</strong> $9,000</p>
-                    <img src="https://via.placeholder.com/80x50" alt="Tarjeta 5" />
-                </div>
-
-                <!-- Caja 6 -->
-                <div class="bencinas-box">
-                    p><strong>Copec</strong></p>
-                    <p><strong>Precio por litro:</strong> $125</p>
-                    <p><strong>Máximo por mes:</strong> $6,000</p>
-                    <img src="https://via.placeholder.com/80x50" alt="Tarjeta 6" />
+        
+                <div class="bencinas-card">
+                    <div class="bencinas-day-indicator">J</div>
+                    <div class="bencinas-card-content">
+                        <div class="bencinas-card-header">
+                            <div class="bencinas-station-name">Copec</div>
+                            <div class="bencinas-benefit-type">Individual</div>
+                        </div>
+                        <div class="bencinas-discount-info">
+                            <div class="bencinas-price-row">
+                                <span>Precio por litro:</span>
+                                <span class="bencinas-price-value">$200</span>
+                            </div>
+                            <div class="bencinas-price-row">
+                                <span>Máximo por mes:</span>
+                                <span class="bencinas-price-value">$12,000</span>
+                            </div>
+                        </div>
+                        <img class="bencinas-card-image" src="https://bd.visa.com/dam/VCOM/regional/ap/bangladesh/global-elements/images/bd-visa-gold-card-498x280.png" alt="Tarjeta 2" />
+                    </div>
                 </div>
             </div>
         </div>
-
-
         <div id="credit-cards">
             <h2>Bin tarjetas</h2>
-            <div class="search-container">
-                <!-- Selector -->
-                <select id="card-type">
-                    <option value="" disabled selected>Selecciona el tipo de tarjeta</option>
-                    <option value="visa">Visa</option>
-                    <option value="mastercard">Mastercard</option>
-                    <option value="amex">American Express</option>
-                    <option value="discover">Discover</option>
-                </select>
-        
-                <!-- Botón de búsqueda -->
-                <button onclick="searchBin()">Buscar</button>
-            </div>
             <div class="card-container">
                 <svg viewBox="0 0 300 190" xmlns="http://www.w3.org/2000/svg">
                     <defs>
@@ -911,49 +1010,51 @@
                         </filter>
                     </defs>
                     
-                    <!-- Borde con resplandor -->
-                    <rect 
-                        width="300" 
-                        height="190" 
-                        rx="15" 
-                        ry="15" 
-                        fill="none" 
-                        stroke="rgba(255, 255, 255, 0.5)" 
-                        stroke-width="1"
-                        filter="url(#glow)"
-                    />
-                    
-                    <!-- Fondo principal -->
+                    <rect width="300" height="190" rx="15" ry="15" fill="none" stroke="rgba(255, 255, 255, 0.5)" stroke-width="1" filter="url(#glow)"/>
                     <rect x="1" y="1" width="298" height="188" rx="14" ry="14" fill="url(#cardGradient)"/>
                     
-                    <!-- Contenido de la tarjeta -->
                     <text x="20" y="30" font-size="16" fill="#ffffff" font-family="Arial" font-weight="bold">PREMIUM</text>
                     <text x="280" y="30" font-size="16" fill="#ffffff" font-family="Arial" font-weight="bold" text-anchor="end">BUNNY BANK</text>
                     
-                    <!-- Chip -->
-                    <!-- <rect x="20" y="50" width="50" height="35" rx="5" ry="5" fill="#FFD700"/> -->
-                    
-                    <!-- Número de tarjeta -->
                     <text x="20" y="120" font-size="18" fill="#ffffff" font-family="monospace">4145 895XX XXXX 9873</text>
-                    
-                    <!-- Nombre del titular -->
                     <text x="20" y="150" font-size="14" fill="#ffffff" font-family="Arial">BUNNY MONEY</text>
                     
-                    <!-- Logo BIZA con banda amarilla -->
                     <g transform="translate(220, 130)">
                         <text x="60" y="20" font-size="16" fill="#ffffff" font-family="Arial" font-weight="bold" text-anchor="end">BIZA</text>
                         <rect x="20" y="23" width="40" height="8" fill="#FFB700"/>
                     </g>
                 </svg>
             </div>
-
-            <div class="card-number-container">
-                <div class="card-number">4145 89XXX XXXX XXXX</div>
-                <button class="copy-card-button" onclick="copyCardNumber(this)">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                        <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"></path>
+        
+            <div class="search-container">
+                <div class="search-input-container">
+                    <input type="text" placeholder="Buscar tarjeta..." id="cardSearch">
+                    <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
                     </svg>
-                </button>
+                </div>
+            </div>
+        
+            <!-- Lista de tarjetas -->
+            <div class="cards-list">
+                <div class="card-item">
+                    <div class="card-number">4145 89XX XXXX 9873</div>
+                    <div class="card-name">BUNNY BANK PREMIUM</div>
+                    <button class="copy-btn" onclick="copyCard(this)">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"></path>
+                        </svg>
+                    </button>
+                </div>
+                <div class="card-item">
+                    <div class="card-number">5145 73XX XXXX 1234</div>
+                    <div class="card-name">BUNNY BANK GOLD</div>
+                    <button class="copy-btn" onclick="copyCard(this)">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"></path>
+                        </svg>
+                    </button> 
+                </div>
             </div>
         </div>
     </div>
@@ -1000,6 +1101,16 @@
         const sliderValue = document.getElementById('sliderValue');
         const navbarLinks = document.querySelectorAll('.navbar a');
         const sections = document.querySelectorAll('.content > div');
+        const dayButtons = document.querySelectorAll('.day-btn');
+
+dayButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        // Remover clase active de todos los botones
+        dayButtons.forEach(btn => btn.classList.remove('active'));
+        // Agregar clase active al botón clickeado
+        button.classList.add('active');
+    });
+});
 
         function copyCardNumber(button) {
     const cardNumber = button.previousElementSibling.textContent;
