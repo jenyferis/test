@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Productos con Descuento</title>
+    <title>Bunny Premium</title>
     <script>
         // Aquí va el código para expandir la webapp
         if (window.Telegram.WebApp) {
@@ -26,7 +26,8 @@
             display: flex;
             flex-direction: column;
             height: 100vh;
-            background: repeating-linear-gradient(360deg, #161226 0%, #291a30 100%, #333 100%, #000000 100%);
+            /* background: repeating-linear-gradient(360deg, #161226 0%, #291a30 100%, #333 100%, #000000 100%); */
+            background: repeating-linear-gradient(360deg, #161226 0%, #1a1939 100%, #333 100%, #000000 100%);
 
             font-family: 'Roboto', sans-serif;
             /* Aquí se especifica la fuente */
@@ -331,35 +332,36 @@
 
         /* Ajustamos el navbar para que esté por encima del blur */
         .navbar {
-            background: #493a5b;
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            /* padding: 8px 0; */
-            border-radius: 25px;
-            box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
-            margin: 0 16px 16px;
-            position: fixed;
-            bottom: 0px;
-            left: 0;
-            right: 0;
-            z-index: 100;
-        }
+    /* background: #493a5b; */
+    background: #312749;
+    display: flex;
+    height: 60px;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 20px;
+    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
+    margin: 0 16px 16px;
+    position: fixed;
+    bottom: 0px;
+    left: 0;
+    right: 0;
+    z-index: 100;
+}
 
-        .navbar a {
-            color: white;
-            text-decoration: none;
-            text-align: center;
-            font-size: 14px;
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            padding: 8px 0;
-            background: none;
-        }
+.navbar a {
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    font-size: 14px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 8px 0;
+    background: none;
+}
 
         .navbar a.active {
             position: relative;
@@ -411,208 +413,210 @@
         }
 
         .bencinas-month-title {
-    padding: 20px;
-    text-align: center;
-}
+            padding: 20px;
+            text-align: center;
+        }
 
-.bencinas-month-title h2 {
-    color: white;
-    font-size: 32px;
-    font-weight: 600;
-    margin: 0;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
+        .bencinas-month-title h2 {
+            color: white;
+            font-size: 32px;
+            font-weight: 600;
+            margin: 0;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
 
-.bencinas-banner {
-    margin: 0 16px 20px 16px;
-}
+        .bencinas-banner {
+            margin: 0 16px 20px 16px;
+        }
 
-.bencinas-banner img {
-    width: 100%;
-    height: 150px;
-    border-radius: 16px;
-    object-fit: cover;
-}
+        .bencinas-banner img {
+            width: 100%;
+            height: 150px;
+            border-radius: 16px;
+            object-fit: cover;
+        }
 
-.bencinas-days-selector {
-    display: flex;
-    justify-content: space-between;
-    padding: 16px;
-    gap: 8px;
-    margin-bottom: 20px;
-}
+        .bencinas-days-selector {
+            display: flex;
+            justify-content: space-between;
+            padding: 16px;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
 
-.bencinas-day-btn {
-    flex: 1;
-    min-width: 40px;
-    height: 40px;
-    border: none;
-    border-radius: 20px;
-    background: #181624;
-    color: #c6c6c6;
-    font-size: 14px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
+        .bencinas-day-btn {
+            flex: 1;
+            min-width: 40px;
+            height: 40px;
+            border: none;
+            border-radius: 20px;
+            background: #181624;
+            color: #c6c6c6;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
 
-.bencinas-day-btn:first-child {
-    font-size: 12px;
-}
+        .bencinas-day-btn:first-child {
+            font-size: 12px;
+        }
 
-.bencinas-day-btn:hover {
-    background: #2a273a;
-    color: white;
-}
+        .bencinas-day-btn:hover {
+            background: #2a273a;
+            color: white;
+        }
 
-.bencinas-day-btn.active {
-    background: linear-gradient(135deg, #493a5b, #8d556e);
-    color: white;
-    box-shadow: 0 2px 8px rgba(141, 85, 110, 0.3);
-}
+        .bencinas-day-btn.active {
+            background: linear-gradient(135deg, #493a5b, #8d556e);
+            color: white;
+            box-shadow: 0 2px 8px rgba(141, 85, 110, 0.3);
+        }
 
-.bencinas-list {
-    padding: 16px;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-}
+        .bencinas-list {
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
 
-.bencinas-card {
-    background: #443347;
-    border-radius: 16px;
-    padding: 16px;
-    display: flex;
-    gap: 16px;
-    position: relative;
-    transition: transform 0.2s ease;
-}
+        .bencinas-card {
+            background: #353253;
+            border-radius: 16px;
+            padding: 16px;
+            display: flex;
+            gap: 16px;
+            position: relative;
+            transition: transform 0.2s ease;
+        }
 
-.bencinas-card:hover {
-    transform: translateY(-2px);
-}
+        .bencinas-card:hover {
+            transform: translateY(-2px);
+        }
 
-.bencinas-day-indicator {
-    width: 40px;
-    height: 40px;
-    background: #000a25;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-weight: 600;
-    font-size: 18px;
-    flex-shrink: 0;
-}
+        .bencinas-day-indicator {
+            width: 40px;
+            height: 40px;
+            background: #000a25;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
 
-.bencinas-card-content {
-    flex: 1;
-}
+        .bencinas-card-content {
+            flex: 1;
+        }
 
-.bencinas-card-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 12px;
-}
+        .bencinas-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
 
-.bencinas-station-name {
-    color: white;
-    font-size: 18px;
-    font-weight: 500;
-}
+        .bencinas-station-name {
+            color: white;
+            font-size: 18px;
+            font-weight: 500;
+        }
 
-.bencinas-benefit-type {
-    background: rgba(255, 255, 255, 0.1);
-    padding: 4px 12px;
-    border-radius: 12px;
-    color: #c6c6c6;
-    font-size: 12px;
-}
+        .bencinas-benefit-type {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 4px 12px;
+            border-radius: 12px;
+            color: #c6c6c6;
+            font-size: 12px;
+        }
 
-.bencinas-discount-info {
-    margin-bottom: 12px;
-}
+        .bencinas-discount-info {
+            margin-bottom: 12px;
+        }
 
-.bencinas-price-row {
-    display: flex;
-    justify-content: space-between;
-    color: #c6c6c6;
-    font-size: 14px;
-    margin-bottom: 4px;
-}
+        .bencinas-price-row {
+            display: flex;
+            justify-content: space-between;
+            color: #c6c6c6;
+            font-size: 14px;
+            margin-bottom: 4px;
+        }
 
-.bencinas-price-value {
-    color: white;
-    font-weight: 500;
-}
+        .bencinas-price-value {
+            color: white;
+            font-weight: 500;
+        }
 
-.bencinas-card-image {
-    width: 80px;
-    height: auto;
-    border-radius: 8px;
-    margin-top: 8px;
-}
+        .bencinas-card-image {
+            width: 80px;
+            height: auto;
+            border-radius: 8px;
+            margin-top: 8px;
+        }
+
         /* Tarjetas */
 
 
-/* Tarjeta de fondo #1 - la más atrás */
-.card-container::before {
-    content: '';
-    position: absolute;
-    top: 15px;
-    left: 8px;
-    width: 300px;
-    height: 190px;
-    background: #3e3e4a;
-    border-radius: 15px;
-    transform: rotate(-6deg);
-    z-index: -2;
-    box-shadow: -5px 5px 5px rgba(0, 0, 0, 0.2);
-}
+        /* Tarjeta de fondo #1 - la más atrás */
+        .card-container::before {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 8px;
+            width: 300px;
+            height: 190px;
+            background: #3e3e4a;
+            border-radius: 15px;
+            transform: rotate(-6deg);
+            z-index: -2;
+            box-shadow: -5px 5px 5px rgba(0, 0, 0, 0.2);
+        }
 
-/* Tarjeta de fondo #2 - la del medio */
-.card-container::after {
-    content: '';
-    position: absolute;
-    top: 8px;
-    left: 4px;
-    width: 300px;
-    height: 190px;
-    background: #df2e13;
-    border-radius: 15px;
-    transform: rotate(-3deg);
-    z-index: -1;
-    box-shadow: -3px 3px 5px rgba(0, 0, 0, 0.2);
-}
+        /* Tarjeta de fondo #2 - la del medio */
+        .card-container::after {
+            content: '';
+            position: absolute;
+            top: 8px;
+            left: 4px;
+            width: 300px;
+            height: 190px;
+            background: #df2e13;
+            border-radius: 15px;
+            transform: rotate(-3deg);
+            z-index: -1;
+            box-shadow: -3px 3px 5px rgba(0, 0, 0, 0.2);
+        }
 
-.card-container svg {
-    position: relative;
-    display: block;
-    width: 100%;
-    filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.5));
-    box-shadow: -2px 2px 5px rgba(0, 0, 0, 0.2);
-}
-/* Estilo para el contenedor del número de tarjeta */
-.card-number-container {
-    position: relative;
-    background: #43174a;
-    border-radius: 12px;
-    padding: 12px 16px;
-    margin: 60px auto;
-    width: 300px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    /* border: 1px solid rgba(255, 255, 255, 0.1); */
-}
+        .card-container svg {
+            position: relative;
+            display: block;
+            width: 100%;
+            filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.5));
+            box-shadow: -2px 2px 5px rgba(0, 0, 0, 0.2);
+        }
 
-/* Estilos para la lista de tarjetas */
- /* Tarjetas de crédito */
- #credit-cards {
+        /* Estilo para el contenedor del número de tarjeta */
+        .card-number-container {
+            position: relative;
+            background: #43174a;
+            border-radius: 12px;
+            padding: 12px 16px;
+            margin: 60px auto;
+            width: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            /* border: 1px solid rgba(255, 255, 255, 0.1); */
+        }
+
+        /* Estilos para la lista de tarjetas */
+        /* Tarjetas de crédito */
+        #credit-cards {
             padding: 20px;
             text-align: center;
         }
@@ -688,6 +692,7 @@
             color: #c6c6c6;
             font-family: monospace;
             font-size: 14px;
+            font-weight: bold;
         }
 
         .card-name {
@@ -738,57 +743,57 @@
 
         /* Búsqueda de tarjetas */
         .search-container {
-    padding:  16px;
-    margin-top: 40px;
-}
+            padding: 16px;
+            margin-top: 40px;
+        }
 
-.search-input-container {
-    position: relative;
-    width: 100%;
-}
+        .search-input-container {
+            position: relative;
+            width: 100%;
+        }
 
-.search-input-container input {
-    width: 100%;
-    height: 40px;
-    padding: 8px 12px 8px 45px;
-    border: 1px solid #362c56;
-    border-radius: 12px;
-    background-color: #181624;
-    color: #c6c6c6;
-    font-size: 16px;
-    outline: none;
-    transition: all 0.3s ease;
-}
+        .search-input-container input {
+            width: 100%;
+            height: 40px;
+            padding: 8px 12px 8px 45px;
+            border: 1px solid #362c56;
+            border-radius: 12px;
+            background-color: #181624;
+            color: #c6c6c6;
+            font-size: 16px;
+            outline: none;
+            transition: all 0.3s ease;
+        }
 
-.search-input-container input:focus {
-    border-color: #8d556e;
-    box-shadow: 0 0 0 1px #8d556e;
-}
+        .search-input-container input:focus {
+            border-color: #8d556e;
+            box-shadow: 0 0 0 1px #8d556e;
+        }
 
-.search-input-container input::placeholder {
-    color: #6c7583;
-}
+        .search-input-container input::placeholder {
+            color: #6c7583;
+        }
 
-.search-input-container .search-icon {
-    position: absolute;
-    left: 12px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 24px;
-    height: 24px;
-    fill: #6c7583;
-    pointer-events: none;
-}
+        .search-input-container .search-icon {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 24px;
+            height: 24px;
+            fill: #6c7583;
+            pointer-events: none;
+        }
 
-/* Estilos para los resultados filtrados */
-.card-item {
-    display: flex;
-    transition: opacity 0.3s ease;
-}
+        /* Estilos para los resultados filtrados */
+        .card-item {
+            display: flex;
+            transition: opacity 0.3s ease;
+        }
 
-.card-item.hidden {
-    display: none;
-}
+        .card-item.hidden {
+            display: none;
+        }
     </style>
 </head>
 
@@ -805,8 +810,7 @@
                         d="M50.469,6.047,61.063,29.226a1.5,1.5,0,0,0,1.241.9l25.318,2.913a4.357,4.357,0,0,1,2.456,7.554L71.308,57.829a1.5,1.5,0,0,0-.477,1.462L75.884,84.27a4.349,4.349,0,0,1-6.42,4.662L47.269,76.407a1.532,1.532,0,0,0-1.538,0l-22.2,12.525a4.351,4.351,0,0,1-6.419-4.662l5.053-24.979a1.5,1.5,0,0,0-.477-1.462L2.922,40.591a4.355,4.355,0,0,1,2.456-7.554L30.7,30.124a1.5,1.5,0,0,0,1.241-.9L42.531,6.047a4.351,4.351,0,0,1,7.938,0Z" />
                 </svg>
             </div>
-            Bienvenido a tu&nbsp;<strong>VIP</strong>
-
+            Hola&nbsp;<strong>VIP</strong>!
         </div>
         <div class="star">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 93 116.25">
@@ -939,11 +943,12 @@
             <div class="bencinas-month-title">
                 <h2>Septiembre</h2>
             </div>
-        
+
             <div class="bencinas-banner">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQplgrQpknl1QWzaIEbiIYJJep6A7IkzHsv1Q&s" alt="Banner Bencinas" />
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQplgrQpknl1QWzaIEbiIYJJep6A7IkzHsv1Q&s"
+                    alt="Banner Bencinas" />
             </div>
-        
+
             <div class="bencinas-days-selector">
                 <button class="bencinas-day-btn" data-day="todos">TODOS</button>
                 <button class="bencinas-day-btn" data-day="lunes">L</button>
@@ -954,14 +959,14 @@
                 <button class="bencinas-day-btn" data-day="sabado">S</button>
                 <button class="bencinas-day-btn" data-day="domingo">D</button>
             </div>
-        
+
             <div class="bencinas-list">
                 <div class="bencinas-card">
                     <div class="bencinas-day-indicator">J</div>
                     <div class="bencinas-card-content">
                         <div class="bencinas-card-header">
-                            <div class="bencinas-station-name">Petrobras</div>
-                            <div class="bencinas-benefit-type">Individual</div>
+                            <div class="bencinas-station-name">Ripley</div>
+                            <div class="bencinas-benefit-type">Petrobras</div>
                         </div>
                         <div class="bencinas-discount-info">
                             <div class="bencinas-price-row">
@@ -973,16 +978,16 @@
                                 <span class="bencinas-price-value">$10,000</span>
                             </div>
                         </div>
-                        <img class="bencinas-card-image" src="https://bd.visa.com/dam/VCOM/regional/ap/bangladesh/global-elements/images/bd-visa-gold-card-498x280.png" alt="Tarjeta 1" />
+                        <!-- <img class="bencinas-card-image" src="https://bd.visa.com/dam/VCOM/regional/ap/bangladesh/global-elements/images/bd-visa-gold-card-498x280.png" alt="Tarjeta 1" /> -->
                     </div>
                 </div>
-        
+
                 <div class="bencinas-card">
                     <div class="bencinas-day-indicator">J</div>
                     <div class="bencinas-card-content">
                         <div class="bencinas-card-header">
-                            <div class="bencinas-station-name">Copec</div>
-                            <div class="bencinas-benefit-type">Individual</div>
+                            <div class="bencinas-station-name">Fallabella Fallabella Fallabella Fallabella</div>
+                            <div class="bencinas-benefit-type">Copec</div>
                         </div>
                         <div class="bencinas-discount-info">
                             <div class="bencinas-price-row">
@@ -994,7 +999,7 @@
                                 <span class="bencinas-price-value">$12,000</span>
                             </div>
                         </div>
-                        <img class="bencinas-card-image" src="https://bd.visa.com/dam/VCOM/regional/ap/bangladesh/global-elements/images/bd-visa-gold-card-498x280.png" alt="Tarjeta 2" />
+                        <!-- <img class="bencinas-card-image" src="https://bd.visa.com/dam/VCOM/regional/ap/bangladesh/global-elements/images/bd-visa-gold-card-498x280.png" alt="Tarjeta 2" /> -->
                     </div>
                 </div>
             </div>
@@ -1005,62 +1010,72 @@
                 <svg viewBox="0 0 300 190" xmlns="http://www.w3.org/2000/svg">
                     <defs>
                         <linearGradient id="cardGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" style="stop-color:#8B3E8F"/>
-                            <stop offset="100%" style="stop-color:#614283"/>
+                            <stop offset="0%" style="stop-color:#8B3E8F" />
+                            <stop offset="100%" style="stop-color:#614283" />
                         </linearGradient>
                         <filter id="glow">
-                            <feGaussianBlur stdDeviation="1" result="coloredBlur"/>
+                            <feGaussianBlur stdDeviation="1" result="coloredBlur" />
                             <feMerge>
-                                <feMergeNode in="coloredBlur"/>
-                                <feMergeNode in="SourceGraphic"/>
+                                <feMergeNode in="coloredBlur" />
+                                <feMergeNode in="SourceGraphic" />
                             </feMerge>
                         </filter>
                     </defs>
-                    
-                    <rect width="300" height="190" rx="15" ry="15" fill="none" stroke="rgba(255, 255, 255, 0.5)" stroke-width="1" filter="url(#glow)"/>
-                    <rect x="1" y="1" width="298" height="188" rx="14" ry="14" fill="url(#cardGradient)"/>
-                    
-                    <text x="20" y="30" font-size="16" fill="#ffffff" font-family="Arial" font-weight="bold">PREMIUM</text>
-                    <text x="280" y="30" font-size="16" fill="#ffffff" font-family="Arial" font-weight="bold" text-anchor="end">BUNNY BANK</text>
-                    
-                    <text x="20" y="120" font-size="18" fill="#ffffff" font-family="monospace">4145 895XX XXXX 9873</text>
+
+                    <rect width="300" height="190" rx="15" ry="15" fill="none" stroke="rgba(255, 255, 255, 0.5)"
+                        stroke-width="1" filter="url(#glow)" />
+                    <rect x="1" y="1" width="298" height="188" rx="14" ry="14" fill="url(#cardGradient)" />
+
+                    <text x="20" y="30" font-size="16" fill="#ffffff" font-family="Arial"
+                        font-weight="bold">PREMIUM</text>
+                    <text x="280" y="30" font-size="16" fill="#ffffff" font-family="Arial" font-weight="bold"
+                        text-anchor="end">BUNNY BANK</text>
+
+                    <text x="20" y="120" font-size="18" fill="#ffffff" font-family="monospace">4145 895XX XXXX
+                        9873</text>
                     <text x="20" y="150" font-size="14" fill="#ffffff" font-family="Arial">BUNNY MONEY</text>
-                    
+
                     <g transform="translate(220, 130)">
-                        <text x="60" y="20" font-size="16" fill="#ffffff" font-family="Arial" font-weight="bold" text-anchor="end">BIZA</text>
-                        <rect x="20" y="23" width="40" height="8" fill="#FFB700"/>
+                        <text x="60" y="20" font-size="16" fill="#ffffff" font-family="Arial" font-weight="bold"
+                            text-anchor="end">BIZA</text>
+                        <rect x="20" y="23" width="40" height="8" fill="#FFB700" />
                     </g>
                 </svg>
             </div>
-        
+
             <div class="search-container">
                 <div class="search-input-container">
                     <input type="text" placeholder="Buscar tarjeta..." id="cardSearch">
                     <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                        <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+                        <path
+                            d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" />
                     </svg>
                 </div>
             </div>
-        
+
             <!-- Lista de tarjetas -->
             <div class="cards-list">
                 <div class="card-item">
-                    <div class="card-number">4145 89XX XXXX 9873</div>
+                    <div class="card-number">4145 89XX...</div>
                     <div class="card-name">BUNNY BANK PREMIUM</div>
                     <button class="copy-btn" onclick="copyCard(this)">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"></path>
+                            <path
+                                d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z">
+                            </path>
                         </svg>
                     </button>
                 </div>
                 <div class="card-item">
-                    <div class="card-number">5145 73XX XXXX 1234</div>
+                    <div class="card-number">4145 89XX...</div>
                     <div class="card-name">BUNNY BANK GOLD</div>
                     <button class="copy-btn" onclick="copyCard(this)">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"></path>
+                            <path
+                                d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z">
+                            </path>
                         </svg>
-                    </button> 
+                    </button>
                 </div>
             </div>
         </div>
@@ -1068,68 +1083,59 @@
     <!-- Navbar inferior -->
     <div class="navbar">
         <a href="#" data-target="home" class="active">
-            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 100 100" style="display: block;">
-                <path
-                    d="M74.4,1.1H25.6c-13.5,0-24.5,11-24.5,24.5v48.8c0,13.5,11,24.5,24.5,24.5h48.8c13.5,0,24.5-11,24.5-24.5V25.6  C98.9,12.1,87.9,1.1,74.4,1.1z M85.1,52.3c-0.4,0.5-1.1,0.8-1.7,0.8c-0.5,0-0.9-0.2-1.3-0.5l-6.6-5.2v25.1c0,1.1-0.9,1.9-1.9,1.9  H57.1c-1.1,0-1.9-0.9-1.9-1.9V57c0-3.6-2.3-6.6-5.2-6.6c-0.1,0-0.5,0-0.6,0c-2.9,0-5.2,3-5.2,6.6v15.5c0,1.1-0.9,1.9-1.9,1.9H26.5  c-1.1,0-1.9-0.9-1.9-1.9V47.6l-6.3,5c-0.9,0.7-2.3,0.6-3.1-0.3c-0.8-0.9-0.6-2.3,0.3-3.1l33.1-26.4c0.8-0.6,1.9-0.6,2.7,0l33.4,26.4  C85.7,50,85.9,51.3,85.1,52.3z" />
-                <path
-                    d="M28.4,44.5v26h11.9V57c0-5.7,4-10.4,9-10.4c0.1,0,0.5,0,0.6,0c5,0,9,4.7,9,10.4v13.6h12.6V44.4L50,27.3  L28.4,44.5z" />
+            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 100 100">
+                <path d="M74.4,1.1H25.6c-13.5,0-24.5,11-24.5,24.5v48.8c0,13.5,11,24.5,24.5,24.5h48.8c13.5,0,24.5-11,24.5-24.5V25.6C98.9,12.1,87.9,1.1,74.4,1.1z M85.1,52.3c-0.4,0.5-1.1,0.8-1.7,0.8c-0.5,0-0.9-0.2-1.3-0.5l-6.6-5.2v25.1c0,1.1-0.9,1.9-1.9,1.9H57.1c-1.1,0-1.9-0.9-1.9-1.9V57c0-3.6-2.3-6.6-5.2-6.6c-0.1,0-0.5,0-0.6,0c-2.9,0-5.2,3-5.2,6.6v15.5c0,1.1-0.9,1.9-1.9,1.9H26.5c-1.1,0-1.9-0.9-1.9-1.9V47.6l-6.3,5c-0.9,0.7-2.3,0.6-3.1-0.3c-0.8-0.9-0.6-2.3,0.3-3.1l33.1-26.4c0.8-0.6,1.9-0.6,2.7,0l33.4,26.4C85.7,50,85.9,51.3,85.1,52.3z"/>
             </svg>
         </a>
         <a href="#" data-target="bencinas">
-            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 100 100" style="display: block;">
-                <path
-                    d="m80.141 87.219c-0.37891-0.875-1.2383-1.4414-2.1914-1.4375h-60.465c-0.94922 0-1.8125 0.5625-2.1875 1.4375l-2.6562 6.1172c-0.32422 0.74219-0.25 1.5898 0.19141 2.2656 0.44141 0.67188 1.1953 1.0781 2 1.0781h65.77c0.80859 0 1.5586-0.40625 2-1.0781 0.44141-0.67187 0.51563-1.5234 0.19531-2.2617z" />
-                <path
-                    d="m80.371 28.145v18.312h5.2383v0.003907c0.51953 0 1.0156-0.20703 1.3828-0.57422 0.36328-0.36719 0.57031-0.86328 0.57031-1.3789v-8.2031c-0.011719-4.1406-3.0859-7.6289-7.1914-8.1602z" />
-                <path
-                    d="m61.965 3.3203h-28.496c-4.2578 0.003907-8.3398 1.6992-11.352 4.7109-3.0117 3.0117-4.707 7.0938-4.7109 11.352v64.062h60.621v-64.062c-0.003906-4.2578-1.6992-8.3398-4.7109-11.352-3.0117-3.0117-7.0938-4.707-11.352-4.7109zm-14.246 71.848c-4.3906 0-7.9453-3.5547-7.9453-7.9414 0-3.2109 4.2578-8.6875 6.5391-11.387v-0.003906c0.34766-0.41016 0.86328-0.64844 1.4023-0.64844 0.54297 0 1.0586 0.23828 1.4062 0.64844 2.2812 2.7031 6.5391 8.1719 6.5391 11.387v0.003906c0.003906 2.1055-0.83594 4.125-2.3242 5.6172-1.4922 1.4883-3.5117 2.3242-5.6172 2.3242zm20.195-42.789c0 3.2148-2.6055 5.8164-5.8203 5.8164h-28.754c-3.2148 0-5.8164-2.6016-5.8164-5.8164v-8.375c-0.003907-1.543 0.60937-3.0234 1.7031-4.1133 1.0898-1.0898 2.5703-1.7031 4.1133-1.7031h28.754c1.543 0 3.0234 0.61328 4.1172 1.7031 1.0898 1.0898 1.7031 2.5703 1.7031 4.1133z" />
-                <path
-                    d="m79.199 74.062c-0.64844 0.035156-1.1992-0.46094-1.2344-1.1094-0.035156-0.64453 0.46094-1.1992 1.1094-1.2344 3.3477-0.35547 5.8828-3.1836 5.875-6.5469v-16.539c0-0.29297-0.019531-0.58594-0.058594-0.875-0.066406-0.63281 0.38281-1.2031 1.0117-1.2891 0.62891-0.082031 1.2109 0.34766 1.3125 0.97656 0.050781 0.39453 0.078125 0.78906 0.078125 1.1875v16.547c0.007812 4.5625-3.4297 8.3984-7.9688 8.8828h-0.125z" />
+            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 100 100">
+                <path d="m80.141 87.219c-0.37891-0.875-1.2383-1.4414-2.1914-1.4375h-60.465c-0.94922 0-1.8125 0.5625-2.1875 1.4375l-2.6562 6.1172c-0.32422 0.74219-0.25 1.5898 0.19141 2.2656 0.44141 0.67188 1.1953 1.0781 2 1.0781h65.77c0.80859 0 1.5586-0.40625 2-1.0781 0.44141-0.67187 0.51563-1.5234 0.19531-2.2617z"/>
+                <path d="m80.371 28.145v18.312h5.2383v0.003907c0.51953 0 1.0156-0.20703 1.3828-0.57422 0.36328-0.36719 0.57031-0.86328 0.57031-1.3789v-8.2031c-0.011719-4.1406-3.0859-7.6289-7.1914-8.1602z"/>
+                <path d="m61.965 3.3203h-28.496c-4.2578 0.003907-8.3398 1.6992-11.352 4.7109-3.0117 3.0117-4.707 7.0938-4.7109 11.352v64.062h60.621v-64.062c-0.003906-4.2578-1.6992-8.3398-4.7109-11.352-3.0117-3.0117-7.0938-4.707-11.352-4.7109zm-14.246 71.848c-4.3906 0-7.9453-3.5547-7.9453-7.9414 0-3.2109 4.2578-8.6875 6.5391-11.387v-0.003906c0.34766-0.41016 0.86328-0.64844 1.4023-0.64844 0.54297 0 1.0586 0.23828 1.4062 0.64844 2.2812 2.7031 6.5391 8.1719 6.5391 11.387v0.003906c0.003906 2.1055-0.83594 4.125-2.3242 5.6172-1.4922 1.4883-3.5117 2.3242-5.6172 2.3242zm20.195-42.789c0 3.2148-2.6055 5.8164-5.8203 5.8164h-28.754c-3.2148 0-5.8164-2.6016-5.8164-5.8164v-8.375c-0.003907-1.543 0.60937-3.0234 1.7031-4.1133 1.0898-1.0898 2.5703-1.7031 4.1133-1.7031h28.754c1.543 0 3.0234 0.61328 4.1172 1.7031 1.0898 1.0898 1.7031 2.5703 1.7031 4.1133z"/>
             </svg>
         </a>
         <a href="#" data-target="credit-cards">
-            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 100 100" style="display: block;">
-                <path
-                    d="m81.25 34.375h3.125c2.4883 0 4.8711 0.98828 6.6289 2.7461 1.7578 1.7578 2.7461 4.1406 2.7461 6.6289v31.25c0 2.4883-0.98828 4.8711-2.7461 6.6289-1.7578 1.7578-4.1406 2.7461-6.6289 2.7461h-50c-2.4883 0-4.8711-0.98828-6.6289-2.7461-1.7578-1.7578-2.7461-4.1406-2.7461-6.6289v-3.125h40.625c4.1445 0 8.1172-1.6484 11.051-4.5742 2.9258-2.9336 4.5742-6.9062 4.5742-11.051zm-75-6.25v-3.125c0-2.4883 0.98828-4.8711 2.7461-6.6289 1.7578-1.7578 4.1406-2.7461 6.6289-2.7461h50c2.4883 0 4.8711 0.98828 6.6289 2.7461 1.7578 1.7578 2.7461 4.1406 2.7461 6.6289v3.125zm68.75 6.25v21.875c0 2.4883-0.98828 4.8711-2.7461 6.6289-1.7578 1.7578-4.1406 2.7461-6.6289 2.7461h-50c-2.4883 0-4.8711-0.98828-6.6289-2.7461-1.7578-1.7578-2.7461-4.1406-2.7461-6.6289v-21.875z"
-                    fill-rule="evenodd" />
+            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 100 100">
+                <path d="m81.25 34.375h3.125c2.4883 0 4.8711 0.98828 6.6289 2.7461 1.7578 1.7578 2.7461 4.1406 2.7461 6.6289v31.25c0 2.4883-0.98828 4.8711-2.7461 6.6289-1.7578 1.7578-4.1406 2.7461-6.6289 2.7461h-50c-2.4883 0-4.8711-0.98828-6.6289-2.7461-1.7578-1.7578-2.7461-4.1406-2.7461-6.6289v-3.125h40.625c4.1445 0 8.1172-1.6484 11.051-4.5742 2.9258-2.9336 4.5742-6.9062 4.5742-11.051zm-75-6.25v-3.125c0-2.4883 0.98828-4.8711 2.7461-6.6289 1.7578-1.7578 4.1406-2.7461 6.6289-2.7461h50c2.4883 0 4.8711 0.98828 6.6289 2.7461 1.7578 1.7578 2.7461 4.1406 2.7461 6.6289v3.125zm68.75 6.25v21.875c0 2.4883-0.98828 4.8711-2.7461 6.6289-1.7578 1.7578-4.1406 2.7461-6.6289 2.7461h-50c-2.4883 0-4.8711-0.98828-6.6289-2.7461-1.7578-1.7578-2.7461-4.1406-2.7461-6.6289v-21.875z" fill-rule="evenodd"/>
             </svg>
         </a>
         <a href="#" data-target="coupons">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" style="display: block;">
-                <path
-                    d="M95.2,40.7h2.3V29.3c0-6.5-5.3-11.8-11.8-11.8H14.3c-6.5,0-11.8,5.3-11.8,11.8v11.4h2.3c5.1,0,9.3,4.2,9.3,9.3 c0,5.1-4.2,9.3-9.3,9.3H2.5v11.3c0,6.5,5.3,11.8,11.8,11.8h71.5c6.5,0,11.8-5.3,11.8-11.8V59.3h-2.3c-5.1,0-9.3-4.2-9.3-9.3 C85.9,44.9,90.1,40.7,95.2,40.7z M31.8,37.4c0-3.6,2.9-6.6,6.6-6.6c3.6,0,6.6,2.9,6.6,6.6c0,3.6-2.9,6.6-6.6,6.6 C34.8,44,31.8,41.1,31.8,37.4z M37.2,69.3c-0.8,0-1.5-0.3-2.2-0.8c-1.5-1.2-1.7-3.4-0.5-4.9L60.1,32c1.2-1.5,3.4-1.7,4.9-0.5 c1.5,1.2,1.7,3.4,0.5,4.9L39.9,68C39.2,68.9,38.2,69.3,37.2,69.3z M61.6,69.1c-3.6,0-6.6-2.9-6.6-6.6c0-3.6,2.9-6.6,6.6-6.6 c3.6,0,6.6,2.9,6.6,6.6C68.2,66.2,65.2,69.1,61.6,69.1z" />
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+                <path d="M95.2,40.7h2.3V29.3c0-6.5-5.3-11.8-11.8-11.8H14.3c-6.5,0-11.8,5.3-11.8,11.8v11.4h2.3c5.1,0,9.3,4.2,9.3,9.3c0,5.1-4.2,9.3-9.3,9.3H2.5v11.3c0,6.5,5.3,11.8,11.8,11.8h71.5c6.5,0,11.8-5.3,11.8-11.8V59.3h-2.3c-5.1,0-9.3-4.2-9.3-9.3C85.9,44.9,90.1,40.7,95.2,40.7z M31.8,37.4c0-3.6,2.9-6.6,6.6-6.6c3.6,0,6.6,2.9,6.6,6.6c0,3.6-2.9,6.6-6.6,6.6C34.8,44,31.8,41.1,31.8,37.4z M37.2,69.3c-0.8,0-1.5-0.3-2.2-0.8c-1.5-1.2-1.7-3.4-0.5-4.9L60.1,32c1.2-1.5,3.4-1.7,4.9-0.5c1.5,1.2,1.7,3.4,0.5,4.9L39.9,68C39.2,68.9,38.2,69.3,37.2,69.3z M61.6,69.1c-3.6,0-6.6-2.9-6.6-6.6c0-3.6,2.9-6.6,6.6-6.6c3.6,0,6.6,2.9,6.6,6.6C68.2,66.2,65.2,69.1,61.6,69.1z"/>
+            </svg>
+        </a>
+        <a href="#" data-target="info">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+                <path d="M50,5C25.2,5,5,25.2,5,50s20.2,45,45,45s45-20.2,45-45S74.8,5,50,5z M55,75H45V45h10V75z M50,35c-2.8,0-5-2.2-5-5s2.2-5,5-5s5,2.2,5,5S52.8,35,50,35z"/>
             </svg>
         </a>
     </div>
-
 
     <script>
         const slider = document.getElementById('discountSlider');
         const sliderValue = document.getElementById('sliderValue');
         const navbarLinks = document.querySelectorAll('.navbar a');
         const sections = document.querySelectorAll('.content > div');
-        const dayButtons = document.querySelectorAll('.day-btn');
+        const bencinaDayButtons = document.querySelectorAll('.bencinas-day-btn');
 
-dayButtons.forEach(button => {
-    button.addEventListener('click', () => {
-        // Remover clase active de todos los botones
-        dayButtons.forEach(btn => btn.classList.remove('active'));
-        // Agregar clase active al botón clickeado
-        button.classList.add('active');
-    });
-});
+        bencinaDayButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                bencinaDayButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+            });
+        });
 
         function copyCardNumber(button) {
-    const cardNumber = button.previousElementSibling.textContent;
-    
-    navigator.clipboard.writeText(cardNumber).then(() => {
-        button.classList.add('copied');
-        
-        setTimeout(() => {
-            button.classList.remove('copied');
-        }, 2000);
-    });
-}
+            const cardNumber = button.previousElementSibling.textContent;
+
+            navigator.clipboard.writeText(cardNumber).then(() => {
+                button.classList.add('copied');
+
+                setTimeout(() => {
+                    button.classList.remove('copied');
+                }, 2000);
+            });
+        }
 
         navbarLinks.forEach(link => {
             link.addEventListener('click', (event) => {
@@ -1147,14 +1153,14 @@ dayButtons.forEach(button => {
         });
 
         function searchBin() {
-        const selectedType = document.getElementById('card-type').value;
-        if (!selectedType) {
-            alert('Por favor selecciona un tipo de tarjeta');
-        } else {
-            alert(`Has seleccionado: ${selectedType}`);
-            // Aquí puedes añadir lógica para realizar la búsqueda
-        }
-    };
+            const selectedType = document.getElementById('card-type').value;
+            if (!selectedType) {
+                alert('Por favor selecciona un tipo de tarjeta');
+            } else {
+                alert(`Has seleccionado: ${selectedType}`);
+                // Aquí puedes añadir lógica para realizar la búsqueda
+            }
+        };
 
         function copyProductInfo(button) {
             const box = button.closest('.box');
