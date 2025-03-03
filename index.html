@@ -78,6 +78,8 @@
             font-weight: bold;
         }
 
+        
+
         .chat-icon {
             width: 50px;
             height: 50px;
@@ -108,8 +110,8 @@
         .credit-card {
             /* background: linear-gradient(45deg, #E42C66, #F55B46); */
             background-color:#1A1A1A ;
-            border-color: #3B3D3B ;
-            border-radius: 40px;
+            border: 1px solid #3B3D3B; /* Aquí defines el color y grosor */
+            border-radius: 30px;
             padding: 20px;
             color: white;
             margin-bottom: 30px;
@@ -309,33 +311,44 @@
         }
 
         /* Navbar */
-        .navbar {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background-color: #28a8b0;
-            display: flex;
-            justify-content: space-around;
-            padding: 10px 70px;
-            border-radius: 30px 30px 0 0;
-            z-index: 100;
-        }
+/* Navbar */
+/* Navbar */
+.navbar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #28a8b0;
+    display: flex;
+    justify-content: center; /* Cambiado de space-around a center */
+    align-items: center;
+    border-radius: 30px 30px 0 0;
+    padding: 10px 0;
+    z-index: 100;
+}
 
-        .nav-button {
-            background: none;
-            border: none;
-            color: white;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            cursor: pointer;
-        }
+.nav-button {
+    background: none;
+    border: none;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    height: 50px;
+    /* Añadir un ancho fijo más pequeño y márgenes laterales */
+    width: 60px; /* Ancho fijo para cada botón */
+    margin: 0 0; /* Margen horizontal reducido */
+}
 
-        .nav-icon {
-            font-size: 24px;
-            margin-bottom: 5px;
-        }
+.nav-icon {
+    font-size: 24px;
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
         .nav-text {
             font-size: 12px;
@@ -531,7 +544,7 @@
     <div class="navbar">
         <button class="nav-button" data-section="home-section">
             <div class="nav-icon">
-                <svg width="35" height="37" viewBox="0 0 35 37" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <svg width="35" height="35" viewBox="0 0 35 37" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M7.29167 19.6711C7.29167 17.5779 7.29167 16.5312 7.69193 15.6113C8.09218 14.6913 8.84387 14.0102 10.3472 12.6479L11.8056 11.3265C14.5229 8.86427 15.8816 7.63315 17.5 7.63315C19.1184 7.63315 20.4771 8.86427 23.1944 11.3265L24.6528 12.6479C26.1561 14.0102 26.9078 14.6913 27.3081 15.6113C27.7083 16.5312 27.7083 17.5779 27.7083 19.6711V26.2083C27.7083 29.1153 27.7083 30.5688 26.8541 31.4719C25.9998 32.375 24.6249 32.375 21.875 32.375H13.125C10.3751 32.375 9.00022 32.375 8.14594 31.4719C7.29167 30.5688 7.29167 29.1153 7.29167 26.2083V19.6711Z" stroke="white" stroke-width="2"/>
                     <path d="M21.1458 32.375V24.125C21.1458 23.5727 20.6981 23.125 20.1458 23.125H14.8542C14.3019 23.125 13.8542 23.5727 13.8542 24.125V32.375" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
@@ -552,7 +565,7 @@
         </button>
         <button class="nav-button" data-section="gas-section">
             <div class="nav-icon">
-                <svg width="43" height="43" viewBox="0 0 43 43" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <svg width="35" height="35" viewBox="0 0 43 43" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <circle cx="28.6667" cy="34.0417" r="3.58333" stroke="white" stroke-width="2"/>
                     <circle cx="16.125" cy="34.0417" r="3.58333" stroke="white" stroke-width="2"/>
                     <path d="M8.95833 25.0833H19.7083V12.5417M19.7083 12.5417V16.125H7.16666V32.0417C7.16666 33.1462 8.06209 34.0417 9.16666 34.0417H12.5417M19.7083 12.5417H26.875L35.458 19.4081C35.6952 19.5979 35.8333 19.8852 35.8333 20.1889V23.2917M30.4583 16.125H28.6667V23.2917H35.8333M35.8333 23.2917V32.0417C35.8333 33.1462 34.9379 34.0417 33.8333 34.0417H32.25M25.0833 34.0417H19.7083" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -563,7 +576,7 @@
         </button>
         <button class="nav-button" data-section="info-section">
             <div class="nav-icon">
-                <svg width="33" height="33" viewBox="0 0 33 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <svg width="35" height="35" viewBox="0 0 33 33" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <circle cx="16.5" cy="16.5" r="12.375" stroke="white" stroke-width="2"/>
                     <path d="M17.1875 10.3125C17.1875 10.6922 16.8797 11 16.5 11C16.1203 11 15.8125 10.6922 15.8125 10.3125C15.8125 9.9328 16.1203 9.625 16.5 9.625C16.8797 9.625 17.1875 9.9328 17.1875 10.3125Z" fill="white" stroke="white"/>
                     <path d="M16.5 23.375V13.75" stroke="white" stroke-width="2"/>
