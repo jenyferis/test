@@ -105,6 +105,7 @@
             font-weight: bold;
             margin: 10px 0 20px;
             text-align: center;
+            color: #040707;
         }
 
         /* Tarjeta de crédito destacada */
@@ -375,22 +376,31 @@
         
         /* Estilo específico para la sección de info */
         body.info-active {
-            background: #1A2F38; /* Cambio de color de fondo para la sección de info */
-        }
-        
-        body.info-active .header {
-            display: none; /* Ocultar el header cuando estamos en la sección de info */
-        }
-        
-        #info-section {
-            padding-top: 30px; /* Añadir un poco de padding superior para compensar la ausencia del header */
-        }
-        
-        #animation-container {
-            margin-top: 30px;
-            display: flex;
-            justify-content: center;
-        }
+    background: #ede7e3; /* Cambio de color de fondo para la sección de info */
+}
+
+body.info-active .header {
+    display: none; /* Ocultar el header cuando estamos en la sección de info */
+}
+
+#info-section {
+    padding-top: 30px; /* Añadir un poco de padding superior para compensar la ausencia del header */
+    text-align: center; /* Centrar todo el texto dentro de la sección info */
+}
+
+#info-section p {
+    margin: 0 auto; /* Centrar horizontalmente */
+    max-width: 80%; /* Limitar el ancho del texto para mejor legibilidad */
+    line-height: 1.5; /* Mejorar espaciado entre líneas */
+    font-size: 14px;
+    color: #040707;
+}
+
+#animation-container {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+}
     </style>
 </head>
 
@@ -549,10 +559,10 @@
         </div>
 
         <div id="info-section">
-            <!-- Contenido de la sección Info -->
-            <h2 class="section-title">Información</h2>
-            <p>Somos bunnymoney y estamos aquí para traerte ofertas y oportunidades de ahorro. Puedes encontrarnos en el grupo @bunnymoney_chat donde también tenemos un VIP!</p>
+            <!-- Contenido de la sección Info -->          
             <div id="animation-container"></div>
+            <h2 class="section-title">Sobre nosotros</h2>
+            <p>Somos bunnymoney y estamos aquí para traerte ofertas y oportunidades de ahorro. Puedes encontrarnos en el grupo @bunnymoney_chat donde también tenemos un VIP!</p>
         </div>
     </div>
 
