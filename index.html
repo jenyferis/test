@@ -36,6 +36,29 @@
             color: #ffffff;
         }
 
+        body {
+    /* Añadir esta línea a los estilos existentes del body */
+    transition: background-color 0.5s ease;
+}
+
+.header {
+    /* Añadir esta línea a los estilos existentes del header */
+    transition: opacity 0.3s ease;
+}
+
+#home-section, #cards-section, #gas-section, #info-section {
+    /* Modificar esta parte para incluir la transición */
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+#cards-section {
+    /* Modificar para incluir la opacidad inicial */
+    display: block;
+    opacity: 1;
+}
+
         /* Header y perfil */
         .header {
             display: flex;
@@ -617,29 +640,58 @@ body.info-active .header {
     </div>
 
     <script>
-        // Función para cambiar entre secciones
-        const navButtons = document.querySelectorAll('.nav-button');
-        const sections = document.querySelectorAll('#home-section, #cards-section, #gas-section, #info-section');
+// Función para cambiar entre secciones
+// Función para cambiar entre secciones
+const navButtons = document.querySelectorAll('.nav-button');
+const sections = document.querySelectorAll('#home-section, #cards-section, #gas-section, #info-section');
 
-        navButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                // Desactivar todos los botones y ocultar todas las secciones
-                navButtons.forEach(btn => btn.classList.remove('active'));
-                sections.forEach(section => section.style.display = 'none');
+navButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        // Desactivar todos los botones
+        navButtons.forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+        
+        const sectionId = button.getAttribute('data-section');
+        const activeSection = document.getElementById(sectionId);
+        
+        // Primero ocultar las secciones actuales con fade out
+        sections.forEach(section => {
+            if (section.style.display === 'block') {
+                section.style.opacity = '0';
                 
-                // Activar el botón actual y mostrar la sección correspondiente
-                button.classList.add('active');
-                const sectionId = button.getAttribute('data-section');
-                document.getElementById(sectionId).style.display = 'block';
-                
-                // Aplicar estilos específicos para la sección de info
-                if (sectionId === 'info-section') {
-                    document.body.classList.add('info-active');
-                } else {
-                    document.body.classList.remove('info-active');
-                }
-            });
+                // Esperar a que termine la transición de opacidad antes de ocultar
+                setTimeout(() => {
+                    section.style.display = 'none';
+                    
+                    // Mostrar la nueva sección con fade in
+                    activeSection.style.display = 'block';
+                    
+                    // Forzar un reflow para asegurar que la transición funcione
+                    void activeSection.offsetWidth;
+                    
+                    setTimeout(() => {
+                        activeSection.style.opacity = '1';
+                    }, 10);
+                }, 300); // 300ms debe coincidir con la duración de la transición
+            }
         });
+        
+        // Si no hay secciones visibles, mostrar inmediatamente
+        if (!Array.from(sections).some(s => s.style.display === 'block')) {
+            activeSection.style.display = 'block';
+            setTimeout(() => {
+                activeSection.style.opacity = '1';
+            }, 10);
+        }
+        
+        // Aplicar estilos específicos para la sección de info
+        if (sectionId === 'info-section') {
+            document.body.classList.add('info-active');
+        } else {
+            document.body.classList.remove('info-active');
+        }
+    });
+});
 
         // Función para copiar información de tarjeta
         const copyButtons = document.querySelectorAll('.copy-button');
