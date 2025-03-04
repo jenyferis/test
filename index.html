@@ -6,22 +6,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>Bunny Premium</title>
     <script>
-        // Código para expandir la webapp en Telegram
         if (window.Telegram && window.Telegram.WebApp) {
-            window.Telegram.WebApp.expand();
-            window.Telegram.WebApp.setBackgroundColor("#161226");
-        }
-    </script>
-    <!-- Librería lottie -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.9.6/lottie.min.js"></script>
-
-    <script>
-        if (window.Telegram && window.Telegram.WebApp) {
-            window.Telegram.WebApp.expand();  // Expande la app a pantalla completa
-            window.Telegram.WebApp.setBackgroundColor("#161226"); // Personaliza el fondo
+            const webApp = window.Telegram.WebApp;
+            webApp.expand();  // Expande a pantalla completa
+            webApp.setBackgroundColor("#161226"); // Personaliza el fondo
+            webApp.enableClosingConfirmation(); // Evita cierres accidentales
+    
+            // Forzar el alto de la pantalla
+            document.documentElement.style.height = "100vh";
+            document.body.style.height = "100vh";
+            document.body.style.overflow = "hidden";
         }
     </script>
     
+    <!-- Librería lottie -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.9.6/lottie.min.js"></script>
 
     <style>
         /* Importación de fuentes */
@@ -34,15 +33,19 @@
             box-sizing: border-box;
         }
 
-        body {
-            display: flex;
-            flex-direction: column;
-            height: 100vh;
-            background: #040707;
-            font-family: 'Roboto', sans-serif;
-            color: #ffffff;
-            transition: background-color 0.5s ease;
-        }
+        html, body {
+    height: 100%;
+    overflow: hidden; /* Evita el desplazamiento */
+    margin: 0;
+    padding: 0;
+    touch-action: none; /* Evita pull-to-refresh en móviles */
+    background: #040707;
+    font-family: 'Roboto', sans-serif;
+    color: #ff0000;
+    transition: background-color 0.5s ease;
+    display: flex;
+    flex-direction: column;
+}
 
         .header {
             transition: opacity 0.3s ease;
