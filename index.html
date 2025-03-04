@@ -42,15 +42,12 @@
 
         /* Estilos para el carrusel de días - FIJADO */
         .day-carousel {
-            display: flex;
-            justify-content: flex-start; /* Alineación inicial a la izquierda */
-            gap: 1px; /* Espacio uniforme entre elementos */
+            display: flex;           
             overflow-x: auto;
             margin: 20px 0;
-            padding: 10px 5px; /* Padding horizontal para evitar pegarse a los bordes */
+            padding: 10px 0;
             -ms-overflow-style: none;
             scrollbar-width: none;
-            white-space: nowrap; /* Previene que los elementos bajen de línea */
         }
 
         /* Ocultar la barra de desplazamiento */
@@ -63,9 +60,12 @@
             border: none;
             cursor: pointer;
             transition: transform 0.2s;
-            min-width: 70px; /* Ancho mínimo más grande para evitar superposición */
-            flex: 0 0 70px; /* No crecer, no encoger, tamaño base de 70px */
-            margin: 0 1px; /* Pequeño margen para asegurar separación */
+            min-width: 70px;
+            /* Ancho mínimo más grande para evitar superposición */
+            flex: 0 0 70px;
+            /* No crecer, no encoger, tamaño base de 70px */
+            /* margin: 0 1px; */
+            /* Pequeño margen para asegurar separación */
         }
 
         .day-button:active {
@@ -73,8 +73,8 @@
         }
 
         .day-circle {
-            width: 60px;
-            height: 60px;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
             background-color: #1A1A1A;
             border: 1px solid #3B3D3B;
@@ -84,7 +84,8 @@
             font-weight: bold;
             color: white;
             transition: background-color 0.3s, color 0.3s;
-            margin: 0 auto; /* Centrar el círculo dentro del botón */
+            margin: 0 auto;
+            /* Centrar el círculo dentro del botón */
         }
 
         .day-button.active .day-circle {
@@ -190,7 +191,15 @@
             font-weight: bold;
             margin: 10px 0 20px;
             text-align: center;
-            color: #040707;
+            color: #ede7e3;
+        }
+
+        .about-us {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 10px 0 20px;
+            text-align: center;
+            color: #474747;
         }
 
         /* Tarjeta de crédito destacada */
@@ -310,8 +319,8 @@
         }
 
         .bank-logo {
-            min-width: 60px;
-            height: 60px;
+            min-width: 50px;
+            height: 50px;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -370,7 +379,7 @@
         }
 
         /* Botón flotante para agregar */
-        .add-button {
+        .message-button {
             position: fixed;
             bottom: 90px;
             left: 50%;
@@ -384,10 +393,25 @@
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 30px;
             cursor: pointer;
             box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
             z-index: 10;
+            padding: 0;
+            /* Remove any padding */
+            overflow: hidden;
+            /* Ensure content doesn't overflow */
+        }
+
+        /* SVG styling for proper centering */
+        .message-button svg {
+            width: 25px;
+            /* Set appropriate width */
+            height: 25px;
+            /* Set appropriate height */
+            display: block;
+            /* Remove any extra space */
+            transform: scale(1.2);
+            /* Slightly increase size if needed */
         }
 
         /* Espacio para el botón flotante */
@@ -583,7 +607,7 @@
                 <span>tipo</span>
                 <span>credito</span>
                 <span>nivel</span>
-                <span>numeros</span>
+                <span>números</span>
                 <span></span>
             </div>
 
@@ -655,8 +679,7 @@
             <p>Contenido de la sección Home...</p>
         </div>
         <div id="gas-section">
-            <!-- esat es la ok -->
-            <h2 class="section-title">BIN TARJETAS</h2>
+            <h2 class="section-title">MARZO</h2>
 
             <!-- Contenedor para la animación con Lottie -->
             <div id="car-animation-container" style="text-align: center; margin: 20px 0; height: 150px;"></div>
@@ -729,14 +752,22 @@
         <div id="info-section">
             <!-- Contenido de la sección Info -->
             <div id="animation-container"></div>
-            <h2 class="section-title">Sobre nosotros</h2>
+            <h2 class="about-us">Sobre nosotros</h2>
             <p>Somos bunnymoney y estamos aquí para traerte ofertas y oportunidades de ahorro. Puedes encontrarnos en el
-                grupo @bunnymoney_chat donde también tenemos un VIP!</p>
+                nuestro grupo uniéndote gratis al chat de abajo!</p>
+            <!-- Botón flotante para agregar -->
+            <a href="https://tu-url.com" target="_blank">
+                <button class="message-button">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M18.4698 16.83L18.8598 19.99C18.9598 20.82 18.0698 21.4 17.3598 20.97L13.1698 18.48C12.7098 18.48 12.2599 18.45 11.8199 18.39C12.5599 17.52 12.9998 16.42 12.9998 15.23C12.9998 12.39 10.5398 10.09 7.49985 10.09C6.33985 10.09 5.26985 10.42 4.37985 11C4.34985 10.75 4.33984 10.5 4.33984 10.24C4.33984 5.68999 8.28985 2 13.1698 2C18.0498 2 21.9998 5.68999 21.9998 10.24C21.9998 12.94 20.6098 15.33 18.4698 16.83Z" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M13 15.23C13 16.42 12.56 17.52 11.82 18.39C10.83 19.59 9.26 20.36 7.5 20.36L4.89 21.91C4.45 22.18 3.89 21.81 3.95 21.3L4.2 19.33C2.86 18.4 2 16.91 2 15.23C2 13.47 2.94 11.92 4.38 11C5.27 10.42 6.34 10.09 7.5 10.09C10.54 10.09 13 12.39 13 15.23Z" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+            </a>
         </div>
     </div>
 
-    <!-- Botón flotante para agregar -->
-    <button class="add-button">+</button>
+
 
     <!-- Navbar inferior -->
     <div class="navbar">
