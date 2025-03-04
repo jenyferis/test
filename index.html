@@ -120,23 +120,27 @@
         }
 
 
-        #home-section {
-            background-color: black;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
+    #home-section {
+    background-color: black;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    display: none;  /* Asegúrate de que esté oculto inicialmente */
+    opacity: 0;     /* Opacidad inicial */
+    transition: opacity 0.3s ease;  /* Misma transición que otras secciones */
+}
 
         .home-content {
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            flex-grow: 1;
-        }
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        flex-grow: 1;
+        flex-shrink: 0; /* Evita que el contenido se comprima */
+    }
 
         .welcome-message {
-            text-align: left;
+            text-align: center;
             margin-bottom: 30px;
         }
 
@@ -163,7 +167,7 @@
             border: none;
             padding: 15px;
             text-align: left;
-            border-radius: 10px;
+            border-radius: 25px;
             font-size: 16px;
             cursor: pointer;
         }
@@ -171,6 +175,7 @@
         .vip-button {
             background-color: #8A4FFF !important;
             position: relative;
+            
         }
 
         .vip-button-container {
@@ -185,7 +190,7 @@
             width: 100%;
             padding: 15px;
             border: none;
-            border-radius: 10px;
+            border-radius: 25px;
             text-align: left;
             position: relative;
         }
@@ -595,6 +600,16 @@
             font-size: 14px;
             color: #040707;
         }
+
+        #animation-container-bunny {
+    width: 80%;
+    height: 250px; /* Ajusta la altura según necesites */
+    margin: 0 auto; /* Esto centra horizontalmente */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
     </style>
 </head>
 
@@ -611,10 +626,12 @@
             </div>
         </div>
         <div class="chat-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M20 2H4C2.9 2 2 2.9 2 4V22L6 18H20C21.1 18 22 17.1 22 16V4C22 2.9 21.1 2 20 2Z"
-                    fill="#9191A6" />
-            </svg>
+            <a href="https://t.me/bunnymoney_chat">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M18.4698 16.83L18.8598 19.99C18.9598 20.82 18.0698 21.4 17.3598 20.97L13.1698 18.48C12.7098 18.48 12.2599 18.45 11.8199 18.39C12.5599 17.52 12.9998 16.42 12.9998 15.23C12.9998 12.39 10.5398 10.09 7.49985 10.09C6.33985 10.09 5.26985 10.42 4.37985 11C4.34985 10.75 4.33984 10.5 4.33984 10.24C4.33984 5.68999 8.28985 2 13.1698 2C18.0498 2 21.9998 5.68999 21.9998 10.24C21.9998 12.94 20.6098 15.33 18.4698 16.83Z" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M13 15.23C13 16.42 12.56 17.52 11.82 18.39C10.83 19.59 9.26 20.36 7.5 20.36L4.89 21.91C4.45 22.18 3.89 21.81 3.95 21.3L4.2 19.33C2.86 18.4 2 16.91 2 15.23C2 13.47 2.94 11.92 4.38 11C5.27 10.42 6.34 10.09 7.5 10.09C10.54 10.09 13 12.39 13 15.23Z" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>     
+            </a>
         </div>
     </div>
 
@@ -851,7 +868,7 @@
 
         <div id="info-section">
             <!-- Contenido de la sección Info -->
-            <div id="animation-container"></div>
+            <div id="animation-container-bunny"></div>
             <h2 class="about-us">Sobre nosotros</h2>
             <p>Somos bunnymoney y estamos aquí para traerte ofertas y oportunidades de ahorro. Puedes encontrarnos en el
                 nuestro grupo uniéndote gratis al chat de abajo!</p>
@@ -998,7 +1015,7 @@
 
             function initInfoAnimation() {
                 // Eliminar cualquier animación existente
-                const container = document.getElementById('animation-container');
+                const container = document.getElementById('animation-container-bunny');
                 if (container) {
                     // Limpiar contenedor antes de agregar nueva animación
                     container.innerHTML = '';
@@ -1106,6 +1123,7 @@
             });
         }
     </script>
+    
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const confettiContainer = document.getElementById('lottie-confetti');
