@@ -11,14 +11,14 @@
             webApp.expand();  // Expande a pantalla completa
             webApp.setBackgroundColor("#161226"); // Personaliza el fondo
             webApp.enableClosingConfirmation(); // Evita cierres accidentales
-    
+
             // Forzar el alto de la pantalla
             document.documentElement.style.height = "100vh";
             document.body.style.height = "100vh";
             document.body.style.overflow = "hidden";
         }
     </script>
-    
+
     <!-- Librería lottie -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.9.6/lottie.min.js"></script>
 
@@ -33,19 +33,21 @@
             box-sizing: border-box;
         }
 
-        html, body {
-    height: 100%;
-    overflow: hidden; /* Evita el desplazamiento */
-    margin: 0;
-    padding: 0;
-    touch-action: none; /* Evita pull-to-refresh en móviles */
-    background: #040707;
-    font-family: 'Roboto', sans-serif;
-    color: #ede7e3;
-    transition: background-color 0.5s ease;
-    display: flex;
-    flex-direction: column;
-}
+        html,
+        body {
+            height: 100vh;
+            min-height: 100vh;
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
+            touch-action: none;
+            background: #040707;
+            font-family: 'Roboto', sans-serif;
+            color: #ede7e3;
+            display: flex;
+            flex-direction: column;
+        }
+
 
         .header {
             transition: opacity 0.3s ease;
@@ -170,7 +172,7 @@
             text-align: center;
             border-radius: 25px;
             font-size: 16px;
-            cursor: pointer;      
+            cursor: pointer;
         }
 
 
