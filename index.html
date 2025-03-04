@@ -1133,6 +1133,14 @@
             initVIPConfetti();
         });
     </script>
+
+<script>
+    // Código para expandir la webapp en Telegram
+    if (window.Telegram && window.Telegram.WebApp) {
+        window.Telegram.WebApp.expand(); // Expande la webapp a pantalla completa
+        // window.Telegram.WebApp.setBackgroundColor("#161226"); // Opcional: establece color de fondo
+    }
+</script>
 </body>
 
 </html>
