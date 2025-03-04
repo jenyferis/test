@@ -119,95 +119,97 @@
             transition: opacity 0.3s ease;
         }
 
-        
+
         #home-section {
-        background-color: black;
-        height: 100vh;
-        display: flex;
-        flex-direction: column;
-    }
+            background-color: black;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
 
-    .home-content {
-        padding: 20px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        flex-grow: 1;
-    }
+        .home-content {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            flex-grow: 1;
+        }
 
-    .welcome-message {
-        text-align: left;
-        margin-bottom: 30px;
-    }
+        .welcome-message {
+            text-align: left;
+            margin-bottom: 30px;
+        }
 
-    .welcome-message h2 {
-        color: white;
-        font-size: 24px;
-        margin-bottom: 10px;
-    }
+        .welcome-message h2 {
+            color: white;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
 
-    .welcome-message p {
-        color: #888;
-        font-size: 16px;
-    }
+        .welcome-message p {
+            color: #888;
+            font-size: 16px;
+        }
 
-    .channel-buttons {
-        display: flex;
-        flex-direction: column;
-        gap: 15px;
-    }
+        .channel-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
 
-    .channel-buttons button {
-        background-color: #1C1C1E;
-        color: white;
-        border: none;
-        padding: 15px;
-        text-align: left;
-        border-radius: 10px;
-        font-size: 16px;
-        cursor: pointer;
-    }
+        .channel-buttons button {
+            background-color: #1C1C1E;
+            color: white;
+            border: none;
+            padding: 15px;
+            text-align: left;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
 
-    .vip-button {
-        background-color: #8A4FFF !important;
-        position: relative;
-    }
-    .vip-button-container {
-        position: relative;
-        margin-top: 20px;
-        width: 100%;
-    }
+        .vip-button {
+            background-color: #8A4FFF !important;
+            position: relative;
+        }
 
-    .channel-button.vip-button {
-        background-color: #8A4FFF !important;
-        color: white;
-        width: 100%;
-        padding: 15px;
-        border: none;
-        border-radius: 10px;
-        text-align: left;
-        position: relative;
-    }
+        .vip-button-container {
+            position: relative;
+            margin-top: 20px;
+            width: 100%;
+        }
 
-    #lottie-confetti {
-        position: absolute;
-        width: 80px;
-        height: 80px;
-        right: -10px;
-        top: 50%;
-        transform: translateY(-50%);
-    }
-    
+        .channel-button.vip-button {
+            background-color: #8A4FFF !important;
+            color: white;
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            text-align: left;
+            position: relative;
+        }
 
-    #fullscreen-confetti {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        pointer-events: none;
-        z-index: 9999;
-    }
+        #lottie-confetti {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            right: -10px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+
+        #fullscreen-confetti {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
         #cards-section {
             display: block;
             opacity: 1;
@@ -284,7 +286,7 @@
         }
 
 
-        
+
         .about-us {
             font-size: 24px;
             font-weight: bold;
@@ -593,8 +595,6 @@
             font-size: 14px;
             color: #040707;
         }
-
-       
     </style>
 </head>
 
@@ -641,7 +641,7 @@
 
             <!-- Búsqueda -->
             <div class="search-container">
-                <input type="text" class="search-bar" placeholder="Buscar tarjeta">
+                <input type="text" class="search-bar" placeholder="Buscar tarjeta...">
                 <button class="search-button">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path
@@ -997,8 +997,12 @@
             }
 
             function initInfoAnimation() {
+                // Eliminar cualquier animación existente
                 const container = document.getElementById('animation-container');
                 if (container) {
+                    // Limpiar contenedor antes de agregar nueva animación
+                    container.innerHTML = '';
+
                     lottie.loadAnimation({
                         container: container,
                         renderer: 'svg',
@@ -1102,21 +1106,21 @@
             });
         }
     </script>
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const confettiContainer = document.getElementById('lottie-confetti');
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const confettiContainer = document.getElementById('lottie-confetti');
 
-        if (confettiContainer) {
-            lottie.loadAnimation({
-                container: confettiContainer,
-                renderer: 'svg',
-                loop: true,
-                autoplay: true,
-                path: 'https://gist.githubusercontent.com/jenyferis/fa2b2bf60f88cb3647f41ef9542db7f7/raw/a95bd6e0a0cca9f15227aaba6fc22bf7f1b36214/vip.json'
-            });
-        }
-    });
-</script>
+            if (confettiContainer) {
+                lottie.loadAnimation({
+                    container: confettiContainer,
+                    renderer: 'svg',
+                    loop: true,
+                    autoplay: true,
+                    path: 'https://gist.githubusercontent.com/jenyferis/fa2b2bf60f88cb3647f41ef9542db7f7/raw/a95bd6e0a0cca9f15227aaba6fc22bf7f1b36214/vip.json'
+                });
+            }
+        });
+    </script>
 </body>
 
 </html>
