@@ -120,24 +120,13 @@
         }
 
 
-    #home-section {
-    background-color: black;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    display: none;  /* Asegúrate de que esté oculto inicialmente */
-    opacity: 0;     /* Opacidad inicial */
-    transition: opacity 0.3s ease;  /* Misma transición que otras secciones */
-}
-
-        .home-content {
-        padding: 20px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        flex-grow: 1;
-        flex-shrink: 0; /* Evita que el contenido se comprima */
-    }
+        .home-section {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            /* Espacio entre elementos */
+        }
 
         .welcome-message {
             text-align: center;
@@ -175,7 +164,7 @@
         .vip-button {
             background-color: #8A4FFF !important;
             position: relative;
-            
+
         }
 
         .vip-button-container {
@@ -602,14 +591,16 @@
         }
 
         #animation-container-bunny {
-    width: 80%;
-    height: 250px; /* Ajusta la altura según necesites */
-    margin: 0 auto; /* Esto centra horizontalmente */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 20px;
-}
+            width: 80%;
+            height: 250px;
+            /* Ajusta la altura según necesites */
+            margin: 0 auto;
+            /* Esto centra horizontalmente */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
     </style>
 </head>
 
@@ -628,9 +619,13 @@
         <div class="chat-icon">
             <a href="https://t.me/bunnymoney_chat">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M18.4698 16.83L18.8598 19.99C18.9598 20.82 18.0698 21.4 17.3598 20.97L13.1698 18.48C12.7098 18.48 12.2599 18.45 11.8199 18.39C12.5599 17.52 12.9998 16.42 12.9998 15.23C12.9998 12.39 10.5398 10.09 7.49985 10.09C6.33985 10.09 5.26985 10.42 4.37985 11C4.34985 10.75 4.33984 10.5 4.33984 10.24C4.33984 5.68999 8.28985 2 13.1698 2C18.0498 2 21.9998 5.68999 21.9998 10.24C21.9998 12.94 20.6098 15.33 18.4698 16.83Z" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M13 15.23C13 16.42 12.56 17.52 11.82 18.39C10.83 19.59 9.26 20.36 7.5 20.36L4.89 21.91C4.45 22.18 3.89 21.81 3.95 21.3L4.2 19.33C2.86 18.4 2 16.91 2 15.23C2 13.47 2.94 11.92 4.38 11C5.27 10.42 6.34 10.09 7.5 10.09C10.54 10.09 13 12.39 13 15.23Z" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>     
+                    <path
+                        d="M18.4698 16.83L18.8598 19.99C18.9598 20.82 18.0698 21.4 17.3598 20.97L13.1698 18.48C12.7098 18.48 12.2599 18.45 11.8199 18.39C12.5599 17.52 12.9998 16.42 12.9998 15.23C12.9998 12.39 10.5398 10.09 7.49985 10.09C6.33985 10.09 5.26985 10.42 4.37985 11C4.34985 10.75 4.33984 10.5 4.33984 10.24C4.33984 5.68999 8.28985 2 13.1698 2C18.0498 2 21.9998 5.68999 21.9998 10.24C21.9998 12.94 20.6098 15.33 18.4698 16.83Z"
+                        stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                    <path
+                        d="M13 15.23C13 16.42 12.56 17.52 11.82 18.39C10.83 19.59 9.26 20.36 7.5 20.36L4.89 21.91C4.45 22.18 3.89 21.81 3.95 21.3L4.2 19.33C2.86 18.4 2 16.91 2 15.23C2 13.47 2.94 11.92 4.38 11C5.27 10.42 6.34 10.09 7.5 10.09C10.54 10.09 13 12.39 13 15.23Z"
+                        stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
             </a>
         </div>
     </div>
@@ -971,7 +966,8 @@
                     }
                 });
 
-                newSection.style.display = 'block';
+                // Cambiar a flex para home section
+                newSection.style.display = sectionId === 'home-section' ? 'flex' : 'block';
                 void newSection.offsetWidth;
 
                 setTimeout(() => {
@@ -995,11 +991,12 @@
                 }
             }
 
+            // Inicialización de la navegación
             navButtons.forEach(button => {
                 button.addEventListener('click', () => handleSectionNavigation(button));
             });
 
-            // Funciones de inicialización de animaciones
+            // Animaciones
             function initCarAnimation() {
                 const container = document.getElementById('car-animation-container');
                 if (container && !window.carAnimation) {
@@ -1014,12 +1011,9 @@
             }
 
             function initInfoAnimation() {
-                // Eliminar cualquier animación existente
                 const container = document.getElementById('animation-container-bunny');
                 if (container) {
-                    // Limpiar contenedor antes de agregar nueva animación
                     container.innerHTML = '';
-
                     lottie.loadAnimation({
                         container: container,
                         renderer: 'svg',
@@ -1030,113 +1024,113 @@
                 }
             }
 
-            // Inicialización de otras funcionalidades
+            // Animación de confeti VIP
+            function initVIPConfetti() {
+                const confettiContainer = document.getElementById('lottie-confetti');
+                if (confettiContainer) {
+                    lottie.loadAnimation({
+                        container: confettiContainer,
+                        renderer: 'svg',
+                        loop: true,
+                        autoplay: true,
+                        path: 'https://gist.githubusercontent.com/jenyferis/fa2b2bf60f88cb3647f41ef9542db7f7/raw/a95bd6e0a0cca9f15227aaba6fc22bf7f1b36214/vip.json'
+                    });
+                }
+            }
+
+            // Funciones de utilidad
+            function initCopyButtons() {
+                const copyButtons = document.querySelectorAll('.copy-button');
+                copyButtons.forEach(button => {
+                    button.addEventListener('click', () => {
+                        const row = button.closest('.card-row');
+                        const cardDetails = Array.from(row.querySelectorAll('.card-column'))
+                            .map(col => col.textContent)
+                            .join(' - ');
+
+                        navigator.clipboard.writeText(cardDetails).then(() => {
+                            updateCopyButtonState(button);
+                        });
+                    });
+                });
+            }
+
+            function updateCopyButtonState(button) {
+                button.innerHTML = `
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M9 16.17L4.83 12L3.41 13.41L9 19L21 7L19.59 5.59L9 16.17Z" fill="#4CAF50"/>
+            </svg>
+        `;
+
+                setTimeout(() => {
+                    button.innerHTML = `
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M16 1H4C2.9 1 2 1.9 2 3V17H4V3H16V1ZM19 5H8C6.9 5 6 5.9 6 7V21C6 22.1 6.9 23 8 23H19C20.1 23 21 22.1 21 21V7C21 5.9 20.1 5 19 5ZM19 21H8V7H19V21Z" fill="#8888A0"/>
+                </svg>
+            `;
+                }, 2000);
+            }
+
+            function initDayFilters() {
+                const dayButtons = document.querySelectorAll('.day-button');
+                const gasRows = document.querySelectorAll('.gas-row');
+
+                function filterByDay(day) {
+                    gasRows.forEach(row => {
+                        if (day === 'all' || row.getAttribute('data-day') === day) {
+                            row.classList.remove('hidden');
+                        } else {
+                            row.classList.add('hidden');
+                        }
+                    });
+                }
+
+                dayButtons.forEach(button => {
+                    button.addEventListener('click', function () {
+                        dayButtons.forEach(btn => btn.classList.remove('active'));
+                        button.classList.add('active');
+
+                        const carousel = document.querySelector('.day-carousel');
+                        const buttonRect = button.getBoundingClientRect();
+                        const carouselRect = carousel.getBoundingClientRect();
+
+                        const scrollLeft = buttonRect.left - carouselRect.left -
+                            (carouselRect.width / 2) + (buttonRect.width / 2);
+
+                        carousel.scrollTo({
+                            left: carousel.scrollLeft + scrollLeft,
+                            behavior: 'smooth'
+                        });
+
+                        const selectedDay = button.getAttribute('data-day');
+                        filterByDay(selectedDay);
+                    });
+                });
+
+                filterByDay('all');
+            }
+
+            function initSearchBar() {
+                const searchBar = document.querySelector('.search-bar');
+                searchBar.addEventListener('input', () => {
+                    const searchTerm = searchBar.value.toLowerCase();
+                    const rows = document.querySelectorAll('.card-row');
+
+                    rows.forEach(row => {
+                        const text = Array.from(row.querySelectorAll('.card-column'))
+                            .map(col => col.textContent.toLowerCase())
+                            .join(' ');
+
+                        row.style.display = text.includes(searchTerm) ? 'flex' : 'none';
+                    });
+                });
+            }
+
+            // Inicializar todas las funcionalidades
             initCopyButtons();
             initDayFilters();
             initSearchBar();
-        });
-
-        function initCopyButtons() {
-            const copyButtons = document.querySelectorAll('.copy-button');
-            copyButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    const row = button.closest('.card-row');
-                    const cardDetails = Array.from(row.querySelectorAll('.card-column'))
-                        .map(col => col.textContent)
-                        .join(' - ');
-
-                    navigator.clipboard.writeText(cardDetails).then(() => {
-                        updateCopyButtonState(button);
-                    });
-                });
-            });
-        }
-
-        function updateCopyButtonState(button) {
-            button.innerHTML = `
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M9 16.17L4.83 12L3.41 13.41L9 19L21 7L19.59 5.59L9 16.17Z" fill="#4CAF50"/>
-                </svg>
-            `;
-
-            setTimeout(() => {
-                button.innerHTML = `
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M16 1H4C2.9 1 2 1.9 2 3V17H4V3H16V1ZM19 5H8C6.9 5 6 5.9 6 7V21C6 22.1 6.9 23 8 23H19C20.1 23 21 22.1 21 21V7C21 5.9 20.1 5 19 5ZM19 21H8V7H19V21Z" fill="#8888A0"/>
-                    </svg>
-                `;
-            }, 2000);
-        }
-
-        function initDayFilters() {
-            const dayButtons = document.querySelectorAll('.day-button');
-            const gasRows = document.querySelectorAll('.gas-row');
-
-            function filterByDay(day) {
-                gasRows.forEach(row => {
-                    if (day === 'all' || row.getAttribute('data-day') === day) {
-                        row.classList.remove('hidden');
-                    } else {
-                        row.classList.add('hidden');
-                    }
-                });
-            }
-
-            dayButtons.forEach(button => {
-                button.addEventListener('click', function () {
-                    dayButtons.forEach(btn => btn.classList.remove('active'));
-                    button.classList.add('active');
-
-                    const carousel = document.querySelector('.day-carousel');
-                    const buttonRect = button.getBoundingClientRect();
-                    const carouselRect = carousel.getBoundingClientRect();
-
-                    const scrollLeft = buttonRect.left - carouselRect.left -
-                        (carouselRect.width / 2) + (buttonRect.width / 2);
-
-                    carousel.scrollTo({
-                        left: carousel.scrollLeft + scrollLeft,
-                        behavior: 'smooth'
-                    });
-
-                    const selectedDay = button.getAttribute('data-day');
-                    filterByDay(selectedDay);
-                });
-            });
-
-            filterByDay('all');
-        }
-
-        function initSearchBar() {
-            const searchBar = document.querySelector('.search-bar');
-            searchBar.addEventListener('input', () => {
-                const searchTerm = searchBar.value.toLowerCase();
-                const rows = document.querySelectorAll('.card-row');
-
-                rows.forEach(row => {
-                    const text = Array.from(row.querySelectorAll('.card-column'))
-                        .map(col => col.textContent.toLowerCase())
-                        .join(' ');
-
-                    row.style.display = text.includes(searchTerm) ? 'flex' : 'none';
-                });
-            });
-        }
-    </script>
-    
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const confettiContainer = document.getElementById('lottie-confetti');
-
-            if (confettiContainer) {
-                lottie.loadAnimation({
-                    container: confettiContainer,
-                    renderer: 'svg',
-                    loop: true,
-                    autoplay: true,
-                    path: 'https://gist.githubusercontent.com/jenyferis/fa2b2bf60f88cb3647f41ef9542db7f7/raw/a95bd6e0a0cca9f15227aaba6fc22bf7f1b36214/vip.json'
-                });
-            }
+            initVIPConfetti();
         });
     </script>
 </body>
