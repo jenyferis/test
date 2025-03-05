@@ -3,732 +3,746 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0">
     <title>Bunny</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.9.6/lottie.min.js"></script>
 
     <style>
-@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,300;0,6..12,400;0,6..12,500;0,6..12,600;0,6..12,700;1,6..12,300;1,6..12,600&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
-
-/* Reset y estilos base */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-html,
-body {
-    height: 100vh;
-    min-height: 100vh;
-    overflow: hidden;
-    margin: 0;
-    padding: 0;
-    touch-action: none;
-    background: #040707;
-    font-family: 'Roboto', sans-serif;
-    color: #ede7e3;
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    max-width: 100%;
-}
-
-.header {
-    transition: opacity 0.3s ease;
-    width: 100%;
-    z-index: 10;
-    position: relative;
-}
-
-/* Estilos para el carrusel de días con días más juntos */
-.day-carousel {
-    display: flex;
-    overflow-x: auto;
-    margin: 20px 0;
-    padding: 10px 0;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-    justify-content: flex-start;
-    gap: 10px;
-    /* Eliminar espacio entre botones */
-    width: 100%;
-}
-
-.day-carousel::-webkit-scrollbar {
-    display: none;
-}
-
-.day-button {
-    background: none;
-    border: none;
-    cursor: pointer;
-    transition: transform 0.2s;
-    min-width: 52px;
-    /* Ligeramente más pequeño que original pero suficiente para el círculo */
-    flex: 0 0 52px;
-    margin: 0;
-    /* Eliminar márgenes */
-    padding: 0;
-    /* Eliminar padding */
-}
-
-.day-circle {
-    width: 50px;
-    /* Mantener tamaño original */
-    height: 50px;
-    /* Mantener tamaño original */
-    border-radius: 50%;
-    background-color: #1A1A1A;
-    border: 1px solid #3B3D3B;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    color: white;
-    transition: background-color 0.3s, color 0.3s;
-    margin: 0 auto;
-}
-
-.day-button.active .day-circle {
-    background-color: #28a8b0;
-    color: white;
-}
-
-.gas-row {
-    transition: opacity 0.3s ease, transform 0.3s ease;
-}
-
-.gas-row.hidden {
-    display: none;
-}
-
-.day-filters {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin: 20px 0;
-    flex-wrap: wrap;
-    width: 100%;
-}
-
-/* Mejora para las transiciones entre secciones */
-.content {
-    position: relative;
-    overflow-x: hidden;
-    overflow-y: auto;
-    flex: 1;
-    min-height: 0;
-    padding: 20px;
-    padding-bottom: 80px;
-    will-change: transform;
-    width: 100%;
-    max-width: 100%;
-    box-sizing: border-box;
-}
-
-#cards-section,
-#gas-section,
-#info-section,
-#home-section {
-    width: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
-    transform: translateY(20px);
-    pointer-events: none;
-    display: none; /* Añadir display none para asegurar que está completamente oculto */
-}
-
-.section-active {
-    opacity: 1 !important;
-    visibility: visible !important;
-    transform: translateY(0) !important;
-    position: relative !important;
-    pointer-events: auto !important;
-    display: block !important; /* Asegurar que se muestra */
-}
-
-/* Asegurarse que el home-section esté visible inicialmente */
-#home-section.section-active {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-    position: relative;
-    pointer-events: auto;
-    display: block;
-}
-
-/* Asegurarse que el home-section esté visible inicialmente */
-#home-section {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-    position: relative;
-    pointer-events: auto;
-}
-
-.home-section {
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    /* Espacio entre elementos */
-    width: 100%;
-}
-
-.welcome-message {
-    text-align: center;
-    margin-bottom: 30px;
-    width: 100%;
-}
-
-.welcome-message h2 {
-    color: white;
-    font-size: 24px;
-    margin-bottom: 10px;
-}
-
-.welcome-message p {
-    color: #888;
-    font-size: 16px;
-}
-
-.channel-buttons {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    margin: 0;
-    padding: 0 20px;
-    width: 100%;
-    box-sizing: border-box;
-}
-
-.channel-buttons button.clicked {
-    background-color: #479EB4 !important;
-    transition: background-color 0.3s ease;
-}
-
-.channel-buttons button {
-    background-color: #1C1C1E;
-    color: white;
-    border: 1px solid #3B3D3B;
-    padding: 15px;
-    text-align: center;
-    border-radius: 25px;
-    font-size: 16px;
-    cursor: pointer;
-    width: 100%;
-}
-
-.vip-button {
-    background-color: #8A4FFF !important;
-    position: relative;
-}
-
-/* Estilos actualizados para el botón VIP y su animación */
-.vip-button-container {
-    position: relative;
-    width: 100%;
-}
-
-.channel-button.vip-button {
-    background-color: #8A4FFF !important;
-    color: white;
-    width: 100%;
-    padding: 15px;
-    border: none;
-    border-radius: 25px;
-    text-align: center;
-    position: relative;
-    font-weight: bold;
-    z-index: 1;
-    /* Asegurar que el botón esté por encima */
-}
-
-#lottie-confetti {
-    position: absolute;
-    width: 80px;
-    height: 80px;
-    right: -10px;
-    top: 50%;
-    transform: translateY(-50%);
-    pointer-events: none;
-    z-index: 999;
-    /* Aumentado */
-    opacity: 1 !important;
-    visibility: visible !important;
-    display: block !important;
-    pointer-events: none;
-}
-
-#fullscreen-confetti {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 9999;
-}
-
-/* Header y perfil */
-.header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px 30px;
-    width: 100%;
-    box-sizing: border-box;
-}
-
-.profile {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-
-.profile-pic {
-    width: 65px;
-    height: 65px;
-    border-radius: 50%;
-    overflow: hidden;
-    background-color: #242434;
-}
-
-.profile-pic img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.profile-info {
-    display: flex;
-    flex-direction: column;
-}
-
-.greeting {
-    font-size: 16px;
-    color: #cccccc;
-}
-
-.brand-name {
-    font-size: 20px;
-    font-weight: bold;
-}
-
-.chat-icon {
-    width: 50px;
-    height: 50px;
-    background-color: #3C3C3C;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-/* Título de sección */
-.section-title {
-    font-size: 20px;
-    font-weight: bold;
-    /* margin: 10px 0 20px; */
-    text-align: center;
-    color: #ede7e3;
-    width: 100%;
-}
-
-.about-us {
-    font-size: 24px;
-    font-weight: bold;
-    margin: 10px 0 20px;
-    text-align: center;
-    color: #474747;
-    width: 100%;
-}
-
-/* Tarjeta de crédito destacada */
-/* Ajustes para la tabla de tarjetas */
-.card-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 0;
-    border-bottom: 1px solid #242434;
-    width: 100%;
-    box-sizing: border-box;
-}
-
-.card-column {
-    flex: 1;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
-
-/* Ajustar anchos específicos para cada columna */
-.card-row .card-column:nth-child(1) {
-    flex: 2;
-}
-
-/* Banco */
-.card-row .card-column:nth-child(2) {
-    flex: 1;
-}
-
-/* Tipo */
-.card-row .card-column:nth-child(3) {
-    flex: 1;
-}
-
-/* Nivel */
-.card-row .card-column:nth-child(4) {
-    flex: 1.5;
-}
-
-/* Números */
-
-/* Modificar la tarjeta de crédito */
-.credit-card {
-    background-color: #1A1A1A;
-    border: 1px solid #3B3D3B;
-    border-radius: 30px;
-    padding: 20px;
-    color: white;
-    margin-bottom: 30px;
-    position: relative;
-    overflow: hidden;
-    transform: translateY(-10px);
-    /* Sube ligeramente la tarjeta */
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-    /* Añade una sombra suave */
-    width: 100%;
-    box-sizing: border-box;
-}
-
-/* Ajustar texto de la tarjeta */
-.card-balance {
-    font-size: 14px;
-    opacity: 0.8;
-    margin-bottom: 5px;
-}
-
-.card-amount {
-    font-size: 36px;
-    font-weight: bold;
-    margin-bottom: 10px;
-}
-
-.card-details {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-}
-
-.card-number {
-    font-size: 18px;
-    letter-spacing: 2px;
-    opacity: 0.7;
-}
-
-.card-expiry {
-    font-size: 16px;
-    opacity: 0.7;
-}
-
-.card-type {
-    position: absolute;
-    top: 50px;
-    right: 20px;
-    font-size: 18px;
-}
-
-.mastercard-logo {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    display: flex;
-}
-
-.mastercard-circle {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    opacity: 0.8;
-}
-
-.mastercard-circle:first-child {
-    background-color: #FD6887;
-    margin-right: -10px;
-}
-
-.mastercard-circle:last-child {
-    background-color: #FF8AA2;
-}
-
-/* Barra de búsqueda */
-.search-container {
-    position: relative;
-    margin: 20px 0;
-    width: 100%;
-    box-sizing: border-box;
-}
-
-.search-bar {
-    width: 100%;
-    height: 50px;
-    background-color: #1A1A1A;
-    border-radius: 25px;
-    border: 1px solid #3B3D3B;
-    padding: 0 50px 0 20px;
-    color: white;
-    font-size: 16px;
-    box-sizing: border-box;
-}
-
-.search-button {
-    position: absolute;
-    right: 5px;
-    top: 5px;
-    width: 40px;
-    height: 40px;
-    background-color: #3C3C3C;
-    border: none;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-}
-
-/* Carrusel de bancos */
-.bank-carousel {
-    display: flex;
-    gap: 15px;
-    overflow-x: auto;
-    margin: 20px 0;
-    padding: 10px 0;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-    width: 100%;
-    box-sizing: border-box;
-}
-
-.bank-carousel::-webkit-scrollbar {
-    display: none;
-}
-
-.bank-logo {
-    min-width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-}
-
-.bank-logo img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-/* Tabla de tarjetas */
-/* Estilos para contenedor común de tabla */
-.table-container {
-    width: 100%;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-/* Estilos para el encabezado y filas de la tabla con grid templates idénticos */
-.table-header {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr 40px;
-    padding: 10px 0;
-    border-bottom: 1px solid #333343;
-    margin-bottom: 10px;
-    width: 100%;
-    box-sizing: border-box;
-}
-
-.table-header span {
-    font-size: 14px;
-    color: #8888a0;
-    text-transform: lowercase;
-    padding-left: 5px;
-    text-align: left;
-}
-
-/* Estilos para las filas de la tabla - exactamente el mismo grid-template que el header */
-.card-row {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr 40px;
-    /* IDÉNTICO al table-header */
-    align-items: center;
-    padding: 15px 0;
-    border-bottom: 1px solid #242434;
-    width: 100%;
-    box-sizing: border-box;
-}
-
-.card-column {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    padding-left: 5px;
-    text-align: left;
-}
-
-/* Estilo para el botón de copiar */
-.copy-button {
-    background: none;
-    border: none;
-    color: #8888a0;
-    cursor: pointer;
-    width: 40px;
-    display: flex;
-    justify-content: center;
-}
-
-/* Botón flotante para agregar */
-.message-button {
-    position: fixed;
-    bottom: 90px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 60px;
-    height: 60px;
-    background-color: #28a8b0;
-    border: none;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    cursor: pointer;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
-    z-index: 10;
-    padding: 0;
-    /* Remove any padding */
-    overflow: hidden;
-    /* Ensure content doesn't overflow */
-}
-
-/* SVG styling for proper centering */
-.message-button svg {
-    width: 25px;
-    /* Set appropriate width */
-    height: 25px;
-    /* Set appropriate height */
-    display: block;
-    /* Remove any extra space */
-    transform: scale(1.2);
-    /* Slightly increase size if needed */
-}
-
-/* Navbar */
-.navbar {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background-color: #28a8b0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 25px 25px 0 0;
-    padding: 8px 0;
-    z-index: 100;
-}
-
-.nav-button {
-    background: none;
-    border: none;
-    color: white;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    height: 50px;
-    width: 60px;
-    margin: 0 0;
-}
-
-.nav-icon {
-    font-size: 24px;
-    margin-bottom: 5px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.nav-text {
-    font-size: 12px;
-}
-
-.nav-button.active {
-    color: white;
-    font-weight: bold;
-}
-
-.nav-button:not(.active) {
-    opacity: 0.7;
-}
-
-/* Estilo específico para la sección de info */
-body.info-active {
-    background: #ede7e3;
-}
-
-body.info-active .header {
-    display: none;
-}
-
-#info-section {
-    /* padding-top: 30px; */
-    text-align: center;
-}
-
-#info-section p {
-    margin: 0 auto;
-    max-width: 80%;
-    line-height: 1.5;
-    font-size: 14px;
-    color: #040707;
-}
-
-#animation-container-bunny {
-    width: 70%;
-    /* height: 250px; */
-    /* Ajusta la altura según necesites */
-    margin: 0 auto;
-    /* Esto centra horizontalmente */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 20px;
-}
-
-.social-icons {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 30px;
-}
-
-.social-icons a {
-    transition: transform 0.3s ease;
-}
-
-.social-icons a:hover {
-    transform: scale(1.15);
-}
+        @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,300;0,6..12,400;0,6..12,500;0,6..12,600;0,6..12,700;1,6..12,300;1,6..12,600&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        * {
+            -webkit-touch-callout: none;
+            /* iOS Safari */
+            -webkit-user-select: none;
+            /* Safari */
+            -moz-user-select: none;
+            /* Firefox */
+            -ms-user-select: none;
+            /* Internet Explorer/Edge */
+            user-select: none;
+            /* Navegadores modernos */
+        }
+
+        html,
+        body {
+            height: 100vh;
+            min-height: 100vh;
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
+            touch-action: none;
+            background: #040707;
+            font-family: 'Roboto', sans-serif;
+            color: #ede7e3;
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            max-width: 100%;
+        }
+
+        .header {
+            transition: opacity 0.3s ease;
+            width: 100%;
+            z-index: 10;
+            position: relative;
+        }
+
+        /* Estilos para el carrusel de días con días más juntos */
+        .day-carousel {
+            display: flex;
+            overflow-x: auto;
+            margin: 20px 0;
+            padding: 10px 0;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+            justify-content: flex-start;
+            gap: 10px;
+            /* Eliminar espacio entre botones */
+            width: 100%;
+        }
+
+        .day-carousel::-webkit-scrollbar {
+            display: none;
+        }
+
+        .day-button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.2s;
+            min-width: 52px;
+            /* Ligeramente más pequeño que original pero suficiente para el círculo */
+            flex: 0 0 52px;
+            margin: 0;
+            /* Eliminar márgenes */
+            padding: 0;
+            /* Eliminar padding */
+        }
+
+        .day-circle {
+            width: 50px;
+            /* Mantener tamaño original */
+            height: 50px;
+            /* Mantener tamaño original */
+            border-radius: 50%;
+            background-color: #1A1A1A;
+            border: 1px solid #3B3D3B;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+            transition: background-color 0.3s, color 0.3s;
+            margin: 0 auto;
+        }
+
+        .day-button.active .day-circle {
+            background-color: #28a8b0;
+            color: white;
+        }
+
+        .gas-row {
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .gas-row.hidden {
+            display: none;
+        }
+
+        .day-filters {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+            width: 100%;
+        }
+
+        /* Mejora para las transiciones entre secciones */
+        .content {
+            position: relative;
+            overflow-x: hidden;
+            overflow-y: auto;
+            flex: 1;
+            min-height: 0;
+            padding: 20px;
+            padding-bottom: 80px;
+            will-change: transform;
+            width: 100%;
+            max-width: 100%;
+            box-sizing: border-box;
+        }
+
+        #cards-section,
+        #gas-section,
+        #info-section,
+        #home-section {
+            width: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+            transform: translateY(20px);
+            pointer-events: none;
+            display: none;
+            /* Añadir display none para asegurar que está completamente oculto */
+        }
+
+        .section-active {
+            opacity: 1 !important;
+            visibility: visible !important;
+            transform: translateY(0) !important;
+            position: relative !important;
+            pointer-events: auto !important;
+            display: block !important;
+            /* Asegurar que se muestra */
+        }
+
+        /* Asegurarse que el home-section esté visible inicialmente */
+        #home-section.section-active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+            position: relative;
+            pointer-events: auto;
+            display: block;
+        }
+
+        /* Asegurarse que el home-section esté visible inicialmente */
+        #home-section {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+            position: relative;
+            pointer-events: auto;
+        }
+
+        .home-section {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            /* Espacio entre elementos */
+            width: 100%;
+        }
+
+        .welcome-message {
+            text-align: center;
+            margin-bottom: 30px;
+            width: 100%;
+        }
+
+        .welcome-message h2 {
+            color: white;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .welcome-message p {
+            color: #888;
+            font-size: 16px;
+        }
+
+        .channel-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin: 0;
+            padding: 0 20px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .channel-buttons button.clicked {
+            background-color: #479EB4 !important;
+            transition: background-color 0.3s ease;
+        }
+
+        .channel-buttons button {
+            background-color: #1C1C1E;
+            color: white;
+            border: 1px solid #3B3D3B;
+            padding: 15px;
+            text-align: center;
+            border-radius: 25px;
+            font-size: 16px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .vip-button {
+            background-color: #8A4FFF !important;
+            position: relative;
+        }
+
+        /* Estilos actualizados para el botón VIP y su animación */
+        .vip-button-container {
+            position: relative;
+            width: 100%;
+        }
+
+        .channel-button.vip-button {
+            background-color: #8A4FFF !important;
+            color: white;
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 25px;
+            text-align: center;
+            position: relative;
+            font-weight: bold;
+            z-index: 1;
+            /* Asegurar que el botón esté por encima */
+        }
+
+        #lottie-confetti {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            right: -10px;
+            top: 50%;
+            transform: translateY(-50%);
+            pointer-events: none;
+            z-index: 999;
+            /* Aumentado */
+            opacity: 1 !important;
+            visibility: visible !important;
+            display: block !important;
+            pointer-events: none;
+        }
+
+        #fullscreen-confetti {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        /* Header y perfil */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 30px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .profile {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .profile-pic {
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+            overflow: hidden;
+            background-color: #242434;
+        }
+
+        .profile-pic img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .profile-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .greeting {
+            font-size: 16px;
+            color: #cccccc;
+        }
+
+        .brand-name {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .chat-icon {
+            width: 50px;
+            height: 50px;
+            background-color: #3C3C3C;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Título de sección */
+        .section-title {
+            font-size: 20px;
+            font-weight: bold;
+            /* margin: 10px 0 20px; */
+            text-align: center;
+            color: #ede7e3;
+            width: 100%;
+        }
+
+        .about-us {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 10px 0 20px;
+            text-align: center;
+            color: #474747;
+            width: 100%;
+        }
+
+        /* Tarjeta de crédito destacada */
+        /* Ajustes para la tabla de tarjetas */
+        .card-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #242434;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .card-column {
+            flex: 1;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        /* Ajustar anchos específicos para cada columna */
+        .card-row .card-column:nth-child(1) {
+            flex: 2;
+        }
+
+        /* Banco */
+        .card-row .card-column:nth-child(2) {
+            flex: 1;
+        }
+
+        /* Tipo */
+        .card-row .card-column:nth-child(3) {
+            flex: 1;
+        }
+
+        /* Nivel */
+        .card-row .card-column:nth-child(4) {
+            flex: 1.5;
+        }
+
+        /* Números */
+
+        /* Modificar la tarjeta de crédito */
+        .credit-card {
+            background-color: #1A1A1A;
+            border: 1px solid #3B3D3B;
+            border-radius: 30px;
+            padding: 20px;
+            color: white;
+            margin-bottom: 30px;
+            position: relative;
+            overflow: hidden;
+            transform: translateY(-10px);
+            /* Sube ligeramente la tarjeta */
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            /* Añade una sombra suave */
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        /* Ajustar texto de la tarjeta */
+        .card-balance {
+            font-size: 14px;
+            opacity: 0.8;
+            margin-bottom: 5px;
+        }
+
+        .card-amount {
+            font-size: 36px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .card-details {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .card-number {
+            font-size: 18px;
+            letter-spacing: 2px;
+            opacity: 0.7;
+        }
+
+        .card-expiry {
+            font-size: 16px;
+            opacity: 0.7;
+        }
+
+        .card-type {
+            position: absolute;
+            top: 50px;
+            right: 20px;
+            font-size: 18px;
+        }
+
+        .mastercard-logo {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+        }
+
+        .mastercard-circle {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            opacity: 0.8;
+        }
+
+        .mastercard-circle:first-child {
+            background-color: #FD6887;
+            margin-right: -10px;
+        }
+
+        .mastercard-circle:last-child {
+            background-color: #FF8AA2;
+        }
+
+        /* Barra de búsqueda */
+        .search-container {
+            position: relative;
+            margin: 20px 0;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .search-bar {
+            width: 100%;
+            height: 50px;
+            background-color: #1A1A1A;
+            border-radius: 25px;
+            border: 1px solid #3B3D3B;
+            padding: 0 50px 0 20px;
+            color: white;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        .search-button {
+            position: absolute;
+            right: 5px;
+            top: 5px;
+            width: 40px;
+            height: 40px;
+            background-color: #3C3C3C;
+            border: none;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        /* Carrusel de bancos */
+        .bank-carousel {
+            display: flex;
+            gap: 15px;
+            overflow-x: auto;
+            margin: 20px 0;
+            padding: 10px 0;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .bank-carousel::-webkit-scrollbar {
+            display: none;
+        }
+
+        .bank-logo {
+            min-width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .bank-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Tabla de tarjetas */
+        /* Estilos para contenedor común de tabla */
+        .table-container {
+            width: 100%;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Estilos para el encabezado y filas de la tabla con grid templates idénticos */
+        .table-header {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr 40px;
+            padding: 10px 0;
+            border-bottom: 1px solid #333343;
+            margin-bottom: 10px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .table-header span {
+            font-size: 14px;
+            color: #8888a0;
+            text-transform: lowercase;
+            padding-left: 5px;
+            text-align: left;
+        }
+
+        /* Estilos para las filas de la tabla - exactamente el mismo grid-template que el header */
+        .card-row {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr 40px;
+            /* IDÉNTICO al table-header */
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #242434;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .card-column {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            padding-left: 5px;
+            text-align: left;
+        }
+
+        /* Estilo para el botón de copiar */
+        .copy-button {
+            background: none;
+            border: none;
+            color: #8888a0;
+            cursor: pointer;
+            width: 40px;
+            display: flex;
+            justify-content: center;
+        }
+
+        /* Botón flotante para agregar */
+        .message-button {
+            position: fixed;
+            bottom: 90px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 60px;
+            background-color: #28a8b0;
+            border: none;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            cursor: pointer;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+            z-index: 10;
+            padding: 0;
+            /* Remove any padding */
+            overflow: hidden;
+            /* Ensure content doesn't overflow */
+        }
+
+        /* SVG styling for proper centering */
+        .message-button svg {
+            width: 25px;
+            /* Set appropriate width */
+            height: 25px;
+            /* Set appropriate height */
+            display: block;
+            /* Remove any extra space */
+            transform: scale(1.2);
+            /* Slightly increase size if needed */
+        }
+
+        /* Navbar */
+        .navbar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #28a8b0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 25px 25px 0 0;
+            padding: 8px 0;
+            z-index: 100;
+        }
+
+        .nav-button {
+            background: none;
+            border: none;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            height: 50px;
+            width: 60px;
+            margin: 0 0;
+        }
+
+        .nav-icon {
+            font-size: 24px;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .nav-text {
+            font-size: 12px;
+        }
+
+        .nav-button.active {
+            color: white;
+            font-weight: bold;
+        }
+
+        .nav-button:not(.active) {
+            opacity: 0.7;
+        }
+
+        /* Estilo específico para la sección de info */
+        body.info-active {
+            background: #ede7e3;
+        }
+
+        body.info-active .header {
+            display: none;
+        }
+
+        #info-section {
+            /* padding-top: 30px; */
+            text-align: center;
+        }
+
+        #info-section p {
+            margin: 0 auto;
+            max-width: 80%;
+            line-height: 1.5;
+            font-size: 14px;
+            color: #040707;
+        }
+
+        #animation-container-bunny {
+            width: 70%;
+            /* height: 250px; */
+            /* Ajusta la altura según necesites */
+            margin: 0 auto;
+            /* Esto centra horizontalmente */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+
+        .social-icons a {
+            transition: transform 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            transform: scale(1.15);
+        }
     </style>
 </head>
 
@@ -1131,287 +1145,295 @@ body.info-active .header {
     </div>
 
     <script>
-document.addEventListener('DOMContentLoaded', function () {
-    // Referencias a elementos
-    const navButtons = document.querySelectorAll('.nav-button');
-    const sections = document.querySelectorAll('#home-section, #cards-section, #gas-section, #info-section');
-    const body = document.body;
+        document.addEventListener('DOMContentLoaded', function () {
+            // Referencias a elementos
+            const navButtons = document.querySelectorAll('.nav-button');
+            const sections = document.querySelectorAll('#home-section, #cards-section, #gas-section, #info-section');
+            const body = document.body;
 
-    // Inicializar todas las animaciones Lottie apenas carga la página
-    let animations = {
-        profile: null,
-        car: null,
-        bunny: null,
-        vip: null
-    };
+            // Inicializar todas las animaciones Lottie apenas carga la página
+            let animations = {
+                profile: null,
+                car: null,
+                bunny: null,
+                vip: null
+            };
 
-    // Función para inicializar todas las animaciones
-    function preloadAnimations() {
-        // Inicializar animación de perfil
-        const profilePicContainer = document.querySelector('.profile-pic');
-        if (profilePicContainer) {
-            profilePicContainer.innerHTML = '';
-            animations.profile = lottie.loadAnimation({
-                container: profilePicContainer,
-                renderer: 'svg',
-                loop: true,
-                autoplay: true,
-                path: 'https://gist.githubusercontent.com/jenyferis/cd826553df578523d7b3abf058ab93ab/raw/b6dffb79343b439d8fdbd7223c55f8e3a8c6fc7b/perfil.json'
-            });
-        }
 
-        // Pre-cargar animación del coche
-        const carContainer = document.getElementById('car-animation-container');
-        if (carContainer) {
-            animations.car = lottie.loadAnimation({
-                container: carContainer,
-                renderer: 'svg',
-                loop: true,
-                autoplay: false, // Inicialmente no reproducir
-                path: 'https://gist.githubusercontent.com/jenyferis/c81b00183c4d8165860c17ffa7977eb6/raw/c8b457c8c72942696eaefdd410877407c770b302/conductor.json'
-            });
-            animations.car.goToAndStop(0, true); // Pausa en el primer frame
-        }
+            document.addEventListener('touchstart', function (e) {
+                if (e.touches.length > 1) {
+                    e.preventDefault();
+                }
+            }, { passive: false });
 
-        // Pre-cargar animación del conejo
-        const bunnyContainer = document.getElementById('animation-container-bunny');
-        if (bunnyContainer) {
-            animations.bunny = lottie.loadAnimation({
-                container: bunnyContainer,
-                renderer: 'svg',
-                loop: true,
-                autoplay: false, // Inicialmente no reproducir
-                path: 'https://gist.githubusercontent.com/jenyferis/68a1cda0a8c3616e4b4c2e33093043eb/raw/e6582aa858d463dbfcaf96603e8ba80fd4c3b422/conejo.json'
-            });
-            animations.bunny.goToAndStop(0, true); // Pausa en el primer frame
-        }
+            document.addEventListener('contextmenu', event => event.preventDefault());
+            // Función para inicializar todas las animaciones
+            function preloadAnimations() {
+                // Inicializar animación de perfil
+                const profilePicContainer = document.querySelector('.profile-pic');
+                if (profilePicContainer) {
+                    profilePicContainer.innerHTML = '';
+                    animations.profile = lottie.loadAnimation({
+                        container: profilePicContainer,
+                        renderer: 'svg',
+                        loop: true,
+                        autoplay: true,
+                        path: 'https://gist.githubusercontent.com/jenyferis/cd826553df578523d7b3abf058ab93ab/raw/b6dffb79343b439d8fdbd7223c55f8e3a8c6fc7b/perfil.json'
+                    });
+                }
 
-        // Inicializar animación VIP
-        const confettiContainer = document.getElementById('lottie-confetti');
-        if (confettiContainer) {
-            confettiContainer.innerHTML = '';
-            animations.vip = lottie.loadAnimation({
-                container: confettiContainer,
-                renderer: 'svg',
-                loop: true,
-                autoplay: true,
-                path: 'https://gist.githubusercontent.com/jenyferis/fa2b2bf60f88cb3647f41ef9542db7f7/raw/a95bd6e0a0cca9f15227aaba6fc22bf7f1b36214/vip.json'
-            });
-        }
-    }
+                // Pre-cargar animación del coche
+                const carContainer = document.getElementById('car-animation-container');
+                if (carContainer) {
+                    animations.car = lottie.loadAnimation({
+                        container: carContainer,
+                        renderer: 'svg',
+                        loop: true,
+                        autoplay: false, // Inicialmente no reproducir
+                        path: 'https://gist.githubusercontent.com/jenyferis/c81b00183c4d8165860c17ffa7977eb6/raw/c8b457c8c72942696eaefdd410877407c770b302/conductor.json'
+                    });
+                    animations.car.goToAndStop(0, true); // Pausa en el primer frame
+                }
 
-    // Gestión de transiciones entre secciones con mejor rendimiento
-    function switchSection(sectionId) {
-        // Si ya estamos en esta sección, no hacer nada
-        if (document.getElementById(sectionId).classList.contains('section-active')) {
-            return;
-        }
+                // Pre-cargar animación del conejo
+                const bunnyContainer = document.getElementById('animation-container-bunny');
+                if (bunnyContainer) {
+                    animations.bunny = lottie.loadAnimation({
+                        container: bunnyContainer,
+                        renderer: 'svg',
+                        loop: true,
+                        autoplay: false, // Inicialmente no reproducir
+                        path: 'https://gist.githubusercontent.com/jenyferis/68a1cda0a8c3616e4b4c2e33093043eb/raw/e6582aa858d463dbfcaf96603e8ba80fd4c3b422/conejo.json'
+                    });
+                    animations.bunny.goToAndStop(0, true); // Pausa en el primer frame
+                }
 
-        // Desactivar todas las secciones actuales primero
-        sections.forEach(section => {
-            section.classList.remove('section-active');
-        });
-
-        // Actualizar los botones de navegación
-        navButtons.forEach(btn => {
-            btn.classList.remove('active');
-            if (btn.getAttribute('data-section') === sectionId) {
-                btn.classList.add('active');
+                // Inicializar animación VIP
+                const confettiContainer = document.getElementById('lottie-confetti');
+                if (confettiContainer) {
+                    confettiContainer.innerHTML = '';
+                    animations.vip = lottie.loadAnimation({
+                        container: confettiContainer,
+                        renderer: 'svg',
+                        loop: true,
+                        autoplay: true,
+                        path: 'https://gist.githubusercontent.com/jenyferis/fa2b2bf60f88cb3647f41ef9542db7f7/raw/a95bd6e0a0cca9f15227aaba6fc22bf7f1b36214/vip.json'
+                    });
+                }
             }
-        });
 
-        // Cambiar fondo para la sección info
-        if (sectionId === 'info-section') {
-            body.classList.add('info-active');
-        } else {
-            body.classList.remove('info-active');
-        }
+            // Gestión de transiciones entre secciones con mejor rendimiento
+            function switchSection(sectionId) {
+                // Si ya estamos en esta sección, no hacer nada
+                if (document.getElementById(sectionId).classList.contains('section-active')) {
+                    return;
+                }
 
-        // Activar la nueva sección con un pequeño retraso para permitir que la transición de ocultamiento termine
-        const targetSection = document.getElementById(sectionId);
-        
-        // Pequeño retraso para la animación fluida
-        setTimeout(() => {
-            targetSection.classList.add('section-active');
-            
-            // Activar animaciones específicas para cada sección
-            if (sectionId === 'gas-section' && animations.car) {
-                animations.car.goToAndPlay(0, true);
-            } else if (sectionId === 'info-section' && animations.bunny) {
-                animations.bunny.goToAndPlay(0, true);
-            }
-        }, 100); // Aumentado ligeramente el tiempo de retraso
-    }
+                // Desactivar todas las secciones actuales primero
+                sections.forEach(section => {
+                    section.classList.remove('section-active');
+                });
 
-    // Inicializar handlers de navegación
-    navButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            const sectionId = this.getAttribute('data-section');
-            switchSection(sectionId);
-        });
-    });
-
-    // Filtros de días para la sección de gas
-    function initDayFilters() {
-        const dayButtons = document.querySelectorAll('.day-button');
-        const gasRows = document.querySelectorAll('.gas-row');
-
-        dayButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                // Desactivar todos los botones
-                dayButtons.forEach(btn => btn.classList.remove('active'));
-                
-                // Activar el botón actual
-                this.classList.add('active');
-                
-                // Obtener el día seleccionado
-                const selectedDay = this.getAttribute('data-day');
-                
-                // Filtrar filas
-                gasRows.forEach(row => {
-                    if (selectedDay === 'all' || row.getAttribute('data-day') === selectedDay) {
-                        row.classList.remove('hidden');
-                    } else {
-                        row.classList.add('hidden');
+                // Actualizar los botones de navegación
+                navButtons.forEach(btn => {
+                    btn.classList.remove('active');
+                    if (btn.getAttribute('data-section') === sectionId) {
+                        btn.classList.add('active');
                     }
                 });
 
-                // Centrar el botón en el carrusel con animación suave
-                const carousel = document.querySelector('.day-carousel');
-                const buttonRect = button.getBoundingClientRect();
-                const carouselRect = carousel.getBoundingClientRect();
-                
-                const scrollLeft = buttonRect.left - carouselRect.left -
-                    (carouselRect.width / 2) + (buttonRect.width / 2);
-                
-                carousel.scrollTo({
-                    left: carousel.scrollLeft + scrollLeft,
-                    behavior: 'smooth'
-                });
-            });
-        });
-    }
+                // Cambiar fondo para la sección info
+                if (sectionId === 'info-section') {
+                    body.classList.add('info-active');
+                } else {
+                    body.classList.remove('info-active');
+                }
 
-    // Funcionalidad de búsqueda
-    function initSearchBar() {
-        const searchBar = document.querySelector('.search-bar');
-        if (searchBar) {
-            searchBar.addEventListener('input', function() {
-                const searchTerm = this.value.toLowerCase().trim();
-                const rows = document.querySelectorAll('#cards-section .card-row');
-                
-                rows.forEach(row => {
-                    const text = Array.from(row.querySelectorAll('.card-column'))
-                        .map(col => col.textContent.toLowerCase())
-                        .join(' ');
-                    
-                    if (text.includes(searchTerm)) {
-                        row.style.display = 'grid';
-                    } else {
-                        row.style.display = 'none';
+                // Activar la nueva sección con un pequeño retraso para permitir que la transición de ocultamiento termine
+                const targetSection = document.getElementById(sectionId);
+
+                // Pequeño retraso para la animación fluida
+                setTimeout(() => {
+                    targetSection.classList.add('section-active');
+
+                    // Activar animaciones específicas para cada sección
+                    if (sectionId === 'gas-section' && animations.car) {
+                        animations.car.goToAndPlay(0, true);
+                    } else if (sectionId === 'info-section' && animations.bunny) {
+                        animations.bunny.goToAndPlay(0, true);
                     }
+                }, 100); // Aumentado ligeramente el tiempo de retraso
+            }
+
+            // Inicializar handlers de navegación
+            navButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    const sectionId = this.getAttribute('data-section');
+                    switchSection(sectionId);
                 });
             });
-        }
-    }
 
-    // Funcionalidad de copiar
-    function initCopyButtons() {
-        const copyButtons = document.querySelectorAll('.copy-button');
-        copyButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                const row = this.closest('.card-row');
-                const cardDetails = Array.from(row.querySelectorAll('.card-column'))
-                    .map(col => col.textContent)
-                    .join(' - ');
-                
-                // Copiar al portapapeles
-                navigator.clipboard.writeText(cardDetails)
-                    .then(() => {
-                        // Cambiar el ícono temporalmente para indicar éxito
-                        this.innerHTML = `
+            // Filtros de días para la sección de gas
+            function initDayFilters() {
+                const dayButtons = document.querySelectorAll('.day-button');
+                const gasRows = document.querySelectorAll('.gas-row');
+
+                dayButtons.forEach(button => {
+                    button.addEventListener('click', function () {
+                        // Desactivar todos los botones
+                        dayButtons.forEach(btn => btn.classList.remove('active'));
+
+                        // Activar el botón actual
+                        this.classList.add('active');
+
+                        // Obtener el día seleccionado
+                        const selectedDay = this.getAttribute('data-day');
+
+                        // Filtrar filas
+                        gasRows.forEach(row => {
+                            if (selectedDay === 'all' || row.getAttribute('data-day') === selectedDay) {
+                                row.classList.remove('hidden');
+                            } else {
+                                row.classList.add('hidden');
+                            }
+                        });
+
+                        // Centrar el botón en el carrusel con animación suave
+                        const carousel = document.querySelector('.day-carousel');
+                        const buttonRect = button.getBoundingClientRect();
+                        const carouselRect = carousel.getBoundingClientRect();
+
+                        const scrollLeft = buttonRect.left - carouselRect.left -
+                            (carouselRect.width / 2) + (buttonRect.width / 2);
+
+                        carousel.scrollTo({
+                            left: carousel.scrollLeft + scrollLeft,
+                            behavior: 'smooth'
+                        });
+                    });
+                });
+            }
+
+            // Funcionalidad de búsqueda
+            function initSearchBar() {
+                const searchBar = document.querySelector('.search-bar');
+                if (searchBar) {
+                    searchBar.addEventListener('input', function () {
+                        const searchTerm = this.value.toLowerCase().trim();
+                        const rows = document.querySelectorAll('#cards-section .card-row');
+
+                        rows.forEach(row => {
+                            const text = Array.from(row.querySelectorAll('.card-column'))
+                                .map(col => col.textContent.toLowerCase())
+                                .join(' ');
+
+                            if (text.includes(searchTerm)) {
+                                row.style.display = 'grid';
+                            } else {
+                                row.style.display = 'none';
+                            }
+                        });
+                    });
+                }
+            }
+
+            // Funcionalidad de copiar
+            function initCopyButtons() {
+                const copyButtons = document.querySelectorAll('.copy-button');
+                copyButtons.forEach(button => {
+                    button.addEventListener('click', function () {
+                        const row = this.closest('.card-row');
+                        const cardDetails = Array.from(row.querySelectorAll('.card-column'))
+                            .map(col => col.textContent)
+                            .join(' - ');
+
+                        // Copiar al portapapeles
+                        navigator.clipboard.writeText(cardDetails)
+                            .then(() => {
+                                // Cambiar el ícono temporalmente para indicar éxito
+                                this.innerHTML = `
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M9 16.17L4.83 12L3.41 13.41L9 19L21 7L19.59 5.59L9 16.17Z" fill="#4CAF50"/>
                             </svg>
                         `;
-                        
-                        // Volver al ícono original después de 2 segundos
-                        setTimeout(() => {
-                            this.innerHTML = `
+
+                                // Volver al ícono original después de 2 segundos
+                                setTimeout(() => {
+                                    this.innerHTML = `
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M16 1H4C2.9 1 2 1.9 2 3V17H4V3H16V1ZM19 5H8C6.9 5 6 5.9 6 7V21C6 22.1 6.9 23 8 23H19C20.1 23 21 22.1 21 21V7C21 5.9 20.1 5 19 5ZM19 21H8V7H19V21Z" fill="#8888A0"/>
                                 </svg>
                             `;
-                        }, 2000);
-                    })
-                    .catch(err => {
-                        console.error('Error al copiar: ', err);
+                                }, 2000);
+                            })
+                            .catch(err => {
+                                console.error('Error al copiar: ', err);
+                            });
                     });
-            });
-        });
-    }
-
-    // Efecto visual para los botones del canal
-    function initChannelButtons() {
-        const homeButtons = document.querySelectorAll('.channel-buttons button:not(.vip-button)');
-        homeButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                // Añadir clase de clickeado para efecto visual
-                this.classList.add('clicked');
-                
-                // Remover la clase después de la transición
-                setTimeout(() => {
-                    this.classList.remove('clicked');
-                }, 300);
-            });
-        });
-    }
-
-    // Detectar si el dispositivo es táctil
-    const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-    
-    // Desactivar efectos hover en dispositivos táctiles
-    if (isTouchDevice) {
-        document.documentElement.classList.add('touch-device');
-    }
-
-    // Inicializar todas las funcionalidades
-    function init() {
-        preloadAnimations();
-        initDayFilters();
-        initSearchBar();
-        initCopyButtons();
-        initChannelButtons();
-        
-        // Iniciar en la sección home
-        switchSection('home-section');
-        
-        // Mejorar el rendimiento evitando la re-renderización innecesaria
-        document.querySelectorAll('img').forEach(img => {
-            img.addEventListener('load', function() {
-                this.classList.add('loaded');
-            });
-        });
-
-        // Si no aparece alguna animación, intentar cargarla de nuevo
-        setTimeout(() => {
-            if (animations.profile && !animations.profile.isLoaded) {
-                animations.profile.destroy();
-                const profilePicContainer = document.querySelector('.profile-pic');
-                animations.profile = lottie.loadAnimation({
-                    container: profilePicContainer,
-                    renderer: 'svg',
-                    loop: true,
-                    autoplay: true,
-                    path: 'https://gist.githubusercontent.com/jenyferis/cd826553df578523d7b3abf058ab93ab/raw/b6dffb79343b439d8fdbd7223c55f8e3a8c6fc7b/perfil.json'
                 });
             }
-        }, 1000);
-    }
 
-    // Iniciar la aplicación
-    init();
-});
+            // Efecto visual para los botones del canal
+            function initChannelButtons() {
+                const homeButtons = document.querySelectorAll('.channel-buttons button:not(.vip-button)');
+                homeButtons.forEach(button => {
+                    button.addEventListener('click', function () {
+                        // Añadir clase de clickeado para efecto visual
+                        this.classList.add('clicked');
+
+                        // Remover la clase después de la transición
+                        setTimeout(() => {
+                            this.classList.remove('clicked');
+                        }, 300);
+                    });
+                });
+            }
+
+            // Detectar si el dispositivo es táctil
+            const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+
+            // Desactivar efectos hover en dispositivos táctiles
+            if (isTouchDevice) {
+                document.documentElement.classList.add('touch-device');
+            }
+
+            // Inicializar todas las funcionalidades
+            function init() {
+                preloadAnimations();
+                initDayFilters();
+                initSearchBar();
+                initCopyButtons();
+                initChannelButtons();
+
+                // Iniciar en la sección home
+                switchSection('home-section');
+
+                // Mejorar el rendimiento evitando la re-renderización innecesaria
+                document.querySelectorAll('img').forEach(img => {
+                    img.addEventListener('load', function () {
+                        this.classList.add('loaded');
+                    });
+                });
+
+                // Si no aparece alguna animación, intentar cargarla de nuevo
+                setTimeout(() => {
+                    if (animations.profile && !animations.profile.isLoaded) {
+                        animations.profile.destroy();
+                        const profilePicContainer = document.querySelector('.profile-pic');
+                        animations.profile = lottie.loadAnimation({
+                            container: profilePicContainer,
+                            renderer: 'svg',
+                            loop: true,
+                            autoplay: true,
+                            path: 'https://gist.githubusercontent.com/jenyferis/cd826553df578523d7b3abf058ab93ab/raw/b6dffb79343b439d8fdbd7223c55f8e3a8c6fc7b/perfil.json'
+                        });
+                    }
+                }, 1000);
+            }
+
+            // Iniciar la aplicación
+            init();
+        });
     </script>
 </body>
 
