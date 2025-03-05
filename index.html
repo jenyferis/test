@@ -219,12 +219,13 @@
             top: 50%;
             transform: translateY(-50%);
             pointer-events: none;
-            z-index: 2;
-            opacity: 1;
-            visibility: visible;
+            z-index: 999;
+            /* Aumentado */
+            opacity: 1 !important;
+            visibility: visible !important;
             display: block !important;
+            pointer-events: none;
         }
-
 
 
         #fullscreen-confetti {
