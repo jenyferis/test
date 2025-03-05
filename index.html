@@ -8,690 +8,719 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.9.6/lottie.min.js"></script>
 
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,300;0,6..12,400;0,6..12,500;0,6..12,600;0,6..12,700;1,6..12,300;1,6..12,600&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+       @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,300;0,6..12,400;0,6..12,500;0,6..12,600;0,6..12,700;1,6..12,300;1,6..12,600&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
-        /* Reset y estilos base */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html,
-        body {
-            height: 100vh;
-            min-height: 100vh;
-            overflow: hidden;
-            margin: 0;
-            padding: 0;
-            touch-action: none;
-            background: #040707;
-            font-family: 'Roboto', sans-serif;
-            color: #ede7e3;
-            display: flex;
-            flex-direction: column;
-        }
-
-
-        .header {
-            transition: opacity 0.3s ease;
-        }
-
-        /* Estilos para el carrusel de días con días más juntos */
-        .day-carousel {
-            display: flex;
-            overflow-x: auto;
-            margin: 20px 0;
-            padding: 10px 0;
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-            justify-content: flex-start;
-            gap: 10px;
-            /* Eliminar espacio entre botones */
-        }
-
-        .day-carousel::-webkit-scrollbar {
-            display: none;
-        }
-
-        .day-button {
-            background: none;
-            border: none;
-            cursor: pointer;
-            transition: transform 0.2s;
-            min-width: 52px;
-            /* Ligeramente más pequeño que original pero suficiente para el círculo */
-            flex: 0 0 52px;
-            margin: 0;
-            /* Eliminar márgenes */
-            padding: 0;
-            /* Eliminar padding */
-        }
-
-        .day-circle {
-            width: 50px;
-            /* Mantener tamaño original */
-            height: 50px;
-            /* Mantener tamaño original */
-            border-radius: 50%;
-            background-color: #1A1A1A;
-            border: 1px solid #3B3D3B;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            color: white;
-            transition: background-color 0.3s, color 0.3s;
-            margin: 0 auto;
-        }
-
-        .day-button.active .day-circle {
-            background-color: #28a8b0;
-            color: white;
-        }
-
-        .gas-row {
-            transition: opacity 0.3s ease, transform 0.3s ease;
-        }
-
-        .gas-row.hidden {
-            display: none;
-        }
-
-        .day-filters {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin: 20px 0;
-            flex-wrap: wrap;
-        }
-
-        #cards-section,
-#gas-section,
-#info-section,
-#home-section {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-    display: none;
+/* Reset y estilos base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
-        #home-section {
-            display: block;
-            opacity: 1;
-            transition: opacity 0.3s ease;
-        }
 
-        .home-section {
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            /* Espacio entre elementos */
-        }
+html,
+body {
+    height: 100vh;
+    min-height: 100vh;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    touch-action: none;
+    background: #040707;
+    font-family: 'Roboto', sans-serif;
+    color: #ede7e3;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 100%;
+}
 
-        .welcome-message {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .welcome-message h2 {
-            color: white;
-            font-size: 24px;
-            margin-bottom: 10px;
-        }
-
-        .welcome-message p {
-            color: #888;
-            font-size: 16px;
-        }
-
-        .channel-buttons {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            margin: 0 20px;
-        }
-
-        .channel-buttons button.clicked {
-            background-color: #479EB4 !important;
-            transition: background-color 0.3s ease;
-        }
-
-        .channel-buttons button {
-            background-color: #1C1C1E;
-            color: white;
-            border: 1px solid #3B3D3B;
-            padding: 15px;
-            text-align: center;
-            border-radius: 25px;
-            font-size: 16px;
-            cursor: pointer;
-        }
-
-
-        .vip-button {
-            background-color: #8A4FFF !important;
-            position: relative;
-
-        }
-
-        /* Estilos actualizados para el botón VIP y su animación */
-        .vip-button-container {
-    position: relative;
-    /* margin-top: 20px; */
+.header {
+    transition: opacity 0.3s ease;
     width: 100%;
 }
 
-
-        .channel-button.vip-button {
-            background-color: #8A4FFF !important;
-            color: white;
-            width: 100%;
-            padding: 15px;
-            border: none;
-            border-radius: 25px;
-            text-align: center;
-            position: relative;
-            font-weight: bold;
-            z-index: 1;
-            /* Asegurar que el botón esté por encima */
-        }
-
-        #lottie-confetti {
-            position: absolute;
-            width: 80px;
-            height: 80px;
-            right: -10px;
-            top: 50%;
-            transform: translateY(-50%);
-            pointer-events: none;
-            z-index: 999;
-            /* Aumentado */
-            opacity: 1 !important;
-            visibility: visible !important;
-            display: block !important;
-            pointer-events: none;
-        }
-
-
-        #fullscreen-confetti {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 9999;
-        }
-
-        #home-section {
-            display: block;
-            opacity: 1;
-        }
-
-        /* Header y perfil */
-        .header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 10px 30px;
-        }
-
-        .profile {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .profile-pic {
-            width: 65px;
-            height: 65px;
-            border-radius: 50%;
-            overflow: hidden;
-            background-color: #242434;
-        }
-
-        .profile-pic img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .profile-info {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .greeting {
-            font-size: 16px;
-            color: #cccccc;
-        }
-
-        .brand-name {
-            font-size: 20px;
-            font-weight: bold;
-        }
-
-        .chat-icon {
-            width: 50px;
-            height: 50px;
-            background-color: #3C3C3C;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        /* Contenido principal */
-        .content {
-            flex: 1;
-            overflow-y: auto;
-            padding: 20px;
-            padding-bottom: 80px;
-        }
-
-        /* Título de sección */
-        .section-title {
-            font-size: 20px;
-            font-weight: bold;
-            /* margin: 10px 0 20px; */
-            text-align: center;
-            color: #ede7e3;
-        }
-
-
-
-        .about-us {
-            font-size: 24px;
-            font-weight: bold;
-            margin: 10px 0 20px;
-            text-align: center;
-            color: #474747;
-        }
-
-        /* Tarjeta de crédito destacada */
-        /* Ajustes para la tabla de tarjetas */
-        .card-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 0;
-            border-bottom: 1px solid #242434;
-        }
-
-        .card-column {
-            flex: 1;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-        }
-
-        /* Ajustar anchos específicos para cada columna */
-        .card-row .card-column:nth-child(1) {
-            flex: 2;
-        }
-
-        /* Banco */
-        .card-row .card-column:nth-child(2) {
-            flex: 1;
-        }
-
-        /* Tipo */
-        .card-row .card-column:nth-child(3) {
-            flex: 1;
-        }
-
-        /* Nivel */
-        .card-row .card-column:nth-child(4) {
-            flex: 1.5;
-        }
-
-        /* Números */
-
-        /* Modificar la tarjeta de crédito */
-        .credit-card {
-            background-color: #1A1A1A;
-            border: 1px solid #3B3D3B;
-            border-radius: 30px;
-            padding: 20px;
-            color: white;
-            margin-bottom: 30px;
-            position: relative;
-            overflow: hidden;
-            transform: translateY(-10px);
-            /* Sube ligeramente la tarjeta */
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-            /* Añade una sombra suave */
-        }
-
-        /* Ajustar texto de la tarjeta */
-        .card-balance {
-            font-size: 14px;
-            opacity: 0.8;
-            margin-bottom: 5px;
-        }
-
-        .card-amount {
-            font-size: 36px;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-
-        .card-details {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .card-number {
-            font-size: 18px;
-            letter-spacing: 2px;
-            opacity: 0.7;
-        }
-
-        .card-expiry {
-            font-size: 16px;
-            opacity: 0.7;
-        }
-
-        .card-type {
-            position: absolute;
-            top: 50px;
-            right: 20px;
-            font-size: 18px;
-        }
-
-        .mastercard-logo {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            display: flex;
-        }
-
-        .mastercard-circle {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            opacity: 0.8;
-        }
-
-        .mastercard-circle:first-child {
-            background-color: #FD6887;
-            margin-right: -10px;
-        }
-
-        .mastercard-circle:last-child {
-            background-color: #FF8AA2;
-        }
-
-        /* Barra de búsqueda */
-        .search-container {
-            position: relative;
-            margin: 20px 0;
-        }
-
-        .search-bar {
-            width: 100%;
-            height: 50px;
-            background-color: #1A1A1A;
-            border-radius: 25px;
-            border: 1px solid #3B3D3B;
-            padding: 0 50px 0 20px;
-            color: white;
-            font-size: 16px;
-        }
-
-        .search-button {
-            position: absolute;
-            right: 5px;
-            top: 5px;
-            width: 40px;
-            height: 40px;
-            background-color: #3C3C3C;
-            border: none;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-        }
-
-        /* Carrusel de bancos */
-        .bank-carousel {
-            display: flex;
-            gap: 15px;
-            overflow-x: auto;
-            margin: 20px 0;
-            padding: 10px 0;
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
-
-        .bank-carousel::-webkit-scrollbar {
-            display: none;
-        }
-
-        .bank-logo {
-            min-width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-        }
-
-        .bank-logo img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        /* Tabla de tarjetas */
-        /* Estilos para contenedor común de tabla */
-        .table-container {
-            width: 100%;
-            padding: 0;
-        }
-
-        /* Estilos para el encabezado y filas de la tabla con grid templates idénticos */
-        .table-header {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr 40px;
-            padding: 10px 0;
-            border-bottom: 1px solid #333343;
-            margin-bottom: 10px;
-            width: 100%;
-        }
-
-        .table-header span {
-            font-size: 14px;
-            color: #8888a0;
-            text-transform: lowercase;
-            padding-left: 5px;
-            text-align: left;
-        }
-
-        /* Estilos para las filas de la tabla - exactamente el mismo grid-template que el header */
-        .card-row {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr 40px;
-            /* IDÉNTICO al table-header */
-            align-items: center;
-            padding: 15px 0;
-            border-bottom: 1px solid #242434;
-            width: 100%;
-        }
-
-        .card-column {
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-            padding-left: 5px;
-            text-align: left;
-        }
-
-        /* Estilo para el botón de copiar */
-        .copy-button {
-            background: none;
-            border: none;
-            color: #8888a0;
-            cursor: pointer;
-            width: 40px;
-            display: flex;
-            justify-content: center;
-        }
-
-        /* Botón flotante para agregar */
-        .message-button {
-            position: fixed;
-            bottom: 90px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 60px;
-            background-color: #28a8b0;
-            border: none;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            cursor: pointer;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
-            z-index: 10;
-            padding: 0;
-            /* Remove any padding */
-            overflow: hidden;
-            /* Ensure content doesn't overflow */
-        }
-
-        /* SVG styling for proper centering */
-        .message-button svg {
-            width: 25px;
-            /* Set appropriate width */
-            height: 25px;
-            /* Set appropriate height */
-            display: block;
-            /* Remove any extra space */
-            transform: scale(1.2);
-            /* Slightly increase size if needed */
-        }
-
-        /* Espacio para el botón flotante */
-        /* .content {
-            padding-bottom: 140px;
-        } */
-
-        /* Navbar */
-        .navbar {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background-color: #28a8b0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border-radius: 25px 25px 0 0;
-            padding: 8px 0;
-            z-index: 100;
-        }
-
-        .nav-button {
-            background: none;
-            border: none;
-            color: white;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            height: 50px;
-            width: 60px;
-            margin: 0 0;
-        }
-
-        .nav-icon {
-            font-size: 24px;
-            margin-bottom: 5px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .nav-text {
-            font-size: 12px;
-        }
-
-        .nav-button.active {
-            color: white;
-            font-weight: bold;
-        }
-
-        .nav-button:not(.active) {
-            opacity: 0.7;
-        }
-
-        /* Estilos para secciones */
-        /* Estilos para secciones */
-        #cards-section,
-        #gas-section,
-        #info-section {
-            display: none;
-        }
-
-        #home-section {
-            display: block;
-        }
-
-        /* Estilo específico para la sección de info */
-        body.info-active {
-            background: #ede7e3;
-        }
-
-        body.info-active .header {
-            display: none;
-        }
-
-        #info-section {
-            /* padding-top: 30px; */
-            text-align: center;
-        }
-
-        #info-section p {
-            margin: 0 auto;
-            max-width: 80%;
-            line-height: 1.5;
-            font-size: 14px;
-            color: #040707;
-        }
-
-        #animation-container-bunny {
-            width: 70%;
-            /* height: 250px; */
-            /* Ajusta la altura según necesites */
-            margin: 0 auto;
-            /* Esto centra horizontalmente */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-top: 20px;
-        }
-
-        .social-icons {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 30px;
-        }
-
-        .social-icons a {
-            transition: transform 0.3s ease;
-        }
-
-        .social-icons a:hover {
-            transform: scale(1.15);
-        }
+/* Estilos para el carrusel de días con días más juntos */
+.day-carousel {
+    display: flex;
+    overflow-x: auto;
+    margin: 20px 0;
+    padding: 10px 0;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    justify-content: flex-start;
+    gap: 10px;
+    /* Eliminar espacio entre botones */
+    width: 100%;
+}
+
+.day-carousel::-webkit-scrollbar {
+    display: none;
+}
+
+.day-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s;
+    min-width: 52px;
+    /* Ligeramente más pequeño que original pero suficiente para el círculo */
+    flex: 0 0 52px;
+    margin: 0;
+    /* Eliminar márgenes */
+    padding: 0;
+    /* Eliminar padding */
+}
+
+.day-circle {
+    width: 50px;
+    /* Mantener tamaño original */
+    height: 50px;
+    /* Mantener tamaño original */
+    border-radius: 50%;
+    background-color: #1A1A1A;
+    border: 1px solid #3B3D3B;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: white;
+    transition: background-color 0.3s, color 0.3s;
+    margin: 0 auto;
+}
+
+.day-button.active .day-circle {
+    background-color: #28a8b0;
+    color: white;
+}
+
+.gas-row {
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.gas-row.hidden {
+    display: none;
+}
+
+.day-filters {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 20px 0;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+/* Mejora para las transiciones entre secciones */
+#cards-section,
+#gas-section,
+#info-section,
+#home-section {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    position: absolute;
+    left: 0;
+    right: 0;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+    display: none;
+    pointer-events: none;
+}
+
+#cards-section.active,
+#gas-section.active,
+#info-section.active,
+#home-section.active {
+    opacity: 1;
+    transform: translateY(0);
+    z-index: 5;
+    pointer-events: auto;
+    position: relative;
+}
+
+/* Asegurarse que el home-section esté visible inicialmente */
+#home-section {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+    position: relative;
+    pointer-events: auto;
+}
+
+.home-section {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    /* Espacio entre elementos */
+    width: 100%;
+}
+
+.welcome-message {
+    text-align: center;
+    margin-bottom: 30px;
+    width: 100%;
+}
+
+.welcome-message h2 {
+    color: white;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.welcome-message p {
+    color: #888;
+    font-size: 16px;
+}
+
+.channel-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin: 0;
+    padding: 0 20px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.channel-buttons button.clicked {
+    background-color: #479EB4 !important;
+    transition: background-color 0.3s ease;
+}
+
+.channel-buttons button {
+    background-color: #1C1C1E;
+    color: white;
+    border: 1px solid #3B3D3B;
+    padding: 15px;
+    text-align: center;
+    border-radius: 25px;
+    font-size: 16px;
+    cursor: pointer;
+    width: 100%;
+}
+
+.vip-button {
+    background-color: #8A4FFF !important;
+    position: relative;
+}
+
+/* Estilos actualizados para el botón VIP y su animación */
+.vip-button-container {
+    position: relative;
+    width: 100%;
+}
+
+.channel-button.vip-button {
+    background-color: #8A4FFF !important;
+    color: white;
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 25px;
+    text-align: center;
+    position: relative;
+    font-weight: bold;
+    z-index: 1;
+    /* Asegurar que el botón esté por encima */
+}
+
+#lottie-confetti {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    right: -10px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    z-index: 999;
+    /* Aumentado */
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: block !important;
+    pointer-events: none;
+}
+
+#fullscreen-confetti {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+}
+
+/* Header y perfil */
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 30px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.profile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.profile-pic {
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: #242434;
+}
+
+.profile-pic img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.profile-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.greeting {
+    font-size: 16px;
+    color: #cccccc;
+}
+
+.brand-name {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.chat-icon {
+    width: 50px;
+    height: 50px;
+    background-color: #3C3C3C;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Contenido principal */
+.content {
+    position: relative;
+    overflow-x: hidden;
+    overflow-y: auto;
+    flex: 1;
+    min-height: 0;
+    padding: 20px;
+    padding-bottom: 80px;
+    will-change: transform;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+/* Título de sección */
+.section-title {
+    font-size: 20px;
+    font-weight: bold;
+    /* margin: 10px 0 20px; */
+    text-align: center;
+    color: #ede7e3;
+    width: 100%;
+}
+
+.about-us {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 10px 0 20px;
+    text-align: center;
+    color: #474747;
+    width: 100%;
+}
+
+/* Tarjeta de crédito destacada */
+/* Ajustes para la tabla de tarjetas */
+.card-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+    border-bottom: 1px solid #242434;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.card-column {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Ajustar anchos específicos para cada columna */
+.card-row .card-column:nth-child(1) {
+    flex: 2;
+}
+
+/* Banco */
+.card-row .card-column:nth-child(2) {
+    flex: 1;
+}
+
+/* Tipo */
+.card-row .card-column:nth-child(3) {
+    flex: 1;
+}
+
+/* Nivel */
+.card-row .card-column:nth-child(4) {
+    flex: 1.5;
+}
+
+/* Números */
+
+/* Modificar la tarjeta de crédito */
+.credit-card {
+    background-color: #1A1A1A;
+    border: 1px solid #3B3D3B;
+    border-radius: 30px;
+    padding: 20px;
+    color: white;
+    margin-bottom: 30px;
+    position: relative;
+    overflow: hidden;
+    transform: translateY(-10px);
+    /* Sube ligeramente la tarjeta */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    /* Añade una sombra suave */
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Ajustar texto de la tarjeta */
+.card-balance {
+    font-size: 14px;
+    opacity: 0.8;
+    margin-bottom: 5px;
+}
+
+.card-amount {
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.card-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.card-number {
+    font-size: 18px;
+    letter-spacing: 2px;
+    opacity: 0.7;
+}
+
+.card-expiry {
+    font-size: 16px;
+    opacity: 0.7;
+}
+
+.card-type {
+    position: absolute;
+    top: 50px;
+    right: 20px;
+    font-size: 18px;
+}
+
+.mastercard-logo {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+}
+
+.mastercard-circle {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    opacity: 0.8;
+}
+
+.mastercard-circle:first-child {
+    background-color: #FD6887;
+    margin-right: -10px;
+}
+
+.mastercard-circle:last-child {
+    background-color: #FF8AA2;
+}
+
+/* Barra de búsqueda */
+.search-container {
+    position: relative;
+    margin: 20px 0;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.search-bar {
+    width: 100%;
+    height: 50px;
+    background-color: #1A1A1A;
+    border-radius: 25px;
+    border: 1px solid #3B3D3B;
+    padding: 0 50px 0 20px;
+    color: white;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+.search-button {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    width: 40px;
+    height: 40px;
+    background-color: #3C3C3C;
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+/* Carrusel de bancos */
+.bank-carousel {
+    display: flex;
+    gap: 15px;
+    overflow-x: auto;
+    margin: 20px 0;
+    padding: 10px 0;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.bank-carousel::-webkit-scrollbar {
+    display: none;
+}
+
+.bank-logo {
+    min-width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.bank-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Tabla de tarjetas */
+/* Estilos para contenedor común de tabla */
+.table-container {
+    width: 100%;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilos para el encabezado y filas de la tabla con grid templates idénticos */
+.table-header {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr 40px;
+    padding: 10px 0;
+    border-bottom: 1px solid #333343;
+    margin-bottom: 10px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.table-header span {
+    font-size: 14px;
+    color: #8888a0;
+    text-transform: lowercase;
+    padding-left: 5px;
+    text-align: left;
+}
+
+/* Estilos para las filas de la tabla - exactamente el mismo grid-template que el header */
+.card-row {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr 40px;
+    /* IDÉNTICO al table-header */
+    align-items: center;
+    padding: 15px 0;
+    border-bottom: 1px solid #242434;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.card-column {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding-left: 5px;
+    text-align: left;
+}
+
+/* Estilo para el botón de copiar */
+.copy-button {
+    background: none;
+    border: none;
+    color: #8888a0;
+    cursor: pointer;
+    width: 40px;
+    display: flex;
+    justify-content: center;
+}
+
+/* Botón flotante para agregar */
+.message-button {
+    position: fixed;
+    bottom: 90px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 60px;
+    background-color: #28a8b0;
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+    z-index: 10;
+    padding: 0;
+    /* Remove any padding */
+    overflow: hidden;
+    /* Ensure content doesn't overflow */
+}
+
+/* SVG styling for proper centering */
+.message-button svg {
+    width: 25px;
+    /* Set appropriate width */
+    height: 25px;
+    /* Set appropriate height */
+    display: block;
+    /* Remove any extra space */
+    transform: scale(1.2);
+    /* Slightly increase size if needed */
+}
+
+/* Navbar */
+.navbar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #28a8b0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 25px 25px 0 0;
+    padding: 8px 0;
+    z-index: 100;
+}
+
+.nav-button {
+    background: none;
+    border: none;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    height: 50px;
+    width: 60px;
+    margin: 0 0;
+}
+
+.nav-icon {
+    font-size: 24px;
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-text {
+    font-size: 12px;
+}
+
+.nav-button.active {
+    color: white;
+    font-weight: bold;
+}
+
+.nav-button:not(.active) {
+    opacity: 0.7;
+}
+
+/* Estilo específico para la sección de info */
+body.info-active {
+    background: #ede7e3;
+}
+
+body.info-active .header {
+    display: none;
+}
+
+#info-section {
+    /* padding-top: 30px; */
+    text-align: center;
+}
+
+#info-section p {
+    margin: 0 auto;
+    max-width: 80%;
+    line-height: 1.5;
+    font-size: 14px;
+    color: #040707;
+}
+
+#animation-container-bunny {
+    width: 70%;
+    /* height: 250px; */
+    /* Ajusta la altura según necesites */
+    margin: 0 auto;
+    /* Esto centra horizontalmente */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.social-icons a {
+    transition: transform 0.3s ease;
+}
+
+.social-icons a:hover {
+    transform: scale(1.15);
+}
     </style>
 </head>
 
@@ -1102,64 +1131,75 @@ document.addEventListener('DOMContentLoaded', function () {
     function handleSectionNavigation(button) {
         const sectionId = button.getAttribute('data-section');
         const newSection = document.getElementById(sectionId);
-
+        
         if (button.classList.contains('active')) return;
-
+        
         // Actualizar botones de navegación
         navButtons.forEach(btn => btn.classList.remove('active'));
         button.classList.add('active');
-
-        // Ocultar secciones actuales
+        
+        // Obtener el ancho actual del contenedor principal
+        const contentWidth = document.querySelector('.content').offsetWidth;
+        
+        // Ocultar todas las secciones activas primero con transición
         sections.forEach(section => {
-            if (section.id !== sectionId) {
+            section.classList.remove('active');
+            if (section.style.display !== 'none' && section.id !== sectionId) {
                 section.style.opacity = '0';
                 section.style.transform = 'translateY(20px)';
             }
         });
-
-        // Establecer estilo del nuevo contenido antes de mostrarlo
-        if (sectionId === 'home-section') {
-            newSection.style.display = 'flex';
-            newSection.style.flexDirection = 'column';
-        } else {
-            newSection.style.display = 'block';
-        }
         
-        // Asegurar posición horizontal correcta para todas las secciones
-        newSection.style.left = '0';
-        newSection.style.right = '0';
-        newSection.style.width = '100%';
-        newSection.style.margin = '0 auto';
-        
-        // Cambiar fondo para la sección info
-        if (sectionId === 'info-section') {
-            document.body.classList.add('info-active');
-        } else {
-            document.body.classList.remove('info-active');
-        }
-        
-        // Forzar un repaint para que la transición funcione
-        void newSection.offsetWidth;
-
-        // Mostrar la nueva sección con animación
-        newSection.style.opacity = '1';
-        newSection.style.transform = 'translateY(0)';
-
-        // Ocultar completamente las otras secciones después de la animación
+        // Esperar a que termine la transición de salida antes de mostrar la nueva sección
         setTimeout(() => {
+            // Ocultar completamente las otras secciones
             sections.forEach(section => {
                 if (section.id !== sectionId) {
                     section.style.display = 'none';
                 }
             });
-        }, 300); // Sincronizado con la duración de la transición
-
-        // Inicializar animaciones según la sección
-        if (sectionId === 'gas-section') {
-            initCarAnimation();
-        } else if (sectionId === 'info-section') {
-            initInfoAnimation();
-        }
+            
+            // Preparar la nueva sección manteniendo el ancho consistente
+            newSection.style.width = '100%';
+            newSection.style.maxWidth = '100%';
+            newSection.style.left = '0';
+            newSection.style.right = '0';
+            newSection.style.margin = '0 auto';
+            
+            if (sectionId === 'home-section') {
+                newSection.style.display = 'flex';
+                newSection.style.flexDirection = 'column';
+            } else {
+                newSection.style.display = 'block';
+            }
+            
+            newSection.style.opacity = '0';
+            newSection.style.transform = 'translateY(20px)';
+            
+            // Cambiar fondo para la sección info
+            if (sectionId === 'info-section') {
+                document.body.classList.add('info-active');
+            } else {
+                document.body.classList.remove('info-active');
+            }
+            
+            // Forzar un repaint antes de iniciar la transición de entrada
+            void newSection.offsetWidth;
+            
+            // Ahora mostrar la nueva sección con animación
+            requestAnimationFrame(() => {
+                newSection.style.opacity = '1';
+                newSection.style.transform = 'translateY(0)';
+                newSection.classList.add('active');
+            });
+            
+            // Inicializar animaciones según la sección
+            if (sectionId === 'gas-section') {
+                initCarAnimation();
+            } else if (sectionId === 'info-section') {
+                initInfoAnimation();
+            }
+        }, 300); // Esperar a que termine la transición de salida
     }
 
     // Inicialización de la navegación
