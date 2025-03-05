@@ -119,7 +119,7 @@
         }
 
         /* Resto de estilos originales */
-        #home-section,
+        /* Resto de estilos originales */
         #cards-section,
         #gas-section,
         #info-section {
@@ -128,6 +128,11 @@
             transition: opacity 0.3s ease;
         }
 
+        #home-section {
+            display: block;
+            opacity: 1;
+            transition: opacity 0.3s ease;
+        }
 
         .home-section {
             padding: 20px;
@@ -214,11 +219,13 @@
             top: 50%;
             transform: translateY(-50%);
             pointer-events: none;
-            /* Evitar que interfiera con los clics en el botón */
-            z-index: 2;
-            /* Mayor que el botón para aparecer encima */
+            z-index: 999;
+            /* Aumentado */
+            opacity: 1 !important;
+            visibility: visible !important;
+            display: block !important;
+            pointer-events: none;
         }
-
 
 
         #fullscreen-confetti {
@@ -231,7 +238,7 @@
             z-index: 9999;
         }
 
-        #cards-section {
+        #home-section {
             display: block;
             opacity: 1;
         }
@@ -241,7 +248,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 20px;
+            padding: 30px;
         }
 
         .profile {
@@ -251,8 +258,8 @@
         }
 
         .profile-pic {
-            width: 50px;
-            height: 50px;
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
             overflow: hidden;
             background-color: #242434;
@@ -641,14 +648,14 @@
         }
 
         /* Estilos para secciones */
-        #home-section,
+        /* Estilos para secciones */
         #cards-section,
         #gas-section,
         #info-section {
             display: none;
         }
 
-        #cards-section {
+        #home-section {
             display: block;
         }
 
@@ -707,11 +714,11 @@
     <div class="header">
         <div class="profile">
             <div class="profile-pic">
-                <img src="https://i.pinimg.com/originals/23/ee/dd/23eedda7f3eb76efa03a18609cc7001a.png" alt="Profile">
+                <!-- La animación lottie reemplazará este contenido -->
             </div>
             <div class="profile-info">
                 <div class="greeting">Hola! 👋</div>
-                <div class="brand-name">Somos bunny Chile 🌶️ </div>
+                <div class="brand-name">Somos bunny 🥕</div>
             </div>
         </div>
         <div class="chat-icon">
@@ -868,9 +875,8 @@
         <div id="home-section">
             <div class="home-content">
                 <div class="welcome-message">
-                    <h2>¡Bienvenido!</h2>
-                    <p>Revisa aquí a los canales que te puedes unir, números de tarjeta y descuentos de bencina. Bunny
-                        🐰 se preocupa por ti.
+                    <h2>¡Welcome!</h2>
+                    <p>Revisa aquí a los canales que te puedes unir, números de tarjeta y descuentos de bencina.
                     </p>
                 </div>
 
@@ -1048,7 +1054,7 @@
 
     <!-- Navbar inferior -->
     <div class="navbar">
-        <button class="nav-button" data-section="home-section">
+        <button class="nav-button active" data-section="home-section">
             <div class="nav-icon">
                 <svg width="35" height="35" viewBox="0 0 35 37" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path
@@ -1062,7 +1068,7 @@
             </div>
             <!-- <div class="nav-text">Home</div> -->
         </button>
-        <button class="nav-button active" data-section="cards-section">
+        <button class="nav-button" data-section="cards-section">
             <div class="nav-icon">
                 <svg width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <rect x="4.375" y="8.75" width="26.25" height="18.9583" rx="2" stroke="white" stroke-width="2" />
@@ -1192,8 +1198,8 @@
                     // Limpiar el contenedor primero
                     confettiContainer.innerHTML = '';
 
-                    // Crear nueva animación
-                    lottie.loadAnimation({
+                    // Crear nueva animación con manejo explícito
+                    const vipAnimation = lottie.loadAnimation({
                         container: confettiContainer,
                         renderer: 'svg',
                         loop: true,
@@ -1201,8 +1207,18 @@
                         path: 'https://gist.githubusercontent.com/jenyferis/fa2b2bf60f88cb3647f41ef9542db7f7/raw/a95bd6e0a0cca9f15227aaba6fc22bf7f1b36214/vip.json'
                     });
 
-                    // Asegurarnos que el contenedor es visible
+                    // Forzar visibilidad
                     confettiContainer.style.display = 'block';
+                    confettiContainer.style.visibility = 'visible';
+                    confettiContainer.style.opacity = '1';
+
+                    // Asegurar que la animación se carga correctamente
+                    vipAnimation.addEventListener('DOMLoaded', () => {
+                        // Forzar repintado
+                        setTimeout(() => {
+                            vipAnimation.play();
+                        }, 100);
+                    });
                 }
             }
             // Funciones de utilidad
@@ -1309,6 +1325,36 @@
                 });
             }
 
+            function initProfileAnimation() {
+                const profilePicContainer = document.querySelector('.profile-pic');
+
+                // Asegúrate de que el contenedor esté limpio antes de cargar la animación
+                profilePicContainer.innerHTML = '';
+
+                // Carga la animación lottie en el contenedor de la imagen de perfil
+                const profileAnimation = lottie.loadAnimation({
+                    container: profilePicContainer,
+                    renderer: 'svg',
+                    loop: true,
+                    autoplay: true,
+                    // Reemplaza esta URL con la URL real de tu animación lottie
+                    path: 'https://gist.githubusercontent.com/jenyferis/cd826553df578523d7b3abf058ab93ab/raw/b6dffb79343b439d8fdbd7223c55f8e3a8c6fc7b/perfil.json'
+                });
+
+                // Asegúrate de que la animación se adapte correctamente al contenedor circular
+                profileAnimation.addEventListener('DOMLoaded', () => {
+                    // Ajusta el estilo para mantener la forma circular
+                    const svg = profilePicContainer.querySelector('svg');
+                    if (svg) {
+                        svg.style.width = '100%';
+                        svg.style.height = '100%';
+                        svg.style.borderRadius = '50%';
+                        svg.style.overflow = 'hidden';
+                    }
+                });
+            }
+
+    
 
             // Inicializar todas las funcionalidades
             initCopyButtons();
@@ -1316,6 +1362,7 @@
             initSearchBar();
             initVIPConfetti();
             initButtonClickEffects();
+            initProfileAnimation();
         });
     </script>
 </body>
