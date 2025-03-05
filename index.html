@@ -106,16 +106,15 @@
             flex-wrap: wrap;
         }
 
-        /* Resto de estilos originales */
-        /* Resto de estilos originales */
         #cards-section,
-        #gas-section,
-        #info-section {
-            display: none;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
+#gas-section,
+#info-section,
+#home-section {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    display: none;
+}
         #home-section {
             display: block;
             opacity: 1;
@@ -184,31 +183,20 @@
 }
 
 
-.channel-button.vip-button {
-    background-color: #8A4FFF !important;
-    color: white;
-    width: 100%;
-    padding: 15px;
-    border: none;
-    border-radius: 25px;
-    text-align: center;
-    position: relative;
-    font-weight: bold;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 1;
-}
-.vip-confetti {
-    position: absolute;
-    width: 60px;
-    height: 60px;
-    right: -10px;
-    top: 50%;
-    transform: translateY(-50%);
-    pointer-events: none;
-    z-index: 2;
-}
+        .channel-button.vip-button {
+            background-color: #8A4FFF !important;
+            color: white;
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 25px;
+            text-align: center;
+            position: relative;
+            font-weight: bold;
+            z-index: 1;
+            /* Asegurar que el botón esté por encima */
+        }
+
         #lottie-confetti {
             position: absolute;
             width: 80px;
@@ -246,7 +234,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 30px;
+            padding: 10px 30px;
         }
 
         .profile {
@@ -304,9 +292,9 @@
 
         /* Título de sección */
         .section-title {
-            font-size: 24px;
+            font-size: 20px;
             font-weight: bold;
-            margin: 10px 0 20px;
+            /* margin: 10px 0 20px; */
             text-align: center;
             color: #ede7e3;
         }
@@ -591,9 +579,9 @@
         }
 
         /* Espacio para el botón flotante */
-        .content {
+        /* .content {
             padding-bottom: 140px;
-        }
+        } */
 
         /* Navbar */
         .navbar {
@@ -605,8 +593,8 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            border-radius: 30px 30px 0 0;
-            padding: 10px 0;
+            border-radius: 25px 25px 0 0;
+            /* padding: 10px 0; */
             z-index: 100;
         }
 
@@ -667,7 +655,7 @@
         }
 
         #info-section {
-            padding-top: 30px;
+            /* padding-top: 30px; */
             text-align: center;
         }
 
@@ -680,8 +668,8 @@
         }
 
         #animation-container-bunny {
-            width: 80%;
-            height: 250px;
+            width: 70%;
+            /* height: 250px; */
             /* Ajusta la altura según necesites */
             margin: 0 auto;
             /* Esto centra horizontalmente */
@@ -740,7 +728,7 @@
             <!-- <h2 class="section-title">BIN TARJETAS</h2> -->
 
             <!-- Tarjeta principal -->
-            <div class="credit-card">
+            <!-- <div class="credit-card">
                 <div class="mastercard-logo">
                     <div class="mastercard-circle"></div>
                     <div class="mastercard-circle"></div>
@@ -752,7 +740,7 @@
                     <div class="card-number">xxxx xxxx xxxx xxxx</div>
                     <div class="card-expiry">12/30</div>
                 </div>
-            </div>
+            </div> -->
 
             <!-- Búsqueda -->
             <div class="search-container">
@@ -1033,7 +1021,7 @@
                 </a>
             </div>
             <!-- Botón flotante para agregar -->
-            <a href="https://t.me/bunnymoney_chat">
+            <!-- <a href="https://t.me/bunnymoney_chat">
                 <button class="message-button">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path
@@ -1044,7 +1032,7 @@
                             stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                     </svg>
                 </button>
-            </a>
+            </a> -->
         </div>
     </div>
 
@@ -1106,263 +1094,278 @@
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            // Configuración de navegación entre secciones
-            const navButtons = document.querySelectorAll('.nav-button');
-            const sections = document.querySelectorAll('#home-section, #cards-section, #gas-section, #info-section');
+document.addEventListener('DOMContentLoaded', function () {
+    // Configuración de navegación entre secciones
+    const navButtons = document.querySelectorAll('.nav-button');
+    const sections = document.querySelectorAll('#home-section, #cards-section, #gas-section, #info-section');
 
-            function handleSectionNavigation(button) {
-                const sectionId = button.getAttribute('data-section');
-                const newSection = document.getElementById(sectionId);
+    function handleSectionNavigation(button) {
+        const sectionId = button.getAttribute('data-section');
+        const newSection = document.getElementById(sectionId);
 
-                if (button.classList.contains('active')) return;
+        if (button.classList.contains('active')) return;
 
-                navButtons.forEach(btn => btn.classList.remove('active'));
-                button.classList.add('active');
+        // Actualizar botones de navegación
+        navButtons.forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
 
-                sections.forEach(section => {
-                    if (section.id !== sectionId) {
-                        section.style.opacity = '0';
-                        setTimeout(() => {
-                            if (!section.classList.contains('active-section')) {
-                                section.style.display = 'none';
-                            }
-                        }, 300);
-                    }
-                });
-
-                // Cambiar a flex para home section
-                newSection.style.display = sectionId === 'home-section' ? 'flex' : 'block';
-                void newSection.offsetWidth;
-
-                setTimeout(() => {
-                    newSection.style.opacity = '1';
-                }, 10);
-
-                sections.forEach(s => s.classList.remove('active-section'));
-                newSection.classList.add('active-section');
-
-                if (sectionId === 'info-section') {
-                    document.body.classList.add('info-active');
-                } else {
-                    document.body.classList.remove('info-active');
-                }
-
-                // Inicializar animaciones según la sección
-                if (sectionId === 'gas-section') {
-                    initCarAnimation();
-                } else if (sectionId === 'info-section') {
-                    initInfoAnimation();
-                }
+        // Ocultar secciones actuales
+        sections.forEach(section => {
+            if (section.id !== sectionId) {
+                section.style.opacity = '0';
+                section.style.transform = 'translateY(20px)';
             }
+        });
 
-            // Inicialización de la navegación
-            navButtons.forEach(button => {
-                button.addEventListener('click', () => handleSectionNavigation(button));
+        // Establecer estilo del nuevo contenido antes de mostrarlo
+        if (sectionId === 'home-section') {
+            newSection.style.display = 'flex';
+            newSection.style.flexDirection = 'column';
+        } else {
+            newSection.style.display = 'block';
+        }
+        
+        // Asegurar posición horizontal correcta para todas las secciones
+        newSection.style.left = '0';
+        newSection.style.right = '0';
+        newSection.style.width = '100%';
+        newSection.style.margin = '0 auto';
+        
+        // Cambiar fondo para la sección info
+        if (sectionId === 'info-section') {
+            document.body.classList.add('info-active');
+        } else {
+            document.body.classList.remove('info-active');
+        }
+        
+        // Forzar un repaint para que la transición funcione
+        void newSection.offsetWidth;
+
+        // Mostrar la nueva sección con animación
+        newSection.style.opacity = '1';
+        newSection.style.transform = 'translateY(0)';
+
+        // Ocultar completamente las otras secciones después de la animación
+        setTimeout(() => {
+            sections.forEach(section => {
+                if (section.id !== sectionId) {
+                    section.style.display = 'none';
+                }
+            });
+        }, 300); // Sincronizado con la duración de la transición
+
+        // Inicializar animaciones según la sección
+        if (sectionId === 'gas-section') {
+            initCarAnimation();
+        } else if (sectionId === 'info-section') {
+            initInfoAnimation();
+        }
+    }
+
+    // Inicialización de la navegación
+    navButtons.forEach(button => {
+        button.addEventListener('click', () => handleSectionNavigation(button));
+    });
+
+    // Animaciones
+    function initCarAnimation() {
+        const container = document.getElementById('car-animation-container');
+        if (container && !window.carAnimation) {
+            window.carAnimation = lottie.loadAnimation({
+                container: container,
+                renderer: 'svg',
+                loop: true,
+                autoplay: true,
+                path: 'https://gist.githubusercontent.com/jenyferis/c81b00183c4d8165860c17ffa7977eb6/raw/c8b457c8c72942696eaefdd410877407c770b302/conductor.json'
+            });
+        }
+    }
+
+    function initInfoAnimation() {
+        const container = document.getElementById('animation-container-bunny');
+        if (container) {
+            container.innerHTML = '';
+            lottie.loadAnimation({
+                container: container,
+                renderer: 'svg',
+                loop: true,
+                autoplay: true,
+                path: 'https://gist.githubusercontent.com/jenyferis/68a1cda0a8c3616e4b4c2e33093043eb/raw/e6582aa858d463dbfcaf96603e8ba80fd4c3b422/conejo.json'
+            });
+        }
+    }
+
+    // Animación de confeti VIP
+    function initVIPConfetti() {
+        const confettiContainer = document.getElementById('lottie-confetti');
+        if (confettiContainer) {
+            // Limpiar el contenedor primero
+            confettiContainer.innerHTML = '';
+
+            // Crear nueva animación con manejo explícito
+            const vipAnimation = lottie.loadAnimation({
+                container: confettiContainer,
+                renderer: 'svg',
+                loop: true,
+                autoplay: true,
+                path: 'https://gist.githubusercontent.com/jenyferis/fa2b2bf60f88cb3647f41ef9542db7f7/raw/a95bd6e0a0cca9f15227aaba6fc22bf7f1b36214/vip.json'
             });
 
-            // Animaciones
-            function initCarAnimation() {
-                const container = document.getElementById('car-animation-container');
-                if (container && !window.carAnimation) {
-                    window.carAnimation = lottie.loadAnimation({
-                        container: container,
-                        renderer: 'svg',
-                        loop: true,
-                        autoplay: true,
-                        path: 'https://gist.githubusercontent.com/jenyferis/c81b00183c4d8165860c17ffa7977eb6/raw/c8b457c8c72942696eaefdd410877407c770b302/conductor.json'
-                    });
-                }
-            }
+            // Forzar visibilidad
+            confettiContainer.style.display = 'block';
+            confettiContainer.style.visibility = 'visible';
+            confettiContainer.style.opacity = '1';
 
-            function initInfoAnimation() {
-                const container = document.getElementById('animation-container-bunny');
-                if (container) {
-                    container.innerHTML = '';
-                    lottie.loadAnimation({
-                        container: container,
-                        renderer: 'svg',
-                        loop: true,
-                        autoplay: true,
-                        path: 'https://gist.githubusercontent.com/jenyferis/68a1cda0a8c3616e4b4c2e33093043eb/raw/e6582aa858d463dbfcaf96603e8ba80fd4c3b422/conejo.json'
-                    });
-                }
-            }
+            // Asegurar que la animación se carga correctamente
+            vipAnimation.addEventListener('DOMLoaded', () => {
+                // Forzar repintado
+                setTimeout(() => {
+                    vipAnimation.play();
+                }, 100);
+            });
+        }
+    }
+    
+    // Funciones de utilidad
+    function initCopyButtons() {
+        const copyButtons = document.querySelectorAll('.copy-button');
+        copyButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const row = button.closest('.card-row');
+                const cardDetails = Array.from(row.querySelectorAll('.card-column'))
+                    .map(col => col.textContent)
+                    .join(' - ');
 
-            // Animación de confeti VIP
-            function initVIPConfetti() {
-                const confettiContainer = document.getElementById('lottie-confetti');
-                if (confettiContainer) {
-                    // Limpiar el contenedor primero
-                    confettiContainer.innerHTML = '';
-
-                    // Crear nueva animación con manejo explícito
-                    const vipAnimation = lottie.loadAnimation({
-                        container: confettiContainer,
-                        renderer: 'svg',
-                        loop: true,
-                        autoplay: true,
-                        path: 'https://gist.githubusercontent.com/jenyferis/fa2b2bf60f88cb3647f41ef9542db7f7/raw/a95bd6e0a0cca9f15227aaba6fc22bf7f1b36214/vip.json'
-                    });
-
-                    // Forzar visibilidad
-                    confettiContainer.style.display = 'block';
-                    confettiContainer.style.visibility = 'visible';
-                    confettiContainer.style.opacity = '1';
-
-                    // Asegurar que la animación se carga correctamente
-                    vipAnimation.addEventListener('DOMLoaded', () => {
-                        // Forzar repintado
-                        setTimeout(() => {
-                            vipAnimation.play();
-                        }, 100);
-                    });
-                }
-            }
-            // Funciones de utilidad
-            function initCopyButtons() {
-                const copyButtons = document.querySelectorAll('.copy-button');
-                copyButtons.forEach(button => {
-                    button.addEventListener('click', () => {
-                        const row = button.closest('.card-row');
-                        const cardDetails = Array.from(row.querySelectorAll('.card-column'))
-                            .map(col => col.textContent)
-                            .join(' - ');
-
-                        navigator.clipboard.writeText(cardDetails).then(() => {
-                            updateCopyButtonState(button);
-                        });
-                    });
+                navigator.clipboard.writeText(cardDetails).then(() => {
+                    updateCopyButtonState(button);
                 });
-            }
+            });
+        });
+    }
 
-            function updateCopyButtonState(button) {
-                button.innerHTML = `
+    function updateCopyButtonState(button) {
+        button.innerHTML = `
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M9 16.17L4.83 12L3.41 13.41L9 19L21 7L19.59 5.59L9 16.17Z" fill="#4CAF50"/>
             </svg>
         `;
 
-                setTimeout(() => {
-                    button.innerHTML = `
+        setTimeout(() => {
+            button.innerHTML = `
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M16 1H4C2.9 1 2 1.9 2 3V17H4V3H16V1ZM19 5H8C6.9 5 6 5.9 6 7V21C6 22.1 6.9 23 8 23H19C20.1 23 21 22.1 21 21V7C21 5.9 20.1 5 19 5ZM19 21H8V7H19V21Z" fill="#8888A0"/>
                 </svg>
             `;
-                }, 2000);
-            }
+        }, 2000);
+    }
 
-            function initDayFilters() {
-                const dayButtons = document.querySelectorAll('.day-button');
-                const gasRows = document.querySelectorAll('.gas-row');
+    function initDayFilters() {
+        const dayButtons = document.querySelectorAll('.day-button');
+        const gasRows = document.querySelectorAll('.gas-row');
 
-                function filterByDay(day) {
-                    gasRows.forEach(row => {
-                        if (day === 'all' || row.getAttribute('data-day') === day) {
-                            row.classList.remove('hidden');
-                        } else {
-                            row.classList.add('hidden');
-                        }
-                    });
+        function filterByDay(day) {
+            gasRows.forEach(row => {
+                if (day === 'all' || row.getAttribute('data-day') === day) {
+                    row.classList.remove('hidden');
+                } else {
+                    row.classList.add('hidden');
                 }
+            });
+        }
 
-                dayButtons.forEach(button => {
-                    button.addEventListener('click', function () {
-                        dayButtons.forEach(btn => btn.classList.remove('active'));
-                        button.classList.add('active');
+        dayButtons.forEach(button => {
+            button.addEventListener('click', function () {
+                dayButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
 
-                        const carousel = document.querySelector('.day-carousel');
-                        const buttonRect = button.getBoundingClientRect();
-                        const carouselRect = carousel.getBoundingClientRect();
+                const carousel = document.querySelector('.day-carousel');
+                const buttonRect = button.getBoundingClientRect();
+                const carouselRect = carousel.getBoundingClientRect();
 
-                        const scrollLeft = buttonRect.left - carouselRect.left -
-                            (carouselRect.width / 2) + (buttonRect.width / 2);
+                const scrollLeft = buttonRect.left - carouselRect.left -
+                    (carouselRect.width / 2) + (buttonRect.width / 2);
 
-                        carousel.scrollTo({
-                            left: carousel.scrollLeft + scrollLeft,
-                            behavior: 'smooth'
-                        });
-
-                        const selectedDay = button.getAttribute('data-day');
-                        filterByDay(selectedDay);
-                    });
+                carousel.scrollTo({
+                    left: carousel.scrollLeft + scrollLeft,
+                    behavior: 'smooth'
                 });
 
-                filterByDay('all');
-            }
-
-            function initSearchBar() {
-                const searchBar = document.querySelector('.search-bar');
-                searchBar.addEventListener('input', () => {
-                    const searchTerm = searchBar.value.toLowerCase();
-                    const rows = document.querySelectorAll('.card-row');
-
-                    rows.forEach(row => {
-                        const text = Array.from(row.querySelectorAll('.card-column'))
-                            .map(col => col.textContent.toLowerCase())
-                            .join(' ');
-
-                        row.style.display = text.includes(searchTerm) ? 'flex' : 'none';
-                    });
-                });
-            }
-
-            // Agregar efecto de clic a los botones del home
-            function initButtonClickEffects() {
-                const homeButtons = document.querySelectorAll('.channel-buttons button:not(.vip-button)');
-                homeButtons.forEach(button => {
-                    button.addEventListener('click', function () {
-                        // Primero, elimina la clase de cualquier botón que la tenga
-                        homeButtons.forEach(btn => btn.classList.remove('clicked'));
-
-                        // Añade la clase solo al botón clicado
-                        this.classList.add('clicked');
-
-                        // El color permanecerá cambiado hasta que se haga clic en otro botón
-                    });
-                });
-            }
-
-            function initProfileAnimation() {
-                const profilePicContainer = document.querySelector('.profile-pic');
-
-                // Asegúrate de que el contenedor esté limpio antes de cargar la animación
-                profilePicContainer.innerHTML = '';
-
-                // Carga la animación lottie en el contenedor de la imagen de perfil
-                const profileAnimation = lottie.loadAnimation({
-                    container: profilePicContainer,
-                    renderer: 'svg',
-                    loop: true,
-                    autoplay: true,
-                    // Reemplaza esta URL con la URL real de tu animación lottie
-                    path: 'https://gist.githubusercontent.com/jenyferis/cd826553df578523d7b3abf058ab93ab/raw/b6dffb79343b439d8fdbd7223c55f8e3a8c6fc7b/perfil.json'
-                });
-
-                // Asegúrate de que la animación se adapte correctamente al contenedor circular
-                profileAnimation.addEventListener('DOMLoaded', () => {
-                    // Ajusta el estilo para mantener la forma circular
-                    const svg = profilePicContainer.querySelector('svg');
-                    if (svg) {
-                        svg.style.width = '100%';
-                        svg.style.height = '100%';
-                        svg.style.borderRadius = '50%';
-                        svg.style.overflow = 'hidden';
-                    }
-                });
-            }
-
-            
-    
-
-            // Inicializar todas las funcionalidades
-            initCopyButtons();
-            initDayFilters();
-            initSearchBar();
-            initVIPConfetti();
-            initButtonClickEffects();
-            initProfileAnimation();
+                const selectedDay = button.getAttribute('data-day');
+                filterByDay(selectedDay);
+            });
         });
+
+        filterByDay('all');
+    }
+
+    function initSearchBar() {
+        const searchBar = document.querySelector('.search-bar');
+        if (searchBar) {
+            searchBar.addEventListener('input', () => {
+                const searchTerm = searchBar.value.toLowerCase();
+                const rows = document.querySelectorAll('.card-row:not(.gas-row)');
+
+                rows.forEach(row => {
+                    const text = Array.from(row.querySelectorAll('.card-column'))
+                        .map(col => col.textContent.toLowerCase())
+                        .join(' ');
+
+                    row.style.display = text.includes(searchTerm) ? 'grid' : 'none';
+                });
+            });
+        }
+    }
+
+    // Agregar efecto de clic a los botones del home
+    function initButtonClickEffects() {
+        const homeButtons = document.querySelectorAll('.channel-buttons button:not(.vip-button)');
+        homeButtons.forEach(button => {
+            button.addEventListener('click', function () {
+                // Primero, elimina la clase de cualquier botón que la tenga
+                homeButtons.forEach(btn => btn.classList.remove('clicked'));
+
+                // Añade la clase solo al botón clicado
+                this.classList.add('clicked');
+            });
+        });
+    }
+
+    function initProfileAnimation() {
+        const profilePicContainer = document.querySelector('.profile-pic');
+
+        // Asegúrate de que el contenedor esté limpio antes de cargar la animación
+        profilePicContainer.innerHTML = '';
+
+        // Carga la animación lottie en el contenedor de la imagen de perfil
+        const profileAnimation = lottie.loadAnimation({
+            container: profilePicContainer,
+            renderer: 'svg',
+            loop: true,
+            autoplay: true,
+            path: 'https://gist.githubusercontent.com/jenyferis/cd826553df578523d7b3abf058ab93ab/raw/b6dffb79343b439d8fdbd7223c55f8e3a8c6fc7b/perfil.json'
+        });
+
+        // Asegúrate de que la animación se adapte correctamente al contenedor circular
+        profileAnimation.addEventListener('DOMLoaded', () => {
+            // Ajusta el estilo para mantener la forma circular
+            const svg = profilePicContainer.querySelector('svg');
+            if (svg) {
+                svg.style.width = '100%';
+                svg.style.height = '100%';
+                svg.style.borderRadius = '50%';
+                svg.style.overflow = 'hidden';
+            }
+        });
+    }
+
+    // Inicializar todas las funcionalidades
+    initCopyButtons();
+    initDayFilters();
+    initSearchBar();
+    initVIPConfetti();
+    initButtonClickEffects();
+    initProfileAnimation();
+});
     </script>
 </body>
 
