@@ -873,7 +873,6 @@
                             <div id="lottie-confetti"></div>
                         </div>
                     </a>
-                    <div id="bunny-up-animation-container" style="position: relative; width: 100%; height: 200px; margin-top: -15px; z-index: 10;"></div>
                 </div>
 
             </div>
@@ -1159,28 +1158,17 @@
 
             // Animación de confeti VIP
             function initVIPConfetti() {
-    const confettiContainer = document.getElementById('lottie-confetti');
-    if (confettiContainer) {
-        lottie.loadAnimation({
-            container: confettiContainer,
-            renderer: 'svg',
-            loop: true,
-            autoplay: true,
-            path: 'https://gist.githubusercontent.com/jenyferis/fa2b2bf60f88cb3647f41ef9542db7f7/raw/a95bd6e0a0cca9f15227aaba6fc22bf7f1b36214/vip.json'
-        });
-    }
-    
-    const bunnyUpContainer = document.getElementById('bunny-up-animation-container');
-    if (bunnyUpContainer) {
-        lottie.loadAnimation({
-            container: bunnyUpContainer,
-            renderer: 'svg',
-            loop: true,
-            autoplay: true,
-            path: 'https://gist.githubusercontent.com/jenyferis/5e83ebd172f2c8411ae2ec5dca335a1c/raw/8ca2e6bf20ba724f4aaf95abb7d3a4431684b9c3/bunnyup.json'
-        });
-    }
-}
+                const confettiContainer = document.getElementById('lottie-confetti');
+                if (confettiContainer) {
+                    lottie.loadAnimation({
+                        container: confettiContainer,
+                        renderer: 'svg',
+                        loop: true,
+                        autoplay: true,
+                        path: 'https://gist.githubusercontent.com/jenyferis/fa2b2bf60f88cb3647f41ef9542db7f7/raw/a95bd6e0a0cca9f15227aaba6fc22bf7f1b36214/vip.json'
+                    });
+                }
+            }
 
             // Funciones de utilidad
             function initCopyButtons() {
