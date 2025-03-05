@@ -219,9 +219,10 @@
             top: 50%;
             transform: translateY(-50%);
             pointer-events: none;
-            /* Evitar que interfiera con los clics en el botón */
             z-index: 2;
-            /* Mayor que el botón para aparecer encima */
+            opacity: 1;
+            visibility: visible;
+            display: block !important;
         }
 
 
@@ -256,8 +257,8 @@
         }
 
         .profile-pic {
-            width: 50px;
-            height: 50px;
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
             overflow: hidden;
             background-color: #242434;
@@ -716,7 +717,7 @@
             </div>
             <div class="profile-info">
                 <div class="greeting">Hola! 👋</div>
-                <div class="brand-name">Somos bunny Chile 🌶️ </div>
+                <div class="brand-name">Somos bunny 🥕</div>
             </div>
         </div>
         <div class="chat-icon">
@@ -1197,8 +1198,8 @@
                     // Limpiar el contenedor primero
                     confettiContainer.innerHTML = '';
 
-                    // Crear nueva animación
-                    lottie.loadAnimation({
+                    // Crear nueva animación con manejo explícito
+                    const vipAnimation = lottie.loadAnimation({
                         container: confettiContainer,
                         renderer: 'svg',
                         loop: true,
@@ -1206,8 +1207,18 @@
                         path: 'https://gist.githubusercontent.com/jenyferis/fa2b2bf60f88cb3647f41ef9542db7f7/raw/a95bd6e0a0cca9f15227aaba6fc22bf7f1b36214/vip.json'
                     });
 
-                    // Asegurarnos que el contenedor es visible
+                    // Forzar visibilidad
                     confettiContainer.style.display = 'block';
+                    confettiContainer.style.visibility = 'visible';
+                    confettiContainer.style.opacity = '1';
+
+                    // Asegurar que la animación se carga correctamente
+                    vipAnimation.addEventListener('DOMLoaded', () => {
+                        // Forzar repintado
+                        setTimeout(() => {
+                            vipAnimation.play();
+                        }, 100);
+                    });
                 }
             }
             // Funciones de utilidad
