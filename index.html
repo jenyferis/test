@@ -178,27 +178,37 @@
 
         /* Estilos actualizados para el botón VIP y su animación */
         .vip-button-container {
-            position: relative;
-            margin-top: 20px;
-            width: 100%;
-            overflow: visible;
-            /* Asegurar que el contenido que se desborda sea visible */
-        }
+    position: relative;
+    margin-top: 20px;
+    width: 100%;
+}
 
-        .channel-button.vip-button {
-            background-color: #8A4FFF !important;
-            color: white;
-            width: 100%;
-            padding: 15px;
-            border: none;
-            border-radius: 25px;
-            text-align: center;
-            position: relative;
-            font-weight: bold;
-            z-index: 1;
-            /* Asegurar que el botón esté por encima */
-        }
 
+.channel-button.vip-button {
+    background-color: #8A4FFF !important;
+    color: white;
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 25px;
+    text-align: center;
+    position: relative;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+}
+.vip-confetti {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    right: -10px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    z-index: 2;
+}
         #lottie-confetti {
             position: absolute;
             width: 80px;
@@ -1342,6 +1352,7 @@
                 });
             }
 
+            
     
 
             // Inicializar todas las funcionalidades
