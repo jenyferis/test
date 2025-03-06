@@ -1067,304 +1067,281 @@
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            // Referencias a elementos
-            const navButtons = document.querySelectorAll('.nav-button');
-            const sections = document.querySelectorAll('#home-section, #cards-section, #gas-section, #info-section');
-            const body = document.body;
-
-            // Inicializar todas las animaciones Lottie apenas carga la página
-            let animations = {
-                profile: null,
-                car: null,
-                bunny: null,
-                vip: null
+// Script principal para la aplicación Bunny
+document.addEventListener('DOMContentLoaded', function () {
+    // 1. CARGA DE DATOS
+    // Función para cargar los datos desde el archivo JSON
+    async function loadData() {
+        try {
+            const response = await fetch('data.json');
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return await response.json();
+        } catch (error) {
+            console.error('Error cargando los datos:', error);
+            // Datos de respaldo en caso de error
+            return {
+                cards: [],
+                bencina: []
             };
+        }
+    }
 
+    // 2. INICIALIZACIÓN DE COMPONENTES
+    // Referencias a elementos
+    const navButtons = document.querySelectorAll('.nav-button');
+    const sections = document.querySelectorAll('#home-section, #cards-section, #gas-section, #info-section');
+    const body = document.body;
 
-            document.addEventListener('touchstart', function (e) {
-                if (e.touches.length > 1) {
-                    e.preventDefault();
-                }
-            }, { passive: false });
+    // Inicializar todas las animaciones Lottie apenas carga la página
+    let animations = {
+        profile: null,
+        car: null,
+        bunny: null,
+        vip: null
+    };
 
-            document.addEventListener('contextmenu', event => event.preventDefault());
-            // Función para inicializar todas las animaciones
-            function preloadAnimations() {
-                // Inicializar animación de perfil
-                const profilePicContainer = document.querySelector('.profile-pic');
-                if (profilePicContainer) {
-                    profilePicContainer.innerHTML = '';
-                    animations.profile = lottie.loadAnimation({
-                        container: profilePicContainer,
-                        renderer: 'svg',
-                        loop: true,
-                        autoplay: true,
-                        path: 'https://gist.githubusercontent.com/jenyferis/cd826553df578523d7b3abf058ab93ab/raw/b6dffb79343b439d8fdbd7223c55f8e3a8c6fc7b/perfil.json'
-                    });
-                }
+    // 3. CONFIGURACIÓN DE EVENTOS Y PREVENCIÓN DE INTERACCIONES NO DESEADAS
+    document.addEventListener('touchstart', function (e) {
+        if (e.touches.length > 1) {
+            e.preventDefault();
+        }
+    }, { passive: false });
 
-                // Pre-cargar animación del coche
-                const carContainer = document.getElementById('car-animation-container');
-                if (carContainer) {
-                    animations.car = lottie.loadAnimation({
-                        container: carContainer,
-                        renderer: 'svg',
-                        loop: true,
-                        autoplay: false, // Inicialmente no reproducir
-                        path: 'https://gist.githubusercontent.com/jenyferis/c81b00183c4d8165860c17ffa7977eb6/raw/c8b457c8c72942696eaefdd410877407c770b302/conductor.json'
-                    });
-                    animations.car.goToAndStop(0, true); // Pausa en el primer frame
-                }
+    document.addEventListener('contextmenu', event => event.preventDefault());
 
-                // Pre-cargar animación del conejo
-                const bunnyContainer = document.getElementById('animation-container-bunny');
-                if (bunnyContainer) {
-                    animations.bunny = lottie.loadAnimation({
-                        container: bunnyContainer,
-                        renderer: 'svg',
-                        loop: true,
-                        autoplay: false, // Inicialmente no reproducir
-                        path: 'https://gist.githubusercontent.com/jenyferis/68a1cda0a8c3616e4b4c2e33093043eb/raw/e6582aa858d463dbfcaf96603e8ba80fd4c3b422/conejo.json'
-                    });
-                    animations.bunny.goToAndStop(0, true); // Pausa en el primer frame
-                }
+    // 4. FUNCIONES PRINCIPALES
+    // Función para inicializar todas las animaciones
+    function preloadAnimations() {
+        // Inicializar animación de perfil
+        const profilePicContainer = document.querySelector('.profile-pic');
+        if (profilePicContainer) {
+            profilePicContainer.innerHTML = '';
+            animations.profile = lottie.loadAnimation({
+                container: profilePicContainer,
+                renderer: 'svg',
+                loop: true,
+                autoplay: true,
+                path: 'https://gist.githubusercontent.com/jenyferis/cd826553df578523d7b3abf058ab93ab/raw/b6dffb79343b439d8fdbd7223c55f8e3a8c6fc7b/perfil.json'
+            });
+        }
 
-                // Inicializar animación VIP
-                const confettiContainer = document.getElementById('lottie-confetti');
-                if (confettiContainer) {
-                    confettiContainer.innerHTML = '';
-                    animations.vip = lottie.loadAnimation({
-                        container: confettiContainer,
-                        renderer: 'svg',
-                        loop: true,
-                        autoplay: true,
-                        path: 'https://gist.githubusercontent.com/jenyferis/fa2b2bf60f88cb3647f41ef9542db7f7/raw/a95bd6e0a0cca9f15227aaba6fc22bf7f1b36214/vip.json'
-                    });
-                }
+        // Pre-cargar animación del coche
+        const carContainer = document.getElementById('car-animation-container');
+        if (carContainer) {
+            animations.car = lottie.loadAnimation({
+                container: carContainer,
+                renderer: 'svg',
+                loop: true,
+                autoplay: false, // Inicialmente no reproducir
+                path: 'https://gist.githubusercontent.com/jenyferis/c81b00183c4d8165860c17ffa7977eb6/raw/c8b457c8c72942696eaefdd410877407c770b302/conductor.json'
+            });
+            animations.car.goToAndStop(0, true); // Pausa en el primer frame
+        }
+
+        // Pre-cargar animación del conejo
+        const bunnyContainer = document.getElementById('animation-container-bunny');
+        if (bunnyContainer) {
+            animations.bunny = lottie.loadAnimation({
+                container: bunnyContainer,
+                renderer: 'svg',
+                loop: true,
+                autoplay: false, // Inicialmente no reproducir
+                path: 'https://gist.githubusercontent.com/jenyferis/68a1cda0a8c3616e4b4c2e33093043eb/raw/e6582aa858d463dbfcaf96603e8ba80fd4c3b422/conejo.json'
+            });
+            animations.bunny.goToAndStop(0, true); // Pausa en el primer frame
+        }
+
+        // Inicializar animación VIP
+        const confettiContainer = document.getElementById('lottie-confetti');
+        if (confettiContainer) {
+            confettiContainer.innerHTML = '';
+            animations.vip = lottie.loadAnimation({
+                container: confettiContainer,
+                renderer: 'svg',
+                loop: true,
+                autoplay: true,
+                path: 'https://gist.githubusercontent.com/jenyferis/fa2b2bf60f88cb3647f41ef9542db7f7/raw/a95bd6e0a0cca9f15227aaba6fc22bf7f1b36214/vip.json'
+            });
+        }
+    }
+
+    // Gestión de transiciones entre secciones con mejor rendimiento
+    function switchSection(sectionId) {
+        // Si ya estamos en esta sección, no hacer nada
+        if (document.getElementById(sectionId).classList.contains('section-active')) {
+            return;
+        }
+
+        // Desactivar todas las secciones actuales primero
+        sections.forEach(section => {
+            section.classList.remove('section-active');
+        });
+
+        // Actualizar los botones de navegación
+        navButtons.forEach(btn => {
+            btn.classList.remove('active');
+            if (btn.getAttribute('data-section') === sectionId) {
+                btn.classList.add('active');
             }
+        });
 
-            // Gestión de transiciones entre secciones con mejor rendimiento
-            function switchSection(sectionId) {
-                // Si ya estamos en esta sección, no hacer nada
-                if (document.getElementById(sectionId).classList.contains('section-active')) {
-                    return;
-                }
+        // Cambiar fondo para la sección info
+        if (sectionId === 'info-section') {
+            body.classList.add('info-active');
+        } else {
+            body.classList.remove('info-active');
+        }
 
-                // Desactivar todas las secciones actuales primero
-                sections.forEach(section => {
-                    section.classList.remove('section-active');
-                });
+        // Activar la nueva sección con un pequeño retraso para permitir que la transición de ocultamiento termine
+        const targetSection = document.getElementById(sectionId);
 
-                // Actualizar los botones de navegación
-                navButtons.forEach(btn => {
-                    btn.classList.remove('active');
-                    if (btn.getAttribute('data-section') === sectionId) {
-                        btn.classList.add('active');
+        // Pequeño retraso para la animación fluida
+        setTimeout(() => {
+            targetSection.classList.add('section-active');
+
+            // Activar animaciones específicas para cada sección
+            if (sectionId === 'gas-section' && animations.car) {
+                animations.car.goToAndPlay(0, true);
+            } else if (sectionId === 'info-section' && animations.bunny) {
+                animations.bunny.goToAndPlay(0, true);
+            }
+        }, 100); // Aumentado ligeramente el tiempo de retraso
+    }
+
+    // Filtros de días para la sección de gas
+    function initDayFilters() {
+        const dayButtons = document.querySelectorAll('.day-button');
+        const gasRows = document.querySelectorAll('.gas-row');
+
+        dayButtons.forEach(button => {
+            button.addEventListener('click', function () {
+                // Desactivar todos los botones
+                dayButtons.forEach(btn => btn.classList.remove('active'));
+
+                // Activar el botón actual
+                this.classList.add('active');
+
+                // Obtener el día seleccionado
+                const selectedDay = this.getAttribute('data-day');
+
+                // Filtrar filas
+                gasRows.forEach(row => {
+                    if (selectedDay === 'all' || row.getAttribute('data-day') === selectedDay) {
+                        row.classList.remove('hidden');
+                    } else {
+                        row.classList.add('hidden');
                     }
                 });
 
-                // Cambiar fondo para la sección info
-                if (sectionId === 'info-section') {
-                    body.classList.add('info-active');
-                } else {
-                    body.classList.remove('info-active');
-                }
+                // Centrar el botón en el carrusel con animación suave
+                const carousel = document.querySelector('.day-carousel');
+                const buttonRect = button.getBoundingClientRect();
+                const carouselRect = carousel.getBoundingClientRect();
 
-                // Activar la nueva sección con un pequeño retraso para permitir que la transición de ocultamiento termine
-                const targetSection = document.getElementById(sectionId);
+                const scrollLeft = buttonRect.left - carouselRect.left -
+                    (carouselRect.width / 2) + (buttonRect.width / 2);
 
-                // Pequeño retraso para la animación fluida
-                setTimeout(() => {
-                    targetSection.classList.add('section-active');
-
-                    // Activar animaciones específicas para cada sección
-                    if (sectionId === 'gas-section' && animations.car) {
-                        animations.car.goToAndPlay(0, true);
-                    } else if (sectionId === 'info-section' && animations.bunny) {
-                        animations.bunny.goToAndPlay(0, true);
-                    }
-                }, 100); // Aumentado ligeramente el tiempo de retraso
-            }
-
-            // Inicializar handlers de navegación
-            navButtons.forEach(button => {
-                button.addEventListener('click', function () {
-                    const sectionId = this.getAttribute('data-section');
-                    switchSection(sectionId);
+                carousel.scrollTo({
+                    left: carousel.scrollLeft + scrollLeft,
+                    behavior: 'smooth'
                 });
             });
-
-            // Filtros de días para la sección de gas
-            function initDayFilters() {
-                const dayButtons = document.querySelectorAll('.day-button');
-                const gasRows = document.querySelectorAll('.gas-row');
-
-                dayButtons.forEach(button => {
-                    button.addEventListener('click', function () {
-                        // Desactivar todos los botones
-                        dayButtons.forEach(btn => btn.classList.remove('active'));
-
-                        // Activar el botón actual
-                        this.classList.add('active');
-
-                        // Obtener el día seleccionado
-                        const selectedDay = this.getAttribute('data-day');
-
-                        // Filtrar filas
-                        gasRows.forEach(row => {
-                            if (selectedDay === 'all' || row.getAttribute('data-day') === selectedDay) {
-                                row.classList.remove('hidden');
-                            } else {
-                                row.classList.add('hidden');
-                            }
-                        });
-
-                        // Centrar el botón en el carrusel con animación suave
-                        const carousel = document.querySelector('.day-carousel');
-                        const buttonRect = button.getBoundingClientRect();
-                        const carouselRect = carousel.getBoundingClientRect();
-
-                        const scrollLeft = buttonRect.left - carouselRect.left -
-                            (carouselRect.width / 2) + (buttonRect.width / 2);
-
-                        carousel.scrollTo({
-                            left: carousel.scrollLeft + scrollLeft,
-                            behavior: 'smooth'
-                        });
-                    });
-                });
-            }
-
-            // Funcionalidad de búsqueda
-            function initSearchBar() {
-                const searchBar = document.querySelector('.search-bar');
-                if (searchBar) {
-                    searchBar.addEventListener('input', function () {
-                        const searchTerm = this.value.toLowerCase().trim();
-                        const rows = document.querySelectorAll('#cards-section .card-row');
-
-                        rows.forEach(row => {
-                            const text = Array.from(row.querySelectorAll('.card-column'))
-                                .map(col => col.textContent.toLowerCase())
-                                .join(' ');
-
-                            if (text.includes(searchTerm)) {
-                                row.style.display = 'grid';
-                            } else {
-                                row.style.display = 'none';
-                            }
-                        });
-                    });
-                }
-            }
-
-            // Funcionalidad de copiar
-            function initCopyButtons() {
-                const copyButtons = document.querySelectorAll('.copy-button');
-                copyButtons.forEach(button => {
-                    button.addEventListener('click', function () {
-                        const row = this.closest('.card-row');
-                        const cardDetails = Array.from(row.querySelectorAll('.card-column'))
-                            .map(col => col.textContent)
-                            .join(' - ');
-
-                        // Copiar al portapapeles
-                        navigator.clipboard.writeText(cardDetails)
-                            .then(() => {
-                                // Cambiar el ícono temporalmente para indicar éxito
-                                this.innerHTML = `
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M9 16.17L4.83 12L3.41 13.41L9 19L21 7L19.59 5.59L9 16.17Z" fill="#4CAF50"/>
-                            </svg>
-                        `;
-
-                                // Volver al ícono original después de 2 segundos
-                                setTimeout(() => {
-                                    this.innerHTML = `
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M16 1H4C2.9 1 2 1.9 2 3V17H4V3H16V1ZM19 5H8C6.9 5 6 5.9 6 7V21C6 22.1 6.9 23 8 23H19C20.1 23 21 22.1 21 21V7C21 5.9 20.1 5 19 5ZM19 21H8V7H19V21Z" fill="#8888A0"/>
-                                </svg>
-                            `;
-                                }, 2000);
-                            })
-                            .catch(err => {
-                                console.error('Error al copiar: ', err);
-                            });
-                    });
-                });
-            }
-
-            // Efecto visual para los botones del canal
-            function initChannelButtons() {
-                const homeButtons = document.querySelectorAll('.channel-buttons button:not(.vip-button)');
-                homeButtons.forEach(button => {
-                    button.addEventListener('click', function () {
-                        // Añadir clase de clickeado para efecto visual
-                        this.classList.add('clicked');
-
-                        // Remover la clase después de la transición
-                        setTimeout(() => {
-                            this.classList.remove('clicked');
-                        }, 300);
-                    });
-                });
-            }
-
-            // Detectar si el dispositivo es táctil
-            const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-
-            // Desactivar efectos hover en dispositivos táctiles
-            if (isTouchDevice) {
-                document.documentElement.classList.add('touch-device');
-            }
-
-            // Inicializar todas las funcionalidades
-            function init() {
-                preloadAnimations();
-                initDayFilters();
-                initSearchBar();
-                initCopyButtons();
-                initChannelButtons();
-
-                // Iniciar en la sección home
-                switchSection('home-section');
-
-                // Mejorar el rendimiento evitando la re-renderización innecesaria
-                document.querySelectorAll('img').forEach(img => {
-                    img.addEventListener('load', function () {
-                        this.classList.add('loaded');
-                    });
-                });
-
-                // Si no aparece alguna animación, intentar cargarla de nuevo
-                setTimeout(() => {
-                    if (animations.profile && !animations.profile.isLoaded) {
-                        animations.profile.destroy();
-                        const profilePicContainer = document.querySelector('.profile-pic');
-                        animations.profile = lottie.loadAnimation({
-                            container: profilePicContainer,
-                            renderer: 'svg',
-                            loop: true,
-                            autoplay: true,
-                            path: 'https://gist.githubusercontent.com/jenyferis/cd826553df578523d7b3abf058ab93ab/raw/b6dffb79343b439d8fdbd7223c55f8e3a8c6fc7b/perfil.json'
-                        });
-                    }
-                }, 1000);
-            }
-
-            // Iniciar la aplicación
-            init();
         });
-    </script>
-    <script>
-        document.addEventListener('DOMContentLoaded', async function() {
+    }
+
+    // Funcionalidad de búsqueda
+    function initSearchBar() {
+        const searchBar = document.querySelector('.search-bar');
+        if (searchBar) {
+            searchBar.addEventListener('input', function () {
+                const searchTerm = this.value.toLowerCase().trim();
+                const rows = document.querySelectorAll('#cards-section .card-row');
+
+                rows.forEach(row => {
+                    const text = Array.from(row.querySelectorAll('.card-column'))
+                        .map(col => col.textContent.toLowerCase())
+                        .join(' ');
+
+                    if (text.includes(searchTerm)) {
+                        row.style.display = 'grid';
+                    } else {
+                        row.style.display = 'none';
+                    }
+                });
+            });
+        }
+    }
+
+    // Funcionalidad de copiar
+    function initCopyButtons() {
+        const copyButtons = document.querySelectorAll('.copy-button');
+        copyButtons.forEach(button => {
+            button.addEventListener('click', function () {
+                const row = this.closest('.card-row');
+                const cardDetails = Array.from(row.querySelectorAll('.card-column'))
+                    .map(col => col.textContent)
+                    .join(' - ');
+
+                // Copiar al portapapeles
+                navigator.clipboard.writeText(cardDetails)
+                    .then(() => {
+                        // Cambiar el ícono temporalmente para indicar éxito
+                        this.innerHTML = `
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M9 16.17L4.83 12L3.41 13.41L9 19L21 7L19.59 5.59L9 16.17Z" fill="#4CAF50"/>
+                    </svg>
+                `;
+
+                        // Volver al ícono original después de 2 segundos
+                        setTimeout(() => {
+                            this.innerHTML = `
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M16 1H4C2.9 1 2 1.9 2 3V17H4V3H16V1ZM19 5H8C6.9 5 6 5.9 6 7V21C6 22.1 6.9 23 8 23H19C20.1 23 21 22.1 21 21V7C21 5.9 20.1 5 19 5ZM19 21H8V7H19V21Z" fill="#8888A0"/>
+                        </svg>
+                    `;
+                        }, 2000);
+                    })
+                    .catch(err => {
+                        console.error('Error al copiar: ', err);
+                    });
+            });
+        });
+    }
+
+    // Efecto visual para los botones del canal
+    function initChannelButtons() {
+        const homeButtons = document.querySelectorAll('.channel-buttons button:not(.vip-button)');
+        homeButtons.forEach(button => {
+            button.addEventListener('click', function () {
+                // Añadir clase de clickeado para efecto visual
+                this.classList.add('clicked');
+
+                // Remover la clase después de la transición
+                setTimeout(() => {
+                    this.classList.remove('clicked');
+                }, 300);
+            });
+        });
+    }
+
+    // 5. CARGA DE DATOS DESDE JSON
+    async function loadAndRenderData() {
+        try {
             // Cargar los datos desde el JSON
             const data = await loadData();
+            console.log("Datos cargados:", data); // Para depuración
+            
+            // Verificar que se obtuvieron los datos
+            if (!data || !data.cards || !data.bencina) {
+                console.error("No se pudieron cargar los datos o el formato es incorrecto");
+                return;
+            }
             
             // Generar las filas de tarjetas dinámicamente
             const cardRowsContainer = document.getElementById('card-rows-container');
-            if (cardRowsContainer && data.cards) {
+            if (cardRowsContainer) {
                 cardRowsContainer.innerHTML = '';
                 
                 data.cards.forEach(card => {
@@ -1386,13 +1363,15 @@
                     cardRowsContainer.appendChild(row);
                 });
                 
-                // Reinicializar los botones de copiar
+                // Reinicializar los botones de copiar después de agregar las filas
                 initCopyButtons();
+            } else {
+                console.error("No se encontró el contenedor de filas de tarjetas");
             }
             
             // Generar las filas de bencina dinámicamente
             const gasRowsContainer = document.getElementById('gas-rows-container');
-            if (gasRowsContainer && data.bencina) {
+            if (gasRowsContainer) {
                 gasRowsContainer.innerHTML = '';
                 
                 data.bencina.forEach(item => {
@@ -1407,8 +1386,74 @@
                     `;
                     gasRowsContainer.appendChild(row);
                 });
+                
+                // Actualizar filtros después de agregar filas
+                initDayFilters();
+            } else {
+                console.error("No se encontró el contenedor de filas de bencina");
             }
+        } catch (error) {
+            console.error("Error al cargar o procesar los datos:", error);
+        }
+    }
+
+    // 6. INICIALIZACIÓN DE LA APLICACIÓN
+    // Detectar si el dispositivo es táctil
+    const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+
+    // Desactivar efectos hover en dispositivos táctiles
+    if (isTouchDevice) {
+        document.documentElement.classList.add('touch-device');
+    }
+
+    // Inicializar todas las funcionalidades
+    function init() {
+        preloadAnimations();
+        initDayFilters();
+        initSearchBar();
+        initCopyButtons();
+        initChannelButtons();
+        
+        // Cargar datos desde JSON
+        loadAndRenderData();
+
+        // Iniciar en la sección home
+        switchSection('home-section');
+
+        // Mejorar el rendimiento evitando la re-renderización innecesaria
+        document.querySelectorAll('img').forEach(img => {
+            img.addEventListener('load', function () {
+                this.classList.add('loaded');
+            });
         });
+
+        // Si no aparece alguna animación, intentar cargarla de nuevo
+        setTimeout(() => {
+            if (animations.profile && !animations.profile.isLoaded) {
+                animations.profile.destroy();
+                const profilePicContainer = document.querySelector('.profile-pic');
+                animations.profile = lottie.loadAnimation({
+                    container: profilePicContainer,
+                    renderer: 'svg',
+                    loop: true,
+                    autoplay: true,
+                    path: 'https://gist.githubusercontent.com/jenyferis/cd826553df578523d7b3abf058ab93ab/raw/b6dffb79343b439d8fdbd7223c55f8e3a8c6fc7b/perfil.json'
+                });
+            }
+        }, 1000);
+    }
+
+    // Inicializar handlers de navegación
+    navButtons.forEach(button => {
+        button.addEventListener('click', function () {
+            const sectionId = this.getAttribute('data-section');
+            switchSection(sectionId);
+        });
+    });
+
+    // Iniciar la aplicación
+    init();
+});
     </script>
 </body>
 
